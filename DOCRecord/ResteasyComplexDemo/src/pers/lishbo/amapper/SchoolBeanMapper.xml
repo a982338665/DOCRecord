@@ -1,0 +1,1050 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pers.lishbo.adao.SchoolBeanDAO" >
+  <resultMap id="BaseResultMap" type="pers.lishbo.abean.SchoolBean" >
+    <id column="C_SID" property="cSid" jdbcType="CHAR" />
+    <result column="C_INNERSID" property="cInnersid" jdbcType="CHAR" />
+    <result column="C_AREAID" property="cAreaid" jdbcType="CHAR" />
+    <result column="C_AREANAME" property="cAreaname" jdbcType="CHAR" />
+    <result column="C_CITYID" property="cCityid" jdbcType="CHAR" />
+    <result column="C_CITYNAME" property="cCityname" jdbcType="CHAR" />
+    <result column="C_NAME" property="cName" jdbcType="CHAR" />
+    <result column="C_ISPRIMARY" property="cIsprimary" jdbcType="DECIMAL" />
+    <result column="C_EDUSYSP" property="cEdusysp" jdbcType="DECIMAL" />
+    <result column="C_ISJUNIOR" property="cIsjunior" jdbcType="DECIMAL" />
+    <result column="C_EDUSYSJ" property="cEdusysj" jdbcType="DECIMAL" />
+    <result column="C_SENIOR" property="cSenior" jdbcType="DECIMAL" />
+    <result column="C_EDUSYSS" property="cEdusyss" jdbcType="DECIMAL" />
+    <result column="C_ISUNIVERSITY" property="cIsuniversity" jdbcType="DECIMAL" />
+    <result column="C_EDUSYSU" property="cEdusysu" jdbcType="DECIMAL" />
+    <result column="C_ENAME" property="cEname" jdbcType="CHAR" />
+    <result column="C_ORGANCODE" property="cOrgancode" jdbcType="CHAR" />
+    <result column="C_MASTERID" property="cMasterid" jdbcType="CHAR" />
+    <result column="C_MASTERNAME" property="cMastername" jdbcType="CHAR" />
+    <result column="C_PARTYID" property="cPartyid" jdbcType="CHAR" />
+    <result column="C_PARTYNAME" property="cPartyname" jdbcType="CHAR" />
+    <result column="C_CREATEDAY" property="cCreateday" jdbcType="TIMESTAMP" />
+    <result column="C_HAPPYDAY" property="cHappyday" jdbcType="TIMESTAMP" />
+    <result column="C_SUPPERNAME" property="cSuppername" jdbcType="CHAR" />
+    <result column="C_SCHOOLPRO" property="cSchoolpro" jdbcType="CHAR" />
+    <result column="C_SCHOOLCA" property="cSchoolca" jdbcType="CHAR" />
+    <result column="C_SCHOOL" property="cSchool" jdbcType="CHAR" />
+    <result column="C_PROVINCE" property="cProvince" jdbcType="CHAR" />
+    <result column="C_CITY" property="cCity" jdbcType="CHAR" />
+    <result column="C_COUNTRY" property="cCountry" jdbcType="CHAR" />
+    <result column="C_PROVINCECODE" property="cProvincecode" jdbcType="CHAR" />
+    <result column="C_CITYCODE" property="cCitycode" jdbcType="CHAR" />
+    <result column="C_COUNTRYCODE" property="cCountrycode" jdbcType="CHAR" />
+    <result column="C_STREET" property="cStreet" jdbcType="CHAR" />
+    <result column="C_GATENO" property="cGateno" jdbcType="CHAR" />
+    <result column="C_ZIPNO" property="cZipno" jdbcType="DECIMAL" />
+    <result column="C_AREACODE" property="cAreacode" jdbcType="CHAR" />
+    <result column="C_AREACA" property="cAreaca" jdbcType="CHAR" />
+    <result column="C_ECONOMICS" property="cEconomics" jdbcType="CHAR" />
+    <result column="C_NATION" property="cNation" jdbcType="CHAR" />
+    <result column="C_STUAREA" property="cStuarea" jdbcType="CHAR" />
+    <result column="C_EDUSYS" property="cEdusys" jdbcType="CHAR" />
+    <result column="C_MAINLUG" property="cMainlug" jdbcType="CHAR" />
+    <result column="C_SECLUG" property="cSeclug" jdbcType="CHAR" />
+    <result column="C_TEL" property="cTel" jdbcType="CHAR" />
+    <result column="C_MOB" property="cMob" jdbcType="CHAR" />
+    <result column="C_WEB" property="cWeb" jdbcType="CHAR" />
+    <result column="C_TWITTER" property="cTwitter" jdbcType="CHAR" />
+    <result column="C_CYHONOR" property="cCyhonor" jdbcType="CHAR" />
+    <result column="C_CYHONORDATE" property="cCyhonordate" jdbcType="TIMESTAMP" />
+    <result column="C_CYHONORDEP" property="cCyhonordep" jdbcType="CHAR" />
+    <result column="C_CYHONORCODE" property="cCyhonorcode" jdbcType="CHAR" />
+    <result column="C_CYHONORCASH" property="cCyhonorcash" jdbcType="CHAR" />
+    <result column="C_CYHONORRESON" property="cCyhonorreson" jdbcType="CHAR" />
+    <result column="C_CYHONORSUMARRY" property="cCyhonorsumarry" jdbcType="CHAR" />
+    <result column="C_EMERGEMCY" property="cEmergemcy" jdbcType="CHAR" />
+    <result column="C_EMERGEMCYTEL" property="cEmergemcytel" jdbcType="CHAR" />
+    <result column="C_EMERGENCYEOCC" property="cEmergencyeocc" jdbcType="VARCHAR" />
+    <result column="C_HISEVOLUTION" property="cHisevolution" jdbcType="VARCHAR" />
+    <result column="C_ISUSE" property="cIsuse" jdbcType="DECIMAL" />
+    <result column="C_CREATETIME" property="cCreatetime" jdbcType="TIMESTAMP" />
+    <result column="C_LOGOPATH" property="cLogopath" jdbcType="VARCHAR" />
+    <result column="C_DESC" property="cDesc" jdbcType="VARCHAR" />
+    <result column="C_MAIL" property="cMail" jdbcType="VARCHAR" />
+    <result column="C_FAXMAIL" property="cFaxmail" jdbcType="CHAR" />
+    <result column="C_SUPPERCODE" property="cSuppercode" jdbcType="CHAR" />
+    <result column="C_AREASUPPERNAME" property="cAreasuppername" jdbcType="CHAR" />
+    <result column="C_AREASUPPERCODE" property="cAreasuppercode" jdbcType="CHAR" />
+    <result column="C_ISMINORITY" property="cIsminority" jdbcType="DECIMAL" />
+    <result column="C_MASTERPHONE" property="cMasterphone" jdbcType="CHAR" />
+    <result column="C_LONGITUDE" property="cLongitude" jdbcType="CHAR" />
+    <result column="C_LATITUDE" property="cLatitude" jdbcType="CHAR" />
+    <result column="C_BOARDING" property="cBoarding" jdbcType="DECIMAL" />
+    <result column="C_LEGALPERSONCODE" property="cLegalpersoncode" jdbcType="CHAR" />
+    <result column="C_FORMPEOPLEMAIL" property="cFormpeoplemail" jdbcType="CHAR" />
+    <result column="C_ELEVATION" property="cElevation" jdbcType="CHAR" />
+    <result column="C_LANDTYPE" property="cLandtype" jdbcType="DECIMAL" />
+    <result column="C_LANDCODE" property="cLandcode" jdbcType="CHAR" />
+    <result column="C_ATTACHCLASSTYPE" property="cAttachclasstype" jdbcType="DECIMAL" />
+    <result column="C_RECURIT" property="cRecurit" jdbcType="VARCHAR" />
+    <result column="C_UPDATORID" property="cUpdatorid" jdbcType="CHAR" />
+    <result column="C_UPDATETIME" property="cUpdatetime" jdbcType="TIMESTAMP" />
+    <result column="C_OPTIP" property="cOptip" jdbcType="VARCHAR" />
+    <result column="C_ISKINDERGARTEN" property="cIskindergarten" jdbcType="DECIMAL" />
+    <result column="C_EDUSYSK" property="cEdusysk" jdbcType="DECIMAL" />
+    <result column="C_FEETYPE" property="cFeetype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    C_SID, C_INNERSID, C_AREAID, C_AREANAME, C_CITYID, C_CITYNAME, C_NAME, C_ISPRIMARY, 
+    C_EDUSYSP, C_ISJUNIOR, C_EDUSYSJ, C_SENIOR, C_EDUSYSS, C_ISUNIVERSITY, C_EDUSYSU, 
+    C_ENAME, C_ORGANCODE, C_MASTERID, C_MASTERNAME, C_PARTYID, C_PARTYNAME, C_CREATEDAY, 
+    C_HAPPYDAY, C_SUPPERNAME, C_SCHOOLPRO, C_SCHOOLCA, C_SCHOOL, C_PROVINCE, C_CITY, 
+    C_COUNTRY, C_PROVINCECODE, C_CITYCODE, C_COUNTRYCODE, C_STREET, C_GATENO, C_ZIPNO, 
+    C_AREACODE, C_AREACA, C_ECONOMICS, C_NATION, C_STUAREA, C_EDUSYS, C_MAINLUG, C_SECLUG, 
+    C_TEL, C_MOB, C_WEB, C_TWITTER, C_CYHONOR, C_CYHONORDATE, C_CYHONORDEP, C_CYHONORCODE, 
+    C_CYHONORCASH, C_CYHONORRESON, C_CYHONORSUMARRY, C_EMERGEMCY, C_EMERGEMCYTEL, C_EMERGENCYEOCC, 
+    C_HISEVOLUTION, C_ISUSE, C_CREATETIME, C_LOGOPATH, C_DESC, C_MAIL, C_FAXMAIL, C_SUPPERCODE, 
+    C_AREASUPPERNAME, C_AREASUPPERCODE, C_ISMINORITY, C_MASTERPHONE, C_LONGITUDE, C_LATITUDE, 
+    C_BOARDING, C_LEGALPERSONCODE, C_FORMPEOPLEMAIL, C_ELEVATION, C_LANDTYPE, C_LANDCODE, 
+    C_ATTACHCLASSTYPE, C_RECURIT, C_UPDATORID, C_UPDATETIME, C_OPTIP, C_ISKINDERGARTEN, 
+    C_EDUSYSK, C_FEETYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_s_school
+    where C_SID = #{cSid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_s_school
+    where C_SID = #{cSid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="pers.lishbo.abean.SchoolBean" >
+    insert into t_s_school (C_SID, C_INNERSID, C_AREAID, 
+      C_AREANAME, C_CITYID, C_CITYNAME, 
+      C_NAME, C_ISPRIMARY, C_EDUSYSP, 
+      C_ISJUNIOR, C_EDUSYSJ, C_SENIOR, 
+      C_EDUSYSS, C_ISUNIVERSITY, C_EDUSYSU, 
+      C_ENAME, C_ORGANCODE, C_MASTERID, 
+      C_MASTERNAME, C_PARTYID, C_PARTYNAME, 
+      C_CREATEDAY, C_HAPPYDAY, C_SUPPERNAME, 
+      C_SCHOOLPRO, C_SCHOOLCA, C_SCHOOL, 
+      C_PROVINCE, C_CITY, C_COUNTRY, 
+      C_PROVINCECODE, C_CITYCODE, C_COUNTRYCODE, 
+      C_STREET, C_GATENO, C_ZIPNO, 
+      C_AREACODE, C_AREACA, C_ECONOMICS, 
+      C_NATION, C_STUAREA, C_EDUSYS, 
+      C_MAINLUG, C_SECLUG, C_TEL, C_MOB, 
+      C_WEB, C_TWITTER, C_CYHONOR, C_CYHONORDATE, 
+      C_CYHONORDEP, C_CYHONORCODE, C_CYHONORCASH, 
+      C_CYHONORRESON, C_CYHONORSUMARRY, C_EMERGEMCY, 
+      C_EMERGEMCYTEL, C_EMERGENCYEOCC, C_HISEVOLUTION, 
+      C_ISUSE, C_CREATETIME, C_LOGOPATH, 
+      C_DESC, C_MAIL, C_FAXMAIL, 
+      C_SUPPERCODE, C_AREASUPPERNAME, C_AREASUPPERCODE, 
+      C_ISMINORITY, C_MASTERPHONE, C_LONGITUDE, 
+      C_LATITUDE, C_BOARDING, C_LEGALPERSONCODE, 
+      C_FORMPEOPLEMAIL, C_ELEVATION, C_LANDTYPE, 
+      C_LANDCODE, C_ATTACHCLASSTYPE, C_RECURIT, 
+      C_UPDATORID, C_UPDATETIME, C_OPTIP, 
+      C_ISKINDERGARTEN, C_EDUSYSK, C_FEETYPE
+      )
+    values (#{cSid,jdbcType=CHAR}, #{cInnersid,jdbcType=CHAR}, #{cAreaid,jdbcType=CHAR}, 
+      #{cAreaname,jdbcType=CHAR}, #{cCityid,jdbcType=CHAR}, #{cCityname,jdbcType=CHAR}, 
+      #{cName,jdbcType=CHAR}, #{cIsprimary,jdbcType=DECIMAL}, #{cEdusysp,jdbcType=DECIMAL}, 
+      #{cIsjunior,jdbcType=DECIMAL}, #{cEdusysj,jdbcType=DECIMAL}, #{cSenior,jdbcType=DECIMAL}, 
+      #{cEdusyss,jdbcType=DECIMAL}, #{cIsuniversity,jdbcType=DECIMAL}, #{cEdusysu,jdbcType=DECIMAL}, 
+      #{cEname,jdbcType=CHAR}, #{cOrgancode,jdbcType=CHAR}, #{cMasterid,jdbcType=CHAR}, 
+      #{cMastername,jdbcType=CHAR}, #{cPartyid,jdbcType=CHAR}, #{cPartyname,jdbcType=CHAR}, 
+      #{cCreateday,jdbcType=TIMESTAMP}, #{cHappyday,jdbcType=TIMESTAMP}, #{cSuppername,jdbcType=CHAR}, 
+      #{cSchoolpro,jdbcType=CHAR}, #{cSchoolca,jdbcType=CHAR}, #{cSchool,jdbcType=CHAR}, 
+      #{cProvince,jdbcType=CHAR}, #{cCity,jdbcType=CHAR}, #{cCountry,jdbcType=CHAR}, 
+      #{cProvincecode,jdbcType=CHAR}, #{cCitycode,jdbcType=CHAR}, #{cCountrycode,jdbcType=CHAR}, 
+      #{cStreet,jdbcType=CHAR}, #{cGateno,jdbcType=CHAR}, #{cZipno,jdbcType=DECIMAL}, 
+      #{cAreacode,jdbcType=CHAR}, #{cAreaca,jdbcType=CHAR}, #{cEconomics,jdbcType=CHAR}, 
+      #{cNation,jdbcType=CHAR}, #{cStuarea,jdbcType=CHAR}, #{cEdusys,jdbcType=CHAR}, 
+      #{cMainlug,jdbcType=CHAR}, #{cSeclug,jdbcType=CHAR}, #{cTel,jdbcType=CHAR}, #{cMob,jdbcType=CHAR}, 
+      #{cWeb,jdbcType=CHAR}, #{cTwitter,jdbcType=CHAR}, #{cCyhonor,jdbcType=CHAR}, #{cCyhonordate,jdbcType=TIMESTAMP}, 
+      #{cCyhonordep,jdbcType=CHAR}, #{cCyhonorcode,jdbcType=CHAR}, #{cCyhonorcash,jdbcType=CHAR}, 
+      #{cCyhonorreson,jdbcType=CHAR}, #{cCyhonorsumarry,jdbcType=CHAR}, #{cEmergemcy,jdbcType=CHAR}, 
+      #{cEmergemcytel,jdbcType=CHAR}, #{cEmergencyeocc,jdbcType=VARCHAR}, #{cHisevolution,jdbcType=VARCHAR}, 
+      #{cIsuse,jdbcType=DECIMAL}, #{cCreatetime,jdbcType=TIMESTAMP}, #{cLogopath,jdbcType=VARCHAR}, 
+      #{cDesc,jdbcType=VARCHAR}, #{cMail,jdbcType=VARCHAR}, #{cFaxmail,jdbcType=CHAR}, 
+      #{cSuppercode,jdbcType=CHAR}, #{cAreasuppername,jdbcType=CHAR}, #{cAreasuppercode,jdbcType=CHAR}, 
+      #{cIsminority,jdbcType=DECIMAL}, #{cMasterphone,jdbcType=CHAR}, #{cLongitude,jdbcType=CHAR}, 
+      #{cLatitude,jdbcType=CHAR}, #{cBoarding,jdbcType=DECIMAL}, #{cLegalpersoncode,jdbcType=CHAR}, 
+      #{cFormpeoplemail,jdbcType=CHAR}, #{cElevation,jdbcType=CHAR}, #{cLandtype,jdbcType=DECIMAL}, 
+      #{cLandcode,jdbcType=CHAR}, #{cAttachclasstype,jdbcType=DECIMAL}, #{cRecurit,jdbcType=VARCHAR}, 
+      #{cUpdatorid,jdbcType=CHAR}, #{cUpdatetime,jdbcType=TIMESTAMP}, #{cOptip,jdbcType=VARCHAR}, 
+      #{cIskindergarten,jdbcType=DECIMAL}, #{cEdusysk,jdbcType=DECIMAL}, #{cFeetype,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pers.lishbo.abean.SchoolBean" >
+    insert into t_s_school
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cSid != null" >
+        C_SID,
+      </if>
+      <if test="cInnersid != null" >
+        C_INNERSID,
+      </if>
+      <if test="cAreaid != null" >
+        C_AREAID,
+      </if>
+      <if test="cAreaname != null" >
+        C_AREANAME,
+      </if>
+      <if test="cCityid != null" >
+        C_CITYID,
+      </if>
+      <if test="cCityname != null" >
+        C_CITYNAME,
+      </if>
+      <if test="cName != null" >
+        C_NAME,
+      </if>
+      <if test="cIsprimary != null" >
+        C_ISPRIMARY,
+      </if>
+      <if test="cEdusysp != null" >
+        C_EDUSYSP,
+      </if>
+      <if test="cIsjunior != null" >
+        C_ISJUNIOR,
+      </if>
+      <if test="cEdusysj != null" >
+        C_EDUSYSJ,
+      </if>
+      <if test="cSenior != null" >
+        C_SENIOR,
+      </if>
+      <if test="cEdusyss != null" >
+        C_EDUSYSS,
+      </if>
+      <if test="cIsuniversity != null" >
+        C_ISUNIVERSITY,
+      </if>
+      <if test="cEdusysu != null" >
+        C_EDUSYSU,
+      </if>
+      <if test="cEname != null" >
+        C_ENAME,
+      </if>
+      <if test="cOrgancode != null" >
+        C_ORGANCODE,
+      </if>
+      <if test="cMasterid != null" >
+        C_MASTERID,
+      </if>
+      <if test="cMastername != null" >
+        C_MASTERNAME,
+      </if>
+      <if test="cPartyid != null" >
+        C_PARTYID,
+      </if>
+      <if test="cPartyname != null" >
+        C_PARTYNAME,
+      </if>
+      <if test="cCreateday != null" >
+        C_CREATEDAY,
+      </if>
+      <if test="cHappyday != null" >
+        C_HAPPYDAY,
+      </if>
+      <if test="cSuppername != null" >
+        C_SUPPERNAME,
+      </if>
+      <if test="cSchoolpro != null" >
+        C_SCHOOLPRO,
+      </if>
+      <if test="cSchoolca != null" >
+        C_SCHOOLCA,
+      </if>
+      <if test="cSchool != null" >
+        C_SCHOOL,
+      </if>
+      <if test="cProvince != null" >
+        C_PROVINCE,
+      </if>
+      <if test="cCity != null" >
+        C_CITY,
+      </if>
+      <if test="cCountry != null" >
+        C_COUNTRY,
+      </if>
+      <if test="cProvincecode != null" >
+        C_PROVINCECODE,
+      </if>
+      <if test="cCitycode != null" >
+        C_CITYCODE,
+      </if>
+      <if test="cCountrycode != null" >
+        C_COUNTRYCODE,
+      </if>
+      <if test="cStreet != null" >
+        C_STREET,
+      </if>
+      <if test="cGateno != null" >
+        C_GATENO,
+      </if>
+      <if test="cZipno != null" >
+        C_ZIPNO,
+      </if>
+      <if test="cAreacode != null" >
+        C_AREACODE,
+      </if>
+      <if test="cAreaca != null" >
+        C_AREACA,
+      </if>
+      <if test="cEconomics != null" >
+        C_ECONOMICS,
+      </if>
+      <if test="cNation != null" >
+        C_NATION,
+      </if>
+      <if test="cStuarea != null" >
+        C_STUAREA,
+      </if>
+      <if test="cEdusys != null" >
+        C_EDUSYS,
+      </if>
+      <if test="cMainlug != null" >
+        C_MAINLUG,
+      </if>
+      <if test="cSeclug != null" >
+        C_SECLUG,
+      </if>
+      <if test="cTel != null" >
+        C_TEL,
+      </if>
+      <if test="cMob != null" >
+        C_MOB,
+      </if>
+      <if test="cWeb != null" >
+        C_WEB,
+      </if>
+      <if test="cTwitter != null" >
+        C_TWITTER,
+      </if>
+      <if test="cCyhonor != null" >
+        C_CYHONOR,
+      </if>
+      <if test="cCyhonordate != null" >
+        C_CYHONORDATE,
+      </if>
+      <if test="cCyhonordep != null" >
+        C_CYHONORDEP,
+      </if>
+      <if test="cCyhonorcode != null" >
+        C_CYHONORCODE,
+      </if>
+      <if test="cCyhonorcash != null" >
+        C_CYHONORCASH,
+      </if>
+      <if test="cCyhonorreson != null" >
+        C_CYHONORRESON,
+      </if>
+      <if test="cCyhonorsumarry != null" >
+        C_CYHONORSUMARRY,
+      </if>
+      <if test="cEmergemcy != null" >
+        C_EMERGEMCY,
+      </if>
+      <if test="cEmergemcytel != null" >
+        C_EMERGEMCYTEL,
+      </if>
+      <if test="cEmergencyeocc != null" >
+        C_EMERGENCYEOCC,
+      </if>
+      <if test="cHisevolution != null" >
+        C_HISEVOLUTION,
+      </if>
+      <if test="cIsuse != null" >
+        C_ISUSE,
+      </if>
+      <if test="cCreatetime != null" >
+        C_CREATETIME,
+      </if>
+      <if test="cLogopath != null" >
+        C_LOGOPATH,
+      </if>
+      <if test="cDesc != null" >
+        C_DESC,
+      </if>
+      <if test="cMail != null" >
+        C_MAIL,
+      </if>
+      <if test="cFaxmail != null" >
+        C_FAXMAIL,
+      </if>
+      <if test="cSuppercode != null" >
+        C_SUPPERCODE,
+      </if>
+      <if test="cAreasuppername != null" >
+        C_AREASUPPERNAME,
+      </if>
+      <if test="cAreasuppercode != null" >
+        C_AREASUPPERCODE,
+      </if>
+      <if test="cIsminority != null" >
+        C_ISMINORITY,
+      </if>
+      <if test="cMasterphone != null" >
+        C_MASTERPHONE,
+      </if>
+      <if test="cLongitude != null" >
+        C_LONGITUDE,
+      </if>
+      <if test="cLatitude != null" >
+        C_LATITUDE,
+      </if>
+      <if test="cBoarding != null" >
+        C_BOARDING,
+      </if>
+      <if test="cLegalpersoncode != null" >
+        C_LEGALPERSONCODE,
+      </if>
+      <if test="cFormpeoplemail != null" >
+        C_FORMPEOPLEMAIL,
+      </if>
+      <if test="cElevation != null" >
+        C_ELEVATION,
+      </if>
+      <if test="cLandtype != null" >
+        C_LANDTYPE,
+      </if>
+      <if test="cLandcode != null" >
+        C_LANDCODE,
+      </if>
+      <if test="cAttachclasstype != null" >
+        C_ATTACHCLASSTYPE,
+      </if>
+      <if test="cRecurit != null" >
+        C_RECURIT,
+      </if>
+      <if test="cUpdatorid != null" >
+        C_UPDATORID,
+      </if>
+      <if test="cUpdatetime != null" >
+        C_UPDATETIME,
+      </if>
+      <if test="cOptip != null" >
+        C_OPTIP,
+      </if>
+      <if test="cIskindergarten != null" >
+        C_ISKINDERGARTEN,
+      </if>
+      <if test="cEdusysk != null" >
+        C_EDUSYSK,
+      </if>
+      <if test="cFeetype != null" >
+        C_FEETYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cSid != null" >
+        #{cSid,jdbcType=CHAR},
+      </if>
+      <if test="cInnersid != null" >
+        #{cInnersid,jdbcType=CHAR},
+      </if>
+      <if test="cAreaid != null" >
+        #{cAreaid,jdbcType=CHAR},
+      </if>
+      <if test="cAreaname != null" >
+        #{cAreaname,jdbcType=CHAR},
+      </if>
+      <if test="cCityid != null" >
+        #{cCityid,jdbcType=CHAR},
+      </if>
+      <if test="cCityname != null" >
+        #{cCityname,jdbcType=CHAR},
+      </if>
+      <if test="cName != null" >
+        #{cName,jdbcType=CHAR},
+      </if>
+      <if test="cIsprimary != null" >
+        #{cIsprimary,jdbcType=DECIMAL},
+      </if>
+      <if test="cEdusysp != null" >
+        #{cEdusysp,jdbcType=DECIMAL},
+      </if>
+      <if test="cIsjunior != null" >
+        #{cIsjunior,jdbcType=DECIMAL},
+      </if>
+      <if test="cEdusysj != null" >
+        #{cEdusysj,jdbcType=DECIMAL},
+      </if>
+      <if test="cSenior != null" >
+        #{cSenior,jdbcType=DECIMAL},
+      </if>
+      <if test="cEdusyss != null" >
+        #{cEdusyss,jdbcType=DECIMAL},
+      </if>
+      <if test="cIsuniversity != null" >
+        #{cIsuniversity,jdbcType=DECIMAL},
+      </if>
+      <if test="cEdusysu != null" >
+        #{cEdusysu,jdbcType=DECIMAL},
+      </if>
+      <if test="cEname != null" >
+        #{cEname,jdbcType=CHAR},
+      </if>
+      <if test="cOrgancode != null" >
+        #{cOrgancode,jdbcType=CHAR},
+      </if>
+      <if test="cMasterid != null" >
+        #{cMasterid,jdbcType=CHAR},
+      </if>
+      <if test="cMastername != null" >
+        #{cMastername,jdbcType=CHAR},
+      </if>
+      <if test="cPartyid != null" >
+        #{cPartyid,jdbcType=CHAR},
+      </if>
+      <if test="cPartyname != null" >
+        #{cPartyname,jdbcType=CHAR},
+      </if>
+      <if test="cCreateday != null" >
+        #{cCreateday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cHappyday != null" >
+        #{cHappyday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cSuppername != null" >
+        #{cSuppername,jdbcType=CHAR},
+      </if>
+      <if test="cSchoolpro != null" >
+        #{cSchoolpro,jdbcType=CHAR},
+      </if>
+      <if test="cSchoolca != null" >
+        #{cSchoolca,jdbcType=CHAR},
+      </if>
+      <if test="cSchool != null" >
+        #{cSchool,jdbcType=CHAR},
+      </if>
+      <if test="cProvince != null" >
+        #{cProvince,jdbcType=CHAR},
+      </if>
+      <if test="cCity != null" >
+        #{cCity,jdbcType=CHAR},
+      </if>
+      <if test="cCountry != null" >
+        #{cCountry,jdbcType=CHAR},
+      </if>
+      <if test="cProvincecode != null" >
+        #{cProvincecode,jdbcType=CHAR},
+      </if>
+      <if test="cCitycode != null" >
+        #{cCitycode,jdbcType=CHAR},
+      </if>
+      <if test="cCountrycode != null" >
+        #{cCountrycode,jdbcType=CHAR},
+      </if>
+      <if test="cStreet != null" >
+        #{cStreet,jdbcType=CHAR},
+      </if>
+      <if test="cGateno != null" >
+        #{cGateno,jdbcType=CHAR},
+      </if>
+      <if test="cZipno != null" >
+        #{cZipno,jdbcType=DECIMAL},
+      </if>
+      <if test="cAreacode != null" >
+        #{cAreacode,jdbcType=CHAR},
+      </if>
+      <if test="cAreaca != null" >
+        #{cAreaca,jdbcType=CHAR},
+      </if>
+      <if test="cEconomics != null" >
+        #{cEconomics,jdbcType=CHAR},
+      </if>
+      <if test="cNation != null" >
+        #{cNation,jdbcType=CHAR},
+      </if>
+      <if test="cStuarea != null" >
+        #{cStuarea,jdbcType=CHAR},
+      </if>
+      <if test="cEdusys != null" >
+        #{cEdusys,jdbcType=CHAR},
+      </if>
+      <if test="cMainlug != null" >
+        #{cMainlug,jdbcType=CHAR},
+      </if>
+      <if test="cSeclug != null" >
+        #{cSeclug,jdbcType=CHAR},
+      </if>
+      <if test="cTel != null" >
+        #{cTel,jdbcType=CHAR},
+      </if>
+      <if test="cMob != null" >
+        #{cMob,jdbcType=CHAR},
+      </if>
+      <if test="cWeb != null" >
+        #{cWeb,jdbcType=CHAR},
+      </if>
+      <if test="cTwitter != null" >
+        #{cTwitter,jdbcType=CHAR},
+      </if>
+      <if test="cCyhonor != null" >
+        #{cCyhonor,jdbcType=CHAR},
+      </if>
+      <if test="cCyhonordate != null" >
+        #{cCyhonordate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cCyhonordep != null" >
+        #{cCyhonordep,jdbcType=CHAR},
+      </if>
+      <if test="cCyhonorcode != null" >
+        #{cCyhonorcode,jdbcType=CHAR},
+      </if>
+      <if test="cCyhonorcash != null" >
+        #{cCyhonorcash,jdbcType=CHAR},
+      </if>
+      <if test="cCyhonorreson != null" >
+        #{cCyhonorreson,jdbcType=CHAR},
+      </if>
+      <if test="cCyhonorsumarry != null" >
+        #{cCyhonorsumarry,jdbcType=CHAR},
+      </if>
+      <if test="cEmergemcy != null" >
+        #{cEmergemcy,jdbcType=CHAR},
+      </if>
+      <if test="cEmergemcytel != null" >
+        #{cEmergemcytel,jdbcType=CHAR},
+      </if>
+      <if test="cEmergencyeocc != null" >
+        #{cEmergencyeocc,jdbcType=VARCHAR},
+      </if>
+      <if test="cHisevolution != null" >
+        #{cHisevolution,jdbcType=VARCHAR},
+      </if>
+      <if test="cIsuse != null" >
+        #{cIsuse,jdbcType=DECIMAL},
+      </if>
+      <if test="cCreatetime != null" >
+        #{cCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cLogopath != null" >
+        #{cLogopath,jdbcType=VARCHAR},
+      </if>
+      <if test="cDesc != null" >
+        #{cDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="cMail != null" >
+        #{cMail,jdbcType=VARCHAR},
+      </if>
+      <if test="cFaxmail != null" >
+        #{cFaxmail,jdbcType=CHAR},
+      </if>
+      <if test="cSuppercode != null" >
+        #{cSuppercode,jdbcType=CHAR},
+      </if>
+      <if test="cAreasuppername != null" >
+        #{cAreasuppername,jdbcType=CHAR},
+      </if>
+      <if test="cAreasuppercode != null" >
+        #{cAreasuppercode,jdbcType=CHAR},
+      </if>
+      <if test="cIsminority != null" >
+        #{cIsminority,jdbcType=DECIMAL},
+      </if>
+      <if test="cMasterphone != null" >
+        #{cMasterphone,jdbcType=CHAR},
+      </if>
+      <if test="cLongitude != null" >
+        #{cLongitude,jdbcType=CHAR},
+      </if>
+      <if test="cLatitude != null" >
+        #{cLatitude,jdbcType=CHAR},
+      </if>
+      <if test="cBoarding != null" >
+        #{cBoarding,jdbcType=DECIMAL},
+      </if>
+      <if test="cLegalpersoncode != null" >
+        #{cLegalpersoncode,jdbcType=CHAR},
+      </if>
+      <if test="cFormpeoplemail != null" >
+        #{cFormpeoplemail,jdbcType=CHAR},
+      </if>
+      <if test="cElevation != null" >
+        #{cElevation,jdbcType=CHAR},
+      </if>
+      <if test="cLandtype != null" >
+        #{cLandtype,jdbcType=DECIMAL},
+      </if>
+      <if test="cLandcode != null" >
+        #{cLandcode,jdbcType=CHAR},
+      </if>
+      <if test="cAttachclasstype != null" >
+        #{cAttachclasstype,jdbcType=DECIMAL},
+      </if>
+      <if test="cRecurit != null" >
+        #{cRecurit,jdbcType=VARCHAR},
+      </if>
+      <if test="cUpdatorid != null" >
+        #{cUpdatorid,jdbcType=CHAR},
+      </if>
+      <if test="cUpdatetime != null" >
+        #{cUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cOptip != null" >
+        #{cOptip,jdbcType=VARCHAR},
+      </if>
+      <if test="cIskindergarten != null" >
+        #{cIskindergarten,jdbcType=DECIMAL},
+      </if>
+      <if test="cEdusysk != null" >
+        #{cEdusysk,jdbcType=DECIMAL},
+      </if>
+      <if test="cFeetype != null" >
+        #{cFeetype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pers.lishbo.abean.SchoolBean" >
+    update t_s_school
+    <set >
+      <if test="cInnersid != null" >
+        C_INNERSID = #{cInnersid,jdbcType=CHAR},
+      </if>
+      <if test="cAreaid != null" >
+        C_AREAID = #{cAreaid,jdbcType=CHAR},
+      </if>
+      <if test="cAreaname != null" >
+        C_AREANAME = #{cAreaname,jdbcType=CHAR},
+      </if>
+      <if test="cCityid != null" >
+        C_CITYID = #{cCityid,jdbcType=CHAR},
+      </if>
+      <if test="cCityname != null" >
+        C_CITYNAME = #{cCityname,jdbcType=CHAR},
+      </if>
+      <if test="cName != null" >
+        C_NAME = #{cName,jdbcType=CHAR},
+      </if>
+      <if test="cIsprimary != null" >
+        C_ISPRIMARY = #{cIsprimary,jdbcType=DECIMAL},
+      </if>
+      <if test="cEdusysp != null" >
+        C_EDUSYSP = #{cEdusysp,jdbcType=DECIMAL},
+      </if>
+      <if test="cIsjunior != null" >
+        C_ISJUNIOR = #{cIsjunior,jdbcType=DECIMAL},
+      </if>
+      <if test="cEdusysj != null" >
+        C_EDUSYSJ = #{cEdusysj,jdbcType=DECIMAL},
+      </if>
+      <if test="cSenior != null" >
+        C_SENIOR = #{cSenior,jdbcType=DECIMAL},
+      </if>
+      <if test="cEdusyss != null" >
+        C_EDUSYSS = #{cEdusyss,jdbcType=DECIMAL},
+      </if>
+      <if test="cIsuniversity != null" >
+        C_ISUNIVERSITY = #{cIsuniversity,jdbcType=DECIMAL},
+      </if>
+      <if test="cEdusysu != null" >
+        C_EDUSYSU = #{cEdusysu,jdbcType=DECIMAL},
+      </if>
+      <if test="cEname != null" >
+        C_ENAME = #{cEname,jdbcType=CHAR},
+      </if>
+      <if test="cOrgancode != null" >
+        C_ORGANCODE = #{cOrgancode,jdbcType=CHAR},
+      </if>
+      <if test="cMasterid != null" >
+        C_MASTERID = #{cMasterid,jdbcType=CHAR},
+      </if>
+      <if test="cMastername != null" >
+        C_MASTERNAME = #{cMastername,jdbcType=CHAR},
+      </if>
+      <if test="cPartyid != null" >
+        C_PARTYID = #{cPartyid,jdbcType=CHAR},
+      </if>
+      <if test="cPartyname != null" >
+        C_PARTYNAME = #{cPartyname,jdbcType=CHAR},
+      </if>
+      <if test="cCreateday != null" >
+        C_CREATEDAY = #{cCreateday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cHappyday != null" >
+        C_HAPPYDAY = #{cHappyday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cSuppername != null" >
+        C_SUPPERNAME = #{cSuppername,jdbcType=CHAR},
+      </if>
+      <if test="cSchoolpro != null" >
+        C_SCHOOLPRO = #{cSchoolpro,jdbcType=CHAR},
+      </if>
+      <if test="cSchoolca != null" >
+        C_SCHOOLCA = #{cSchoolca,jdbcType=CHAR},
+      </if>
+      <if test="cSchool != null" >
+        C_SCHOOL = #{cSchool,jdbcType=CHAR},
+      </if>
+      <if test="cProvince != null" >
+        C_PROVINCE = #{cProvince,jdbcType=CHAR},
+      </if>
+      <if test="cCity != null" >
+        C_CITY = #{cCity,jdbcType=CHAR},
+      </if>
+      <if test="cCountry != null" >
+        C_COUNTRY = #{cCountry,jdbcType=CHAR},
+      </if>
+      <if test="cProvincecode != null" >
+        C_PROVINCECODE = #{cProvincecode,jdbcType=CHAR},
+      </if>
+      <if test="cCitycode != null" >
+        C_CITYCODE = #{cCitycode,jdbcType=CHAR},
+      </if>
+      <if test="cCountrycode != null" >
+        C_COUNTRYCODE = #{cCountrycode,jdbcType=CHAR},
+      </if>
+      <if test="cStreet != null" >
+        C_STREET = #{cStreet,jdbcType=CHAR},
+      </if>
+      <if test="cGateno != null" >
+        C_GATENO = #{cGateno,jdbcType=CHAR},
+      </if>
+      <if test="cZipno != null" >
+        C_ZIPNO = #{cZipno,jdbcType=DECIMAL},
+      </if>
+      <if test="cAreacode != null" >
+        C_AREACODE = #{cAreacode,jdbcType=CHAR},
+      </if>
+      <if test="cAreaca != null" >
+        C_AREACA = #{cAreaca,jdbcType=CHAR},
+      </if>
+      <if test="cEconomics != null" >
+        C_ECONOMICS = #{cEconomics,jdbcType=CHAR},
+      </if>
+      <if test="cNation != null" >
+        C_NATION = #{cNation,jdbcType=CHAR},
+      </if>
+      <if test="cStuarea != null" >
+        C_STUAREA = #{cStuarea,jdbcType=CHAR},
+      </if>
+      <if test="cEdusys != null" >
+        C_EDUSYS = #{cEdusys,jdbcType=CHAR},
+      </if>
+      <if test="cMainlug != null" >
+        C_MAINLUG = #{cMainlug,jdbcType=CHAR},
+      </if>
+      <if test="cSeclug != null" >
+        C_SECLUG = #{cSeclug,jdbcType=CHAR},
+      </if>
+      <if test="cTel != null" >
+        C_TEL = #{cTel,jdbcType=CHAR},
+      </if>
+      <if test="cMob != null" >
+        C_MOB = #{cMob,jdbcType=CHAR},
+      </if>
+      <if test="cWeb != null" >
+        C_WEB = #{cWeb,jdbcType=CHAR},
+      </if>
+      <if test="cTwitter != null" >
+        C_TWITTER = #{cTwitter,jdbcType=CHAR},
+      </if>
+      <if test="cCyhonor != null" >
+        C_CYHONOR = #{cCyhonor,jdbcType=CHAR},
+      </if>
+      <if test="cCyhonordate != null" >
+        C_CYHONORDATE = #{cCyhonordate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cCyhonordep != null" >
+        C_CYHONORDEP = #{cCyhonordep,jdbcType=CHAR},
+      </if>
+      <if test="cCyhonorcode != null" >
+        C_CYHONORCODE = #{cCyhonorcode,jdbcType=CHAR},
+      </if>
+      <if test="cCyhonorcash != null" >
+        C_CYHONORCASH = #{cCyhonorcash,jdbcType=CHAR},
+      </if>
+      <if test="cCyhonorreson != null" >
+        C_CYHONORRESON = #{cCyhonorreson,jdbcType=CHAR},
+      </if>
+      <if test="cCyhonorsumarry != null" >
+        C_CYHONORSUMARRY = #{cCyhonorsumarry,jdbcType=CHAR},
+      </if>
+      <if test="cEmergemcy != null" >
+        C_EMERGEMCY = #{cEmergemcy,jdbcType=CHAR},
+      </if>
+      <if test="cEmergemcytel != null" >
+        C_EMERGEMCYTEL = #{cEmergemcytel,jdbcType=CHAR},
+      </if>
+      <if test="cEmergencyeocc != null" >
+        C_EMERGENCYEOCC = #{cEmergencyeocc,jdbcType=VARCHAR},
+      </if>
+      <if test="cHisevolution != null" >
+        C_HISEVOLUTION = #{cHisevolution,jdbcType=VARCHAR},
+      </if>
+      <if test="cIsuse != null" >
+        C_ISUSE = #{cIsuse,jdbcType=DECIMAL},
+      </if>
+      <if test="cCreatetime != null" >
+        C_CREATETIME = #{cCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cLogopath != null" >
+        C_LOGOPATH = #{cLogopath,jdbcType=VARCHAR},
+      </if>
+      <if test="cDesc != null" >
+        C_DESC = #{cDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="cMail != null" >
+        C_MAIL = #{cMail,jdbcType=VARCHAR},
+      </if>
+      <if test="cFaxmail != null" >
+        C_FAXMAIL = #{cFaxmail,jdbcType=CHAR},
+      </if>
+      <if test="cSuppercode != null" >
+        C_SUPPERCODE = #{cSuppercode,jdbcType=CHAR},
+      </if>
+      <if test="cAreasuppername != null" >
+        C_AREASUPPERNAME = #{cAreasuppername,jdbcType=CHAR},
+      </if>
+      <if test="cAreasuppercode != null" >
+        C_AREASUPPERCODE = #{cAreasuppercode,jdbcType=CHAR},
+      </if>
+      <if test="cIsminority != null" >
+        C_ISMINORITY = #{cIsminority,jdbcType=DECIMAL},
+      </if>
+      <if test="cMasterphone != null" >
+        C_MASTERPHONE = #{cMasterphone,jdbcType=CHAR},
+      </if>
+      <if test="cLongitude != null" >
+        C_LONGITUDE = #{cLongitude,jdbcType=CHAR},
+      </if>
+      <if test="cLatitude != null" >
+        C_LATITUDE = #{cLatitude,jdbcType=CHAR},
+      </if>
+      <if test="cBoarding != null" >
+        C_BOARDING = #{cBoarding,jdbcType=DECIMAL},
+      </if>
+      <if test="cLegalpersoncode != null" >
+        C_LEGALPERSONCODE = #{cLegalpersoncode,jdbcType=CHAR},
+      </if>
+      <if test="cFormpeoplemail != null" >
+        C_FORMPEOPLEMAIL = #{cFormpeoplemail,jdbcType=CHAR},
+      </if>
+      <if test="cElevation != null" >
+        C_ELEVATION = #{cElevation,jdbcType=CHAR},
+      </if>
+      <if test="cLandtype != null" >
+        C_LANDTYPE = #{cLandtype,jdbcType=DECIMAL},
+      </if>
+      <if test="cLandcode != null" >
+        C_LANDCODE = #{cLandcode,jdbcType=CHAR},
+      </if>
+      <if test="cAttachclasstype != null" >
+        C_ATTACHCLASSTYPE = #{cAttachclasstype,jdbcType=DECIMAL},
+      </if>
+      <if test="cRecurit != null" >
+        C_RECURIT = #{cRecurit,jdbcType=VARCHAR},
+      </if>
+      <if test="cUpdatorid != null" >
+        C_UPDATORID = #{cUpdatorid,jdbcType=CHAR},
+      </if>
+      <if test="cUpdatetime != null" >
+        C_UPDATETIME = #{cUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cOptip != null" >
+        C_OPTIP = #{cOptip,jdbcType=VARCHAR},
+      </if>
+      <if test="cIskindergarten != null" >
+        C_ISKINDERGARTEN = #{cIskindergarten,jdbcType=DECIMAL},
+      </if>
+      <if test="cEdusysk != null" >
+        C_EDUSYSK = #{cEdusysk,jdbcType=DECIMAL},
+      </if>
+      <if test="cFeetype != null" >
+        C_FEETYPE = #{cFeetype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where C_SID = #{cSid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pers.lishbo.abean.SchoolBean" >
+    update t_s_school
+    set C_INNERSID = #{cInnersid,jdbcType=CHAR},
+      C_AREAID = #{cAreaid,jdbcType=CHAR},
+      C_AREANAME = #{cAreaname,jdbcType=CHAR},
+      C_CITYID = #{cCityid,jdbcType=CHAR},
+      C_CITYNAME = #{cCityname,jdbcType=CHAR},
+      C_NAME = #{cName,jdbcType=CHAR},
+      C_ISPRIMARY = #{cIsprimary,jdbcType=DECIMAL},
+      C_EDUSYSP = #{cEdusysp,jdbcType=DECIMAL},
+      C_ISJUNIOR = #{cIsjunior,jdbcType=DECIMAL},
+      C_EDUSYSJ = #{cEdusysj,jdbcType=DECIMAL},
+      C_SENIOR = #{cSenior,jdbcType=DECIMAL},
+      C_EDUSYSS = #{cEdusyss,jdbcType=DECIMAL},
+      C_ISUNIVERSITY = #{cIsuniversity,jdbcType=DECIMAL},
+      C_EDUSYSU = #{cEdusysu,jdbcType=DECIMAL},
+      C_ENAME = #{cEname,jdbcType=CHAR},
+      C_ORGANCODE = #{cOrgancode,jdbcType=CHAR},
+      C_MASTERID = #{cMasterid,jdbcType=CHAR},
+      C_MASTERNAME = #{cMastername,jdbcType=CHAR},
+      C_PARTYID = #{cPartyid,jdbcType=CHAR},
+      C_PARTYNAME = #{cPartyname,jdbcType=CHAR},
+      C_CREATEDAY = #{cCreateday,jdbcType=TIMESTAMP},
+      C_HAPPYDAY = #{cHappyday,jdbcType=TIMESTAMP},
+      C_SUPPERNAME = #{cSuppername,jdbcType=CHAR},
+      C_SCHOOLPRO = #{cSchoolpro,jdbcType=CHAR},
+      C_SCHOOLCA = #{cSchoolca,jdbcType=CHAR},
+      C_SCHOOL = #{cSchool,jdbcType=CHAR},
+      C_PROVINCE = #{cProvince,jdbcType=CHAR},
+      C_CITY = #{cCity,jdbcType=CHAR},
+      C_COUNTRY = #{cCountry,jdbcType=CHAR},
+      C_PROVINCECODE = #{cProvincecode,jdbcType=CHAR},
+      C_CITYCODE = #{cCitycode,jdbcType=CHAR},
+      C_COUNTRYCODE = #{cCountrycode,jdbcType=CHAR},
+      C_STREET = #{cStreet,jdbcType=CHAR},
+      C_GATENO = #{cGateno,jdbcType=CHAR},
+      C_ZIPNO = #{cZipno,jdbcType=DECIMAL},
+      C_AREACODE = #{cAreacode,jdbcType=CHAR},
+      C_AREACA = #{cAreaca,jdbcType=CHAR},
+      C_ECONOMICS = #{cEconomics,jdbcType=CHAR},
+      C_NATION = #{cNation,jdbcType=CHAR},
+      C_STUAREA = #{cStuarea,jdbcType=CHAR},
+      C_EDUSYS = #{cEdusys,jdbcType=CHAR},
+      C_MAINLUG = #{cMainlug,jdbcType=CHAR},
+      C_SECLUG = #{cSeclug,jdbcType=CHAR},
+      C_TEL = #{cTel,jdbcType=CHAR},
+      C_MOB = #{cMob,jdbcType=CHAR},
+      C_WEB = #{cWeb,jdbcType=CHAR},
+      C_TWITTER = #{cTwitter,jdbcType=CHAR},
+      C_CYHONOR = #{cCyhonor,jdbcType=CHAR},
+      C_CYHONORDATE = #{cCyhonordate,jdbcType=TIMESTAMP},
+      C_CYHONORDEP = #{cCyhonordep,jdbcType=CHAR},
+      C_CYHONORCODE = #{cCyhonorcode,jdbcType=CHAR},
+      C_CYHONORCASH = #{cCyhonorcash,jdbcType=CHAR},
+      C_CYHONORRESON = #{cCyhonorreson,jdbcType=CHAR},
+      C_CYHONORSUMARRY = #{cCyhonorsumarry,jdbcType=CHAR},
+      C_EMERGEMCY = #{cEmergemcy,jdbcType=CHAR},
+      C_EMERGEMCYTEL = #{cEmergemcytel,jdbcType=CHAR},
+      C_EMERGENCYEOCC = #{cEmergencyeocc,jdbcType=VARCHAR},
+      C_HISEVOLUTION = #{cHisevolution,jdbcType=VARCHAR},
+      C_ISUSE = #{cIsuse,jdbcType=DECIMAL},
+      C_CREATETIME = #{cCreatetime,jdbcType=TIMESTAMP},
+      C_LOGOPATH = #{cLogopath,jdbcType=VARCHAR},
+      C_DESC = #{cDesc,jdbcType=VARCHAR},
+      C_MAIL = #{cMail,jdbcType=VARCHAR},
+      C_FAXMAIL = #{cFaxmail,jdbcType=CHAR},
+      C_SUPPERCODE = #{cSuppercode,jdbcType=CHAR},
+      C_AREASUPPERNAME = #{cAreasuppername,jdbcType=CHAR},
+      C_AREASUPPERCODE = #{cAreasuppercode,jdbcType=CHAR},
+      C_ISMINORITY = #{cIsminority,jdbcType=DECIMAL},
+      C_MASTERPHONE = #{cMasterphone,jdbcType=CHAR},
+      C_LONGITUDE = #{cLongitude,jdbcType=CHAR},
+      C_LATITUDE = #{cLatitude,jdbcType=CHAR},
+      C_BOARDING = #{cBoarding,jdbcType=DECIMAL},
+      C_LEGALPERSONCODE = #{cLegalpersoncode,jdbcType=CHAR},
+      C_FORMPEOPLEMAIL = #{cFormpeoplemail,jdbcType=CHAR},
+      C_ELEVATION = #{cElevation,jdbcType=CHAR},
+      C_LANDTYPE = #{cLandtype,jdbcType=DECIMAL},
+      C_LANDCODE = #{cLandcode,jdbcType=CHAR},
+      C_ATTACHCLASSTYPE = #{cAttachclasstype,jdbcType=DECIMAL},
+      C_RECURIT = #{cRecurit,jdbcType=VARCHAR},
+      C_UPDATORID = #{cUpdatorid,jdbcType=CHAR},
+      C_UPDATETIME = #{cUpdatetime,jdbcType=TIMESTAMP},
+      C_OPTIP = #{cOptip,jdbcType=VARCHAR},
+      C_ISKINDERGARTEN = #{cIskindergarten,jdbcType=DECIMAL},
+      C_EDUSYSK = #{cEdusysk,jdbcType=DECIMAL},
+      C_FEETYPE = #{cFeetype,jdbcType=VARCHAR}
+    where C_SID = #{cSid,jdbcType=CHAR}
+  </update>
+</mapper>

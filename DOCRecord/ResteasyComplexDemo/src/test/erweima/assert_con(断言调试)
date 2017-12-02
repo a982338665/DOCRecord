@@ -1,0 +1,17 @@
+ Eclipse中如何开启断言(Assert),方法有二:
+	--1.单个方法或类中开启断言：
+		Run -> Run Configurations -> Arguments页签 -> 
+		VM arguments文本框中加上断言开启的标志:-enableassertions 或者-ea 就可以了
+	--2.统一开启断言：
+		在myEclipse中,Windows -> Preferences ->Java ->Installed JREs ->
+		点击正使用的JDK ->Edit ->Default VM Arguments文本框中输入:-ea（本人采用了此方法） 
+	--3.示例：
+		public class sdsfasdf {
+		public static void main(String[] args) {
+			 boolean flag=-1>1;  
+			 assert flag:"flag is false";  
+		}
+		}
+	--输出结果：
+		Exception in thread "main" java.lang.AssertionError: flag is false
+			at com.sdsfasdf.main(sdsfasdf.java:7)

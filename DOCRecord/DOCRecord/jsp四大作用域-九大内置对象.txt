@@ -1,0 +1,153 @@
+﻿　　1、Request对象
+　　该对象封装了用户提交的信息，通过调用该对象相应的方法可以获取封装的信息，即使用该对象可以
+　　获取用户提交的信息。
+　　当Request对象获取客户提交的汉字字符时，会出现乱码问题，必须进行特殊处理。首先，将获取的
+　　字符串用ISO-8859－1进行编码，并将编码存发岛一个字节数组中，然后再将这个数组转化为字符串对象
+　　即可。如下：
+　　String textContent=request.getParameter("boy")
+　　byte b[]=textContent.getBytes("ISO-8859-1")
+　　textContent=new String(b)
+　　Request常用的方法：
+　　1.01 getParameter(String strTextName) 获取表单提交的信息。
+　　String strName＝request.getParameter("name")
+　　1.02 getProtocol() 获取客户使用的协议。
+　　String strProtocol=request.getProtocol()
+　　1.03 getServletPath() 获取客户提交信息的页面。
+　　String strServlet=request.getServletPath()
+　　1.04 getMethod() 获取客户提交信息的方式，get|post。
+　　String strMethod =request.getMethod()
+　　1.05 getHeade() 获取HTTP头文件中的accept、accept-encoding和Host的值。
+　　String strHeader =request.getHeader("accept")
+　　1.06 getRermoteAddr() 获取客户的IP地址。
+　　String strIP =request.getRemoteAddr()
+　　1.07 getRemoteHost() 获取客户机的名称。
+　　String clientName =request.getRemoteHost()
+　　1.08 getServerName() 获取服务器名称。
+　　String serverName =request.getServerName()
+　　1.09 getServerPort() 获取服务器的端口号。
+　　int serverPort =request.getServerPort()
+　　1.10 getParameterNames() 获取客户端提交的所有参数的名字。
+　　Enumerationenum=request.getParameterNames()
+　　while(enum.hasMoreElements()){
+　　Strings=(String)enum.nextElement()
+　　out.println(s)
+　　}
+　　2、Response对象
+　　对客户的请求做出动态的响应，向客户端发送数据。
+　　2.1 动态响应contentType属性
+　　当一个用户访问一个JSP页面时，如果该页面用page指令设置页面的contentType属性时text/html，那么JSP引擎将按照这个属性值做出反应。如果要动态改变这换个属性值来响应客户，就需要使用Response对象的setContentType(String s)方法来改变contentType的属性值。
+　　格式：response.setContentType(String s);
+　　参数s可取text/html,application/x-msexcel,application/msword等。
+　　2.2 Response重定向
+　　在某些情况下，当响应客户时，需要将客户重新引导至另一个页面，可以使用Response的sendRedirect(URL)方法实现客户的重定向。例如：
+　　response.sendRedirect("index.jsp");
+　　3、Session对象
+　　（1）什么是Session对象
+　　Session对象是一个JSP内置对象，它在第一个JSP页面被装载时自动创建，完成会话期管理。从一个客户打开浏览器并连接到服务器开始，到客户关闭浏览器离开这个服务器结束，被称为一个会话。当一个客户访问一个服务器时，可能会在这个服务器的几个页面之间切换，服务器应当通过某种办法知道这是一个客户，就需要Session对象。
+　　（2）Session对象的ID
+　　当一个客户首次访问服务器上的一个JSP页面时，JSP 引擎产生一个Session对象，同时分配一个String类型的ID号，JSP引擎同时将这换个ID号发送到客户端，存放在Cookie中，这样 Session对象，直到客户关闭浏览器后，服务器端该客户的Session对象才取消，并且和客户的会话对应关系消失。当客户重新打开浏览器再连接到该服务器时，服务器为该客户再创建一个新的Session对象。
+　　（3）Session对象的常用方法
+　　● public String getId()：获取Session对象编号。
+　　● public void setAttribute(String key,Object obj)：将参数Object指定的对象obj添加到Session对象中，并为添加的对象指定一个索引关键字。
+　　● public Object getAttribute(String key)：获取Session对象中含有关键字的对象。
+　　● public Boolean isNew()：判断是否是一个新的客户。
+　　4、Application对象
+　　（1）什么时Application对象
+　　服务器启动后就产生了这个Application对象，当客户再所访问的网站的各个页面之间浏览时，这个Application对象都时同一个，直到服务器关闭。但是与Session对象不同的时，所有客户的Application对象都时同一个，即所有客户共享这个内置的Application对象。
+　　（2）Application对象的常用方法
+　　● setAttribute(String key,Object obj)：将参数Object指定的对象obj添加到Application对象中，并为添加的对象指定一个索引关键字。
+　　● getAttribute(String key)：获取Application对象中含有关键字的对象。
+　　5、Out对象
+　　Out对象时一个输出流，用来向客户端输出数据。Out对象用于各种数据的输出。其常用方法如下。
+　　● out.print()：输出各种类型数据。
+　　● out.newLine()：输出一个换行符。
+　　● out.close()：关闭流。
+　　6、Cookie对象
+　　（1）什么是Cookie
+　　Cookie是Web服务器保存在用户硬盘上的一段文本。Cookie允许一个Web站点在用户电脑上保存信息并且随后再取回它。
+　　举例来说，一个Web站点可能会为每一个访问者产生一个唯一的ID，然后以Cookie文件的形式保存在每个用户的机器上。
+　　如果用户使用IE浏览器访问Web，用户就会看到所有保存在自己硬盘上的Cookie。它们最常存放的地方是：C:WindowsCookies。Cookie是以“关键字key=值value”的格式来保存记录的。
+　　（2）创建一个Cookie对象
+　　调用Cookie对象的构造函数就可以创建Cookie对象。Cookie对象的构造函数有两个字符串参数：Cookie名字和Cookie值。
+　　例如：Cookie c = new Cookie("username","john");
+　　（3）将Cookie对象传送到客户端
+　　在JSP中，如果要将封装好的Cookie对象传送到客户端，可使用Response对象的addCookie()方法。
+　　例如：response.addCookie(c)。
+　　（4）读取保存到客户端的Cookie
+　　使用Request对象的getCookie()方法，执行时将所有客户端传来的Cookie对象以数组的形式排列，如果要取出符合需要的Cookie对象，就需要循环比较数组内每个对象的关键字。
+　　例如：
+　　Cookie[] c = request.getCookies();
+　　if(c != null)
+　　for(int i = 0;i <c.length;i++){ <br="">　　if("username".equals(c.getName()))
+　　out.println(c.getValue());
+　　}
+　　（5）设置Cookie对象的有效时间
+　　调用Cookie对象的setMaxAge()方法便可以设置Cookie对象的有效时间，
+　　例如：Cookie c = newCookie("username","john");
+　　c.setMaxAge(3600);
+　　（6）Cookie应用
+　　Cookie对象的典型应用时用来统计网站的访问人数。由于代理服务器、缓存等的使用，唯一能帮助网站精确统计来访人数的方法就是为每个访问者建立一个唯一ID。使用Cookie，网站可以完成一下工作。
+　　● 测定多少人访问过。
+　　● 测定访问者有多少是新用户（即第一次来访），多少是老用户。
+　　● 测定一个用户多久访问一次网站
+　　当一个用户第一次访问时，网站在数据库中建立一个新的ID，并把ID通过Cookie传送给用户。用户再次来访时，网站把该用户ID对应的计数器加1，得到用户的来访次数。
+　　7、Config对象
+　　配置对象
+　　8、Page对象
+　　页面对象。
+　　PageContext对象
+　　页面上下文对象
+　　Jsp引入了一个名位PageContext的类，通过它可以访问页面的许多属性。
+　　PageContext类拥有getRequest，getResponse，getOut，getSession等方法。
+　　pageContext变量存储与当前页面相关联的PageContext对象的值。
+　　补：
+　　如果方法需要访问多个与页面相关的对象，
+　　传递pageContext要比传递request，response，out等的独立引用更容易。（虽然两种方式都能达到同样的目的）
+　　9、Exception对象
+　　在处理异常的网页中可以直接访问exception隐式对象。
+ 
+四个作用域：
+何为作用域
+先让我们看看效果：
+ 
+大概流程是这样的，我们访问04-01/index.jsp的时候，分别对pageContext, request, session,
+application四个作用域中的变量进行累加。（当然先判断这个变量是不是存在，如果变量不存在，则要
+把变量初始化成1。）计算完成后就从index.jsp执行forward跳转到test.jsp。在test.jsp里再进行一次
+累加，然后显示出这四个整数来。
+从显示的结果来看，我们可以直观的得出结论：
+page里的变量没法从index.jsp传递到test.jsp。只要页面跳转了，它们就不见了。
+request里的变量可以跨越forward前后的两页。但是只要刷新页面，它们就重新计算了。
+session和application里的变量一直在累加，开始还看不出区别，只要关闭浏览器，再次重启浏览器访问
+这页，session里的变量就重新计算了。
+application里的变量一直在累加，除非你重启tomcat，否则它会一直变大。
+而作用域规定的是变量的有效期限。
+如果把变量放到pageContext里，就说明它的作用域是page，它的有效范围只在当前jsp页面里。
+从把变量放到pageContext开始，到jsp页面结束，你都可以使用这个变量。
+如果把变量放到request里，就说明它的作用域是request，它的有效范围是当前请求周期。
+所谓请求周期，就是指从http请求发起，到服务器处理结束，返回响应的整个过程。在这个过程中可能使
+用forward的方式跳转了多个jsp页面，在这些页面里你都可以使用这个变量。
+如果把变量放到session里，就说明它的作用域是session，它的有效范围是当前会话。
+所谓当前会话，就是指从用户打开浏览器开始，到用户关闭浏览器这中间的过程。这个过程可能包含多个
+请求响应。也就是说，只要用户不关浏览器，服务器就有办法知道这些请求是一个人发起的，整个过程被
+称为一个会话（session），而放到会话中的变量，就可以在当前会话的所有请求里使用。
+如果把变量放到application里，就说明它的作用域是application，它的有效范围是整个应用。
+整个应用是指从应用启动，到应用结束。我们没有说“从服务器启动，到服务器关闭”，是因为一个服务
+器可能部署多个应用，当然你关闭了服务器，就会把上面所有的应用都关闭了。
+application作用域里的变量，它们的存活时间是最长的，如果不进行手工删除，它们就一直可以使用。
+与上述三个不同的是，application里的变量可以被所有用户共用。如果用户甲的操作修改了application
+中的变量，用户乙访问时得到的是修改后的值。这在其他scope中都是不会发生的，page, request,
+session都是完全隔离的，无论如何修改都不会影响其他人的数据。
+我们使用public Object getAttribute(String name)获得变量值，使用public void setAttribute
+(String name, Object value)将变量值保存到对应作用域中。举个pageContext的例子就是：
+// page
+Integer countPage = (Integer) pageContext.getAttribute("countPage");
+if (countPage == null) {
+    pageContext.setAttribute("countPage", 1);
+} else {
+    pageContext.setAttribute("countPage", countPage + 1);
+}
+这里先从pageContext中取出名为countPage的整数，因为返回的都是java.lang.Object类型，所以需要强
+制转换成我们需要的整形。这里取得的变量如果不存在就会返回null，通过判断countPage == null来辨
+别变量是否存在，如果不存在就设置为1，如果存在就进行累加，最后使用setAttribute()方法将修改后
+的变量值放入pageContext。
+将其中的pageContext换成request, session, application就可以操作其他三个作用域中的变量。

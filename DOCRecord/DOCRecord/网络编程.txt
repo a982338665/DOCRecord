@@ -1,0 +1,161 @@
+网络编程
+1. 什么是TCP/IP协议？
+2. TCP/IP有哪两种传输协议,各有什么特点？
+3. 什么是URL？
+4. URL和IP地址有什么样的关系？
+5. 什么叫套接字（Socket）？
+6. 套接字（Socket）和TCP/IP协议的关系？
+7. URL和套接字（Socket）的关系？
+8．1 网络编程基本概念，TCP/IP协议简介
+//===========================================================================
+8.1.1 网络基础知识
+      网络编程的目的就是指直接或间接地通过网络协议与其他计算机进行通讯。网络编程中有两个主要的问题，一个是如何准确的定位网络上一台或多台主机，另一个就是找到主机后如何可靠高效的进行数据传输。在TCP/IP协议中IP层主要负责网络主机的定位，数据传输的路由，由IP地址可以唯一地确定Internet上的一台主机。而TCP层则提供面向应用的可靠的或非可靠的数据传输机制，这是网络编程的主要对象，一般不需要关心IP层是如何处理数据的。
+      目前较为流行的网络编程模型是客户机/服务器（C/S）结构。即通信双方一方作为服务器等待客户提出请求并予以响应。客户则在需要服务时向服务器提出申请。服务器一般作为守护进程始终运行，监听网络端口，一旦有客户请求，就会启动一个服务进程来响应该客户，同时自己继续监听服务端口，使后来的客户也能及时得到服务。
+//===========================================================================
+8.1.3两类传输协议：TCP；UDP
+      尽管TCP/IP协议的名称中只有TCP这个协议名，但是在TCP/IP的传输层同时存在TCP和UDP两个协议。
+TCP是Transfer Control Protocol的简称，是一种面向连接的保证可靠传输的协议。通过TCP协议传输，得到的是一个顺序的无差错的数据流。发送方和接收方的成对的两个socket之间必须建立连接，以便在TCP协议的基础上进行通信，当一个socket（通常都是server socket）等待建立连接时，另一个socket可以要求进行连接，一旦这两个socket连接起来，它们就可以进行双向数据传输，双方都可以进行发送或接收操作。
+      UDP是User Datagram Protocol的简称，是一种无连接的协议，每个数据报都是一个独立的信息，包括完整的源地址或目的地址，它在网络上以任何可能的路径传往目的地，因此能否到达目的地，到达目的地的时间以及内容的正确性都是不能被保证的。 
+　　下面我们对这两种协议做简单比较：
+　　使用UDP时，每个数据报中都给出了完整的地址信息，因此无需要建立发送方和接收方的连接。对于TCP协议，由于它是一个面向连接的协议，在socket之间进行数据传输之前必然要建立连接，所以在TCP中多了一个连接建立的时间。
+ 　  使用UDP传输数据时是有大小限制的，每个被传输的数据报必须限定在64KB之内。而TCP没有这方面的限制，一旦连接建立起来，双方的socket就可以按统一的格式传输大量的数据。UDP是一个不可靠的协议，发送方所发送的数据报并不一定以相同的次序到达接收方。而TCP是一个可靠的协议，它确保接收方完全正确地获取发送方所发送的全部数据。
+　　总之，TCP在网络通信上有极强的生命力，例如远程连接（Telnet）和文件传输（FTP）都需要不定长度的数据被可靠地传输。相比之下UDP操作简单，而且仅需要较少的监护，因此通常用于局域网高可靠性的分散系统中client/server应用程序。
+　　读者可能要问，既然有了保证可靠传输的TCP协议，为什么还要非可靠传输的UDP协议呢？主要的原因有两个。一是可靠的传输是要付出代价的，对数据内容正确性的检验必然占用计算机的处理时间和网络的带宽，因此TCP传输的效率不如UDP高。二是在许多应用中并不需要保证严格的传输可靠性，比如视频会议系统，并不要求音频视频数据绝对的正确，只要保证连贯性就可以了，这种情况下显然使用UDP会更合理一些。
+//===========================================================================
+8．2 基于URL的高层次Java网络编程
+
+8.2.1一致资源定位器URL
+      URL(Uniform Resource Locator)是一致资源定位器的简称，它表示Internet上某一资源的地址。通过URL我们可以访问Internet上的各种网络资源，比如最常见的WWW，FTP站点。浏览器通过解析给定的URL可以在网络上查找相应的文件或其他资源。
+8.2.2 URL的组成
+      protocol://resourceName
+　　协议名（protocol）指明获取资源所使用的传输协议，如http、ftp、gopher、file等，资源名（resourceName）则应该是资源的完整地址，包括主机名、端口号、文件名或文件内部的一个引用。例如：
+http://www.sun.com/ 协议名://主机名
+http://home.netscape.com/home/welcome.html 协议名://机器名＋文件名
+http://www.gamelan.com:80/Gamelan/network.html#BOTTOM 协议名://机器名＋端口号＋文件名＋内部引用
+//===========================================================================
+8.2.3 创建一个URL
+为了表示URL， java.net中实现了类URL。我们可以通过下面的构造方法来初始化一个URL对象：
+　　（1） public URL (String spec);
+　　　　　通过一个表示URL地址的字符串可以构造一个URL对象。
+　　　　　URL urlBase=new URL("http://www. 263.net/") 
+　　（2） public URL(URL context, String spec);
+　　　　　通过基URL和相对URL构造一个URL对象。
+　　　　　URL net263=new URL ("http://www.263.net/");
+　　　　　URL index263=new URL(net263, "index.html")
+　　（3） public URL(String protocol, String host, String file);
+　　　　　new URL("http", "www.gamelan.com", "/pages/Gamelan.net. html");
+　　（4） public URL(String protocol, String host, int port, String file);
+　　　　　URL gamelan=new URL("http", "www.gamelan.com", 80, "Pages/Gamelan.network.html");
+
+注意：类URL的构造方法都声明抛弃非运行时例外（MalformedURLException），因此生成URL对象时，我们必须要对这一例外进行处理，通常是用try-catch语句进行捕获。格式如下：
+
+try{
+      URL myURL= new URL(…)
+}catch (MalformedURLException e){
+      …　　
+
+}
+//===========================================================================
+8.2.4 解析一个URL
+一个URL对象生成后，其属性是不能被改变的，但是我们可以通过类URL所提供的方法来获取这些属性：
+　　　public String getProtocol() 获取该URL的协议名。
+　　　public String getHost() 获取该URL的主机名。
+　　　public int getPort() 获取该URL的端口号，如果没有设置端口，返回-1。
+　　　public String getFile() 获取该URL的文件名。
+　　　public String getRef() 获取该URL在文件中的相对位置。
+　　　public String getQuery() 获取该URL的查询信息。]
+　　　public String getPath() 获取该URL的路径
+　　  public String getAuthority() 获取该URL的权限信息
+　　　public String getUserInfo() 获得使用者的信息
+　　　public String getRef() 获得该URL的锚
+//===========================================================================
+8.2.5 从URL读取WWW网络资源
+当我们得到一个URL对象后，就可以通过它读取指定的WWW资源。这时我们将使用URL的方法openStream()，其定义为：InputStream openStream();方法openSteam()与指定的URL建立连接并返回InputStream类的对象以从这一连接中读取数据。
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+public class URLReader {
+
+    public static void main(String[] args) throws Exception {
+        URL url = new URL("http://www.cnblogs.com/linjiqin/");
+        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+        String inputLine;
+        while ((inputLine = in.readLine()) != null) {
+            System.out.println(inputLine);
+        }
+        in.close();
+    }
+}
+//===========================================================================
+8.2.6 通过URLConnetction连接WWW
+
+      通过URL的方法openStream()，我们只能从网络上读取数据，如果我们同时还想输出数据，例如向服务器端的CGI程序发送一些数据，我们必须先与URL建立连接，然后才能对其进行读写，这时就要用到类URLConnection了。CGI是公共网关接口（Common Gateway Interface）的简称，它是用户浏览器和服务器端的应用程序进行连接的接口，有关CGI程序设计，请读者参考有关书籍。
+
+      类URLConnection也在包java.net中定义，它表示Java程序和URL在网络上的通信连接。当与一个URL建立连接时，首先要在一个URL对象上通过方法openConnection()生成对应的URLConnection对象。例如下面的程序段首先生成一个指向地址http://www.cnblogs.com/linjiqin/的对象，然后用openConnection（）打开该URL对象上的一个连接，返回一个URLConnection对象。如果连接过程失败，将产生IOException 
+Try{
+   URL netchinaren = new URL ("http://edu.chinaren.com/index.shtml");
+   URLConnectonn tc = netchinaren.openConnection();
+}catch(MalformedURLException e){ //创建URL()对象失败
+　　…
+}catch (IOException e){ //openConnection()失败
+　　…
+}
+类URLConnection提供了很多方法来设置或获取连接参数，程序设计时最常使用的是getInputStream()和getOurputStream(),其定义为：
+InputSteram getInputSteram();
+OutputSteram getOutputStream();
+通过返回的输入/输出流我们可以与远程对象进行通信。看下面的例子：
+import java.io.DataInputStream;
+import java.io.PrintStream;
+import java.net.URL;
+import java.net.URLConnection;
+public class URLReader {
+    public static void main(String[] args) throws Exception {
+        //创建URL对象
+        URL url=new URL("http://www.javasoft.com/cgi-bin/backwards");
+        //由URL对象获取URLConnection对象
+        URLConnection conn=url.openConnection();
+        //由URLConnection获取输入流，并构造DataInputStream对象
+        DataInputStream dis=new DataInputStream(conn.getInputStream()); 
+        //由URLConnection获取输出流，并构造PrintStream对象
+        PrintStream ps=new PrintStream(conn.getOutputStream());
+        String line=dis.readLine(); 
+        ps.println("client…"); //向服务器写出字符串 "client…"
+    }
+}
+其中backwards为服务器端的CGI程序。实际上，类URL的方法openSteam（）是通过URLConnection来实现的。它等价于openConnection().getInputStream();
+基于URL的网络编程在底层其实还是基于下面要讲的Socket接口的。WWW，FTP等标准化的网络服务都是基于TCP协议的，所以本质上讲URL编程也是基于TCP的一种应用.
+//===========================================================================
+8．3 基于Socket的低层次Java网络编程
+8.3.1 Socket通讯
+      网络上的两个程序通过一个双向的通讯连接实现数据的交换，这个双向链路的一端称为一个Socket。Socket通常用来实现客户方和服务方的连接。Socket是TCP/IP协议的一个十分流行的编程界面，一个Socket由一个IP地址和一个端口号唯一确定。
+      在传统的UNIX环境下可以操作TCP/IP协议的接口不止Socket一个，Socket所支持的协议种类也不光TCP/IP一种，因此两者之间是没有必然联系的。在Java环境下，Socket编程主要是指基于TCP/IP协议的网络编程。
+8.3.2 Socket通讯的一般过程
+      使用Socket进行Client/Server程序设计的一般连接过程是这样的：Server端Listen(监听)某个端口是否有连接请求，Client端向Server端发出Connect(连接)请求，Server端向Client端发回Accept（接受）消息。一个连接就建立起来了。Server端和Client端都可以通过Send，Write等方法与对方通信。
+对于一个功能齐全的Socket，都要包含以下基本结构，其工作过程包含以下四个基本的步骤：
+（1） 创建Socket；
+（2） 打开连接到Socket的输入/出流；
+（3） 按照一定的协议对Socket进行读/写操作；
+（4） 关闭Socket.
+//===========================================================================
+8.3.3 创建Socket
+java在包java.net中提供了两个类Socket和ServerSocket，分别用来表示双向连接的客户端和服务端。这是两个封装得非常好的类，使用很方便。其构造方法如下：
+Socket(InetAddress address, int port);
+Socket(InetAddress address, int port, boolean stream);
+Socket(String host, int prot);
+Socket(String host, int prot, boolean stream);
+Socket(SocketImpl impl)
+Socket(String host, int port, InetAddress localAddr, int localPort)
+Socket(InetAddress address, int port, InetAddress localAddr, int localPort)
+ServerSocket(int port);
+ServerSocket(int port, int backlog);
+ServerSocket(int port, int backlog, InetAddress bindAddr)
+其中address、host和port分别是双向连接中另一方的IP地址、主机名和端口号，stream指明socket是流socket还是数据报socket，localPort表示本地主机的端口号，localAddr和bindAddr是本地机器的地址（ServerSocket的主机地址），impl是socket的父类，既可以用来创建serverSocket又可以用来创建Socket。count则表示服务端所能支持的最大连接数。例如：
+Socket client = new Socket("127.0.01.", 80);
+ServerSocket server = new ServerSocket(80);
+注意，在选择端口时，必须小心。每一个端口提供一种特定的服务，只有给出正确的端口，才能获得相应的服务。0~1023的端口号为系统所保留，例如http服务的端口号为80,telnet服务的端口号为21,ftp服务的端口号为23, 所以我们在选择端口号时，最好选择一个大于1023的数以防止发生冲突。
+      在创建socket时如果发生错误，将产生IOException，在程序中必须对之作出处理。所以在创建Socket或ServerSocket是必须捕获或抛出例外
+//===========================================================================
+8.3.8 简单的Client/Server程序设计
+下面我们给出一个用Socket实现的客户和服务器交互的典型的C/S结构的演示程序，读者通过仔细阅读该程序，会对前面所讨论的各个概念有更深刻的认识。程序的意义请参考注释。
+1、客户端程序
+2、服务器端程序
