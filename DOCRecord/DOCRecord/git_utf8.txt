@@ -211,6 +211,7 @@
 --4.推送本地址远程仓库：
 	$ git push [remote-name] [branch-name]
 	例如：$ git push origin master
+	强制推送：$ git push -f origin master
 	------------
 	注意：只有在所克隆的服务器上有写权限，或者同一时刻没有其他人在推数据，这条命令才会如期完成任务。
 		如果在你推数据前，已经有其他人推送了若干更新，那你的推送操作就会被驳回。
