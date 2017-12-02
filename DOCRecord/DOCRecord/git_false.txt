@@ -1,0 +1,28 @@
+---------------------------------------------
+推送远程仓库提交错误1：
+	$ git push doc master
+To https://github.com/a982338665/DOCRecord.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/a982338665/DOCRecord.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+解决方式1：强制推送
+	$ git push -f doc master
+	--若还不正确，则删除.git文件重新提交--
+解决方式2：
+	$ git pull --rebase origin master (先更新后提交)
+	$ git push origin master
+---------------------------------------------
+删除文件无法提交：
+	自己操作手工删除的文件，仍被纳入监控范围
+	所以，必须要经过命令删除，才能监控
+	故必须要执行的命令：
+	$ git rm -f Test.java（删除文件命令：执行后git status变为蓝色，意为纳入监控范围）
+	$ git commit -m ""   （提交文件：变为白色）
+	$ git push  origin master (推送远程仓库	)
+---------------------------------------------
+
