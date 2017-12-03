@@ -18,7 +18,7 @@ public class mianshiEx {
 			public void run() {
 				for (int i = 0; i < 50; i++) {
 					try {
-						huchitongxin.zi();
+						huchitongxin3.zi();
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -29,7 +29,7 @@ public class mianshiEx {
 
 		for (int i = 0; i < 50; i++) {
 			try {
-				huchitongxin.main();
+				huchitongxin3.main();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -39,30 +39,30 @@ public class mianshiEx {
 
 }
 
-class huchitongxin {
+class huchitongxin3{
 	private static boolean is=true;
 	public static synchronized void zi() throws InterruptedException {
 		System.err.println("zi线程开始等待："+is);
 		while(!is){
-			huchitongxin.class.wait();
+			huchitongxin3.class.wait();
 		}
 		for (int i = 0; i < 5; i++) {
 			System.out.println(Thread.currentThread().getName()+"|---"+(i+1));
 		}
 		is=false;
-		huchitongxin.class.notify();
+		huchitongxin3.class.notify();
 		
 	}
 
 	public static synchronized void main() throws InterruptedException {
 		System.err.println("主线程开始等待："+is);
 		while(is){
-			huchitongxin.class.wait();
+			huchitongxin3.class.wait();
 		}
 		for (int i = 0; i < 10; i++) {
 			System.out.println(Thread.currentThread().getName()+"|"+(i+1));
 		}
 		is=true;
-		huchitongxin.class.notify();
+		huchitongxin3.class.notify();
 	}
 }
