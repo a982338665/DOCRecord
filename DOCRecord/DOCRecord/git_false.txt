@@ -25,4 +25,23 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 	$ git commit -m ""   （提交文件：变为白色）
 	$ git push  origin master (推送远程仓库	)
 ---------------------------------------------
+版本回退：
+1. 使用git log命令查看所有的历史版本，获取某个历史版本的id，假设查
+    git reset --hard 139dcfaa558e3276b30b6b2e5cbbb9c00bbdca96  
+3. 把修改推到远程服务器
+    git push -f -u origin master  
 
+---------------------------------------------
+大文件提交无法推送到远程仓库：
+remote: warning: File DOCRecord/DOCRecord/JDK_API_1_7_zh_CN.chm is 51.77 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+
+	--1.版本回退：
+		--git log
+		--git reset --hard 139dcfaa558e3276b30b6b2e5cbbb9c00bbdca96
+	--2.移除刚才提交的大文件的监控
+		--$git rm --cached giant_file（文件或文件夹）
+	--3.此时文件属于自由状态，备份或删除
+	--4.git commit --amend -CHEAD  （再次提交）
+	--5.git push （重新推送）
+		
