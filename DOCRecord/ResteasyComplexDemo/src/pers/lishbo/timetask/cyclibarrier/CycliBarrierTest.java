@@ -19,7 +19,7 @@ public class CycliBarrierTest {
 	 */
 	public static void main(String[] args) {
 		ExecutorService service=Executors.newCachedThreadPool();
-		final CyclicBarrier cb=new 	CyclicBarrier(3);//true保证顺序执行
+		final CyclicBarrier cb=new 	CyclicBarrier(3);
 		//十个任务放池中，产生十个线程
 		for (int i = 0; i < 3; i++) {
 			Runnable runnable=new Runnable() {

@@ -185,7 +185,7 @@
     </bean> -->  
 	<!-- start redis配置================== -->
 	<!--context:property-placeholder 标签用来导入properties文件。从而替换${redis.maxIdle}这样的变量。-->
-	<context:property-placeholder location="classpath:redis.properties" />
+<!-- 	<context:property-placeholder location="classpath:redis.properties" />
 	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">  
         <property name="maxIdle" value="${redis.maxIdle}" />  
         <property name="maxActive" value="${redis.maxActive}" />  
@@ -194,15 +194,65 @@
     </bean>
     <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"  
         p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}"  p:pool-config-ref="poolConfig" />  
-    <!-- RedisTemplate就是spring对redis的一个封装而已 -->
-    <!-- spring对dao层的封装很多用了类似于下面代码的模板方式 -->
+    RedisTemplate就是spring对redis的一个封装而已
+    spring对dao层的封装很多用了类似于下面代码的模板方式
     <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">  
         <property name="connectionFactory"   ref="connectionFactory" />  
-    </bean>
+    </bean> -->
     <!-- end redis配置 =================== -->
-	
-	
-	
+    <!-- 引入properties配置文件 -->    
+<!--  <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+    <property name="locations">  
+        <list>  
+           <value>classpath:*.properties</value>  
+            要是有多个配置文件，只需在这里继续添加即可  
+        </list>  
+    </property>  
+</bean>  
+	 jedis 配置  
+   <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig" >  
+         <property name="maxIdle" value="${redis.maxIdle}" />  
+         <property name="maxWaitMillis" value="${redis.maxWait}" />  
+         <property name="testOnBorrow" value="${redis.testOnBorrow}" />  
+   </bean >  
+  redis服务器中心  
+   <bean id="connectionFactory"  class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" >  
+         <property name="poolConfig" ref="poolConfig" />  
+         <property name="port" value="${redis.port}" />  
+         <property name="hostName" value="${redis.host}" />  
+         <property name="password" value="${redis.password}" />  
+         <property name="timeout" value="${redis.timeout}" ></property>  
+   </bean >  
+   <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" >  
+         <property name="connectionFactory" ref="connectionFactory" />  
+         <property name="keySerializer" >  
+             <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />  
+         </property>  
+         <property name="valueSerializer" >  
+             <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />  
+         </property>  
+   </bean >  
+    cache配置  
+   <bean id="methodCacheInterceptor" class="pers.lishbo.util.redis.MethodCacheInterceptor" >  
+         <property name="redisUtil" ref="redisUtil" />  
+   </bean >  
+   <bean id="redisUtil" class="pers.lishbo.util.redis.RedisUtil" >  
+         <property name="redisTemplate" ref="redisTemplate" />  
+   </bean >
+    需要加入缓存的类或方法  
+    <bean id="methodCachePointCut"  class="org.springframework.aop.support.RegexpMethodPointcutAdvisor" >  
+          <property name="advice" ref="methodCacheInterceptor"/>  
+              <ref value="methodCacheInterceptor" />  
+          </property>  
+          <property name="patterns" >  
+              <list>  
+               确定正则表达式列表  
+               pers.lishbo.aservice.commonservice.impl.CutDataSourceServiceImpl
+                 <value>pers\.lishbo\.aservice\.*service\.impl\...*ServiceImpl.*</value >  
+              </list>  
+          </property>  
+    </bean >  
+	 -->
 	
 	
 	
