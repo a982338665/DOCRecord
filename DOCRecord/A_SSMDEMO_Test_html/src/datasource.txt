@@ -1,0 +1,28 @@
+=Spring配置JNDI及通过JNDI获取DataSource:
+========================================================
+--注意:“java:/comp/env”为不可变，且必写的内容。
+	   “jdbc/myDSF”为第二步中“context.xml”文件中resource属性“name”的值.
+	   -----------------------------------------
+--1、SpringJNDI数据源配置信息：
+		--(此时的id必须为dataSource)
+		<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+			<property name="jndiName">
+				<value>java:comp/env/jcptDataSourceJNDI</value>
+			</property>
+		</bean>
+--2、关于JNDI的配置(tomcat)：
+	--修改tomcat目录conf/context.xml文件：
+	<Resource 
+	name="jcptDataSourceJNDI" 
+	auth="Container" 
+	type="javax.sql.DataSource"
+	maxActive="100" 
+	maxIdle="30" 
+	maxWait="10000" 
+	username="tysp"
+	password="12345678" driverClassName="oracle.jdbc.driver.OracleDriver"
+	url="jdbc:oracle:thin:@192.168.1.105:1521:OA"/> 
+3、通过JNDI获取DataSource:
+	Context context = new InitialContext();
+	DataSource ds = (DataSource)context.lookup("java:comp/env/jcptDataSourceJNDI");
+	Connection conn = ds.getConnection();
