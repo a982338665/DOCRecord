@@ -63,6 +63,16 @@ public class LogTimeFilter implements javax.servlet.Filter {
 //            return ;   
 //        } 
 //    }	
+		if(uri.indexOf(".do")==-1 ){
+    	//System.out.println(session.getAttribute("userName"));
+    	if(session.getAttribute("userName")== null && 
+    			myRequest.getRequestURI().indexOf("index.html")==-1 && 
+    					myRequest.getRequestURI().indexOf("login")==-1 
+        		 ){   
+    		myResponse.sendRedirect(myRequest.getContextPath()+"/webpage/page/index.jsp");   
+            return ;   
+        } 
+    }	
 		
 		
 //		if(uri.indexOf(".jsp")==-1 ){

@@ -1,4 +1,4 @@
-package com.tsb.ischool.support.util;
+package test.exceltest;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -399,17 +399,13 @@ public class PoiUtil {
 			String lie=map.get(-2);
 			String  [] s=new String [Integer.parseInt(lie)];
 //			String  [] chongzu=new String [Integer.parseInt(lie)];		
-			for (int i = 1; i <=Integer.parseInt(row); i++) {
+			for (int i = 1; i < Integer.parseInt(row); i++) {
 				s=map.get(i).split("\\|");
 //				System.err.println(s.length);
-				StringBuffer sss=new StringBuffer("");
 				for (int j = 0; j <Integer.parseInt(lie); j++) {
 					s[j]=s[j].replace("-", "".trim());
-					sss.append(s[j]);
 				}
-				if(!sss.toString().trim().equals("")){
-					list.add(s);
-				}
+				list.add(s);
 				}
 	    	is2.close();
 	    	return list;
@@ -631,7 +627,7 @@ public class PoiUtil {
 			}
 	    */
 	    	
-			String url = "C:\\Users\\cjh\\Desktop\\二年级\\BatchStuFamily_shandong-2.4.xlsx";
+			String url = "C:/Users/cjh/Desktop/allstudents.xlsx";
 	/*		Map<Integer, String> excelContent = PoiUtil.getExcelContent(url);
 			System.err.println(excelContent);
 			String row=excelContent.get(-1);
