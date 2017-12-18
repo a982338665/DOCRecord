@@ -1,0 +1,15 @@
+#服务器配置：端口，路径
+server:
+  port: 8088
+  context-path: /girl
+#单个属性配置，等同于properties文件
+cupSize: B
+age: 18
+sex: 女
+#批量属性配置及内容打印
+content: "cupSize: ${cupSize},age ${age}"
+#封装对象属性
+girl:
+ cupSize: B
+ age: 18
+ sex: 女

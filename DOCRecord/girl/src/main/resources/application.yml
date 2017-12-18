@@ -1,0 +1,5 @@
+#用来控制使用哪个配置文件deve/prod 开发环境/生产环境
+spring:
+ profiles:
+   active: deve
+#   active: prod
