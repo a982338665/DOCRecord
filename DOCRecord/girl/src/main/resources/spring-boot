@@ -1,0 +1,23 @@
+快捷键设置：
+    alt+insert  = 快速生成get，set方法
+    ctrl+alt+s  = setting (设置)
+    自动导包设置=ctrl+alt+s>Genaral>Auto Import>Ask(复选框全选)
+    自动补全快捷=ctrl+alt+v或者alt+enter（enter要两次） 等同于 eclipse中 ctrl + 2 + L
+    try/catch/  =ctrl+alt+T
+
+
+---------------------------------
+Spring data jpa:--
+    --不用写sql
+    --定义了一系列对象持久化的标准
+    --目前实现此规范的产品有Hibernate，TopLink等
+---------------------------------
+Restful api接口设计：
+    --1.添加两个依赖：-1.jpa
+                     --2.mysql
+    --2.添加配置yml
+    --3.写实体类生成对应表：驼峰命名=**_**
+    --注意;自动扫描实体类时，生效与pers.lish.girl包下，pers.lish.jpa包下不生效，原因未知
+---------------------------------
+事务管理：
+    --1.数据库：

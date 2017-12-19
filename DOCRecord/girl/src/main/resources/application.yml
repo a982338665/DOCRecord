@@ -2,4 +2,28 @@
 spring:
  profiles:
    active: deve
+ datasource:
+   driver-class-name: com.mysql.jdbc.Driver
+   url: jdbc:mysql://127.0.0.1:3306/dbgirl
+   username: root
+   password: root
+ jpa:
+   hibernate:
+     ddl-auto: update
+   show-sql: true
+# jpa:
+#  hibernate:
+#    ddl-auto: create
+#  show-sql: true
 #   active: prod
+#数据库连接信息配置(跟在spring下面，前面要有空格)
+    # ddl-auto:create
+        #create---运行的时候回自动创建表，使用时先要创建数据库dbgirl
+        #create ，每次运行先drop表后create，不管是否有数据
+        #create-drop，应用停止时，删除表
+        #none -- 不操作
+        #Vlidate-验证表结构是否一致，不一致则报错
+        #update --最常用，表示第一次运行时创建表结构，若存在表，并有数据，则会保留数据
+    # show-sql:true-----控制台显示sql便于调试
+    # 注意，此配置仅生效与pers.lish.girl包下，pers.lish.jpa包下不生效，原因未知
+
