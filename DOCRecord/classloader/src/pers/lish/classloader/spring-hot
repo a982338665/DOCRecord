@@ -1,20 +1,4 @@
-项目简介：
-1.Spring boot框架
-2.jpa 进行数据库操作--自动生成表结构--无sql
-3.yml文件信息配置
-4.获取接口信息日志记录（拦截器）AOP--面向切面编程
-5.全局异常拦截处理（自定义异常/枚举管理异常类型或返回代码）
-6.接口返回格式定义（json格式固定返回）
-7.前后台一体（模板形式）/前后台分离restful api
-8.单元测试:
-    --注意;在配置命令是，mvn要省略不写
-    --项目打包时会自动启动测试用例，并告知测试结果，故只需添加 mvn install 命令执行，便可全部进行测试
-    --跳过单元测试进行打包命令：
-        mvn clean package -Dmaven.test.skip=true
-        mvn install -DskipTests
-9.service事务管理
-10.表单验证
----------------------------------
+--------------------------------
 11.spring boot热部署：
     --优点：节省时间，不用重启服务器，直接上线，如一些游戏的服务器，大企业服务器，适用于本地和线上
     --热部署和热加载的联系与区别：
@@ -55,32 +39,3 @@
                     <Context path="" docBase="G:\idea_work_maven\TSB_ISCHOOL2_EXTERNAL_API\classes
                     \artifacts\TSB_ISCHOOL2_EXTERNAL_API_war_exploded" reloadable="true"/>
                     如果不写path属性，那么服务器会以该xml文件名字作为访问路径
----------------------------------
-快捷键设置：
-    alt+insert  = 快速生成get，set方法
-    ctrl+alt+s  = setting (设置)
-    自动导包设置=ctrl+alt+s>Genaral>Auto Import>Ask(复选框全选)
-    自动补全快捷=ctrl+alt+v或者alt+enter（enter要两次） 等同于 eclipse中 ctrl + 2 + L
-    ctrl+alt+T  =try/catch/
-    ctrl+shift+f=代码格式化
-
-
----------------------------------
-idea的一些操作：
-    修改为utf-8编码：setting--File Encoding--三处+一个对勾
-    快速测试方法： * 右键方法名--go to --Test--选中跳转
----------------------------------
-Spring data jpa:--
-    --不用写sql
-    --定义了一系列对象持久化的标准
-    --目前实现此规范的产品有Hibernate，TopLink等
----------------------------------
-Restful api接口设计：
-    --1.添加两个依赖：-1.jpa
-                     --2.mysql
-    --2.添加配置yml
-    --3.写实体类生成对应表：驼峰命名=**_**
-    --注意;自动扫描实体类时，生效与pers.lish.girl包下，pers.lish.jpa包下不生效，原因未知
----------------------------------
-事务管理：
-    --1.数据库：
