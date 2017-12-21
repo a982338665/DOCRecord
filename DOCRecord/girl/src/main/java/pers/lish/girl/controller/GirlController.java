@@ -147,7 +147,9 @@ public class GirlController {
     @GetMapping ("/pppu")
     public String getgirw4(Integer id ) throws  Exception {
 //        int s=4/0;
+        System.out.println("sdfadffgh11覆餗sfasfd");
         girlService.getAge(id);
         return null;
     }
+
 }

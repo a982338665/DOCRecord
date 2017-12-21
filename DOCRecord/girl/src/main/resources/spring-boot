@@ -14,6 +14,34 @@
         mvn install -DskipTests
 9.service事务管理
 10.表单验证
+11.Spring boot 热部署实现：
+    --使用Spring Loaded:
+        --1.maven启动方式：pom.xml添加依赖.或者
+        --2.run as - java application ，需要下载jar包启动
+    --使用spring-boot-devtools：
+        --pox.xml--直接加依赖
+        <!--热部署依赖-->
+        <dependency>
+        			<groupId>org.springframework.boot</groupId>
+        			<artifactId>spring-boot-devtools</artifactId>
+        			<optional>true</optional>
+        </dependency>
+ 12.spring boot-打包发布方式：
+    --1.jar包：pom里改为jar，不使用tomcat；java -jar girl-0.0.1-SNAPSHOT.jar --spring.profiles.active=deve
+    --2.war包：pom改为war
+---------------------------------
+Spring boot介绍：
+    1.简化搭建开发过程
+    2.实际上类库的集合
+    ---------
+    特点：
+    1.独立的Spring应用程序--自动配置spring--可自动检查配置
+    2，嵌入式tomcat，不需要将其部署在tomcat，只需要java -jar启动项目
+    ---------
+    使用场景：
+    1.开发restful风格微服务架构
+    2.微服务，自动化，横向扩展
+    3.精简配置，整合其他工具
 ---------------------------------
 11.spring boot热部署：
     --优点：节省时间，不用重启服务器，直接上线，如一些游戏的服务器，大企业服务器，适用于本地和线上
@@ -63,8 +91,11 @@
     自动补全快捷=ctrl+alt+v或者alt+enter（enter要两次） 等同于 eclipse中 ctrl + 2 + L
     ctrl+alt+T  =try/catch/
     ctrl+shift+f=代码格式化
-
-
+    ctrl+o      =提示快速重写的快捷键
+    alt+shift+m =提示生成方法
+    Alt+Enter   =快速修复(即Eclipse中的Quick Fix功能)---父类方法重写
+    psvm+tab    =快速创建mian函数
+    ctrl+F9     =重新加载修改过的文件
 ---------------------------------
 idea的一些操作：
     修改为utf-8编码：setting--File Encoding--三处+一个对勾

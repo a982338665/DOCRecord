@@ -2,7 +2,7 @@ package pers.lish.classloader;
 
 /**
  * create by lishengbo on 2017-12-20 18:05
- * 封装加载类的信息
+ * 封装加载类的信息==》
  */
 public class LoadInfo {
     //自定义的类加载
@@ -13,6 +13,7 @@ public class LoadInfo {
     private BaseManager baseManager;
 
     public LoadInfo(MyClassLoader myClassLoader, long loadTime) {
+        super();
         this.myClassLoader = myClassLoader;
         this.loadTime = loadTime;
     }
