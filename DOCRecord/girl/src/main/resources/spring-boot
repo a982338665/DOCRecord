@@ -29,6 +29,8 @@
  12.spring boot-打包发布方式：
     --1.jar包：pom里改为jar，不使用tomcat；java -jar girl-0.0.1-SNAPSHOT.jar --spring.profiles.active=deve
     --2.war包：pom改为war
+ 13.自定义注解：
+ 14.AOP编程思想 详解
 ---------------------------------
 Spring boot介绍：
     1.简化搭建开发过程
@@ -98,8 +100,10 @@ Spring boot介绍：
     ctrl+F9     =重新加载修改过的文件
 ---------------------------------
 idea的一些操作：
-    修改为utf-8编码：setting--File Encoding--三处+一个对勾
-    快速测试方法： * 右键方法名--go to --Test--选中跳转
+    --1.修改为utf-8编码：setting--File Encoding--三处+一个对勾
+    --2.快速测试方法： * 右键方法名--go to --Test--选中跳转
+    --3.配置IDEA的maven自动下载源码的方法：
+        点击File -> Setting ->Maven ->Importing：选中Automatically download中的两个多选框Sources和Documentation
 ---------------------------------
 Spring data jpa:--
     --不用写sql
@@ -115,3 +119,4 @@ Restful api接口设计：
 ---------------------------------
 事务管理：
     --1.数据库：
+---------------------------------

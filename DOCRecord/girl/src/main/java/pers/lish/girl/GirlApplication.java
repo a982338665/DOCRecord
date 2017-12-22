@@ -1,15 +1,19 @@
 package pers.lish.girl;
 
-//@SpringBootApplication
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+//@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class GirlApplication {
 
 	/**
 	 * 启动方式1-----不使用tomcat启动方式
 	 * @param args
 	 */
-//	public static void main(String[] args) {
-//		SpringApplication.run(GirlApplication.class, args);
-//	}
+	public static void main(String[] args) {
+		SpringApplication.run(GirlApplication.class, args);
+	}
 	/**
 	 *命令启动：
 	 * maven spring-boot run:

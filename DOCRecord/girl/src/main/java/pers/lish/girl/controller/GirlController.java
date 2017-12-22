@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pers.lish.girl.domain.Girl;
 import pers.lish.girl.domain.ResultBean;
 import pers.lish.girl.reponsitory.GirlReponsitory;
+import pers.lish.girl.security.AdmainOnly;
 import pers.lish.girl.service.GirlService;
 import pers.lish.girl.utils.ResultUtil;
 
@@ -25,7 +26,9 @@ public class GirlController {
     /**
      * 查询女生列表
      * @return
+     * 测试自定义注解、及注解式拦截器是否生效
      */
+    @AdmainOnly
     @GetMapping("/ppp")
     public List<Girl> girlList(){
         return girlreponsitory.findAll();

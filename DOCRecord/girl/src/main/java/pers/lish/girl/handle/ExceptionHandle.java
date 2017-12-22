@@ -31,7 +31,7 @@ public class ExceptionHandle {
     /**以接口格式输出*/
     @ResponseBody
     public ResultBean handle(Exception e){
-        if(e instanceof  GirlException){
+        if(e instanceof GirlException){
             GirlException ee=(GirlException)e;
             return ResultUtil.error(ee.getCode(),ee.getMessage());
         }else{

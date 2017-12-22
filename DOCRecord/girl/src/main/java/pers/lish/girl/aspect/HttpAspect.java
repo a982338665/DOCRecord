@@ -34,11 +34,13 @@ public class HttpAspect {
      * 日志的打印
      */
     private  final static Logger log= LoggerFactory.getLogger(HttpAspect.class);
-
+    //方法修饰符+任意返回值（*）+包名及子包+类+任意方法（*）+（..）（任意参数:无参则为(),第一个参数为Long的(Long)）+只拦截抛出异常的方法
+//    @Pointcut("execution(public * com.imooc.service..*Service.*(..)) throws Exception")
+//    @Pointcut("execution(public String com.imooc.service..*Service.*(..))")
+//    @Pointcut("execution(public void com.imooc.service..*Service.*(..))")
     @Pointcut("execution(public * pers.lish.girl.controller.GirlController.*(..))")
     public void log(){
     }
-
     @Before("log()")
     public void before(JoinPoint joinPoint){
         log.info("log调用开始-----------------");
@@ -67,4 +69,34 @@ public class HttpAspect {
         log.info("response={}",o.toString());
     }
 
+    /**
+     * 万能注解
+     */
+//    @Around("log()")
+//    public Object  around(ProceedingJoinPoint proceedingJoinPoint){
+//        log.error("before={}",proceedingJoinPoint.getSignature().getName());
+//        Object result=null;
+//        try {
+//            result=proceedingJoinPoint.proceed(proceedingJoinPoint.getArgs());
+//            log.error("afterReturning={}",result);
+//        } catch (Throwable throwable) {
+//            log.error("afterException={}",throwable);
+//            throwable.printStackTrace();
+//        }finally {
+//            log.error("afterresponse={}","-----------");
+//        }
+//        return  result;
+//    }
+    /*********************以注解形式定义与方法级别上**************************************************************/
+    /**
+     * 所有带有注解@AdmainOnly的方法都要经过此拦截器---此注解写全类名
+     */
+    /*@Pointcut("@annotation(pers.lish.girl.security.AdmainOnly)")
+    public void admainOnly(){
+
+    }
+    @Before("admainOnly()")
+    public void after2(){
+        log.error("注解形式拦截器定义-----------------");
+    }*/
 }
