@@ -178,3 +178,9 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
  	}
  }
 ---------------------------多个AOP作用的时候如何叠加：链式调用（责任链模式）--------------------------------------------
+  访问权限   类   包  子类  其他包
+    public     ∨   ∨   ∨     ∨
+    protect    ∨   ∨   ∨     ×
+    default    ∨   ∨   ×     ×
+    private    ∨   ×   ×     ×
+    ----------------

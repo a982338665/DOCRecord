@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/../girl/src/main/java/pers/lish/girl/aoplearning/dynamicproxy_modle/a_chain_basic/Handler.java" description="public abstract void handleRequest();" line="15" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4cb68ed0-4591-4072-874f-e44375650799" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -103,7 +106,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClassLoaderDemo1.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ClassLoaderDemo1.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pers/lish/classloader/classloader/ClassLoaderDemo1.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="363">
@@ -273,8 +276,8 @@
       <file leaf-file-name="BaseFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pers/lish/classloader/factory/BaseFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+            <state relative-caret-position="575">
+              <caret line="23" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding>
                 <element signature="e#326#327#0" expanded="true" />
                 <element signature="e#375#376#0" expanded="true" />
@@ -288,8 +291,8 @@
       <file leaf-file-name="SimpleFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pers/lish/classloader/factory/SimpleFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-100">
-              <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="900">
+              <caret line="42" column="11" lean-forward="false" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
               <folding>
                 <element signature="e#558#559#0" expanded="true" />
                 <element signature="e#607#608#0" expanded="true" />
@@ -300,11 +303,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HardFactory.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HardFactory.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pers/lish/classloader/factory/HardFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+            <state relative-caret-position="613">
+              <caret line="25" column="9" lean-forward="true" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
               <folding>
                 <element signature="e#579#580#0" expanded="true" />
                 <element signature="e#628#629#0" expanded="true" />
@@ -440,6 +443,13 @@
               <item name="classloader" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="classloader" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="classloader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="classloader" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="classloader" type="462c0819:PsiDirectoryNode" />
+              <item name="factory" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -644,15 +654,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1513762624570</updated>
-      <workItem from="1513762627314" duration="28867000" />
+      <workItem from="1513762627314" duration="32539000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28867000" />
+    <option name="totallyTimeSpent" value="32539000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -712,21 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pers/lish/classloader/factory/HardFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-          <folding>
-            <element signature="e#579#580#0" expanded="true" />
-            <element signature="e#628#629#0" expanded="true" />
-            <element signature="e#682#683#0" expanded="true" />
-            <element signature="e#731#732#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#981#982#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_51/src.zip!/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
@@ -751,19 +747,6 @@
         <state relative-caret-position="138">
           <caret line="743" column="0" lean-forward="false" selection-start-line="743" selection-start-column="0" selection-end-line="743" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pers/lish/classloader/factory/SimpleFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#558#559#0" expanded="true" />
-            <element signature="e#607#608#0" expanded="true" />
-            <element signature="e#658#659#0" expanded="true" />
-            <element signature="e#707#708#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -941,10 +924,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pers/lish/classloader/classloader/ClassLoaderDemo1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="21" column="46" lean-forward="false" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pers/lish/classloader/factory/BaseFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+        <state relative-caret-position="575">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
             <element signature="e#326#327#0" expanded="true" />
             <element signature="e#375#376#0" expanded="true" />
@@ -954,11 +945,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pers/lish/classloader/classloader/ClassLoaderDemo1.java">
+    <entry file="file://$PROJECT_DIR$/src/pers/lish/classloader/factory/SimpleFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="21" column="46" lean-forward="false" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
-          <folding />
+        <state relative-caret-position="900">
+          <caret line="42" column="11" lean-forward="false" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
+          <folding>
+            <element signature="e#558#559#0" expanded="true" />
+            <element signature="e#607#608#0" expanded="true" />
+            <element signature="e#658#659#0" expanded="true" />
+            <element signature="e#707#708#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pers/lish/classloader/factory/HardFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="613">
+          <caret line="25" column="9" lean-forward="true" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+          <folding>
+            <element signature="e#579#580#0" expanded="true" />
+            <element signature="e#628#629#0" expanded="true" />
+            <element signature="e#682#683#0" expanded="true" />
+            <element signature="e#731#732#0" expanded="true" />
+            <element signature="e#934#935#0" expanded="true" />
+            <element signature="e#981#982#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
