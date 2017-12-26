@@ -17,7 +17,7 @@ import java.util.TreeSet;
 public class JDKTest {
 
     public static void main(String[] args) {
-        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true");
+//        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true");
         System.out.println(System.getProperty("user.dir"));
         Properties properties = System.getProperties();
         Set<String> names = properties.stringPropertyNames();

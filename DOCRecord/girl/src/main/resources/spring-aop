@@ -184,3 +184,4 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
     default    ∨   ∨   ×     ×
     private    ∨   ×   ×     ×
     ----------------
+    拦截器，事务，安全校验--均使用Aop
