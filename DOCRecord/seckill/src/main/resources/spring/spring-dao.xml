@@ -13,19 +13,33 @@
     <!--数据库的链接池-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <!--配置连接池属性-->
-        <property name="driverClass" value="${driver}"/>
-        <property name="jdbcUrl" value="${url}"/>
+      <!--  <property name="driverClass" value="${jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
         <property name="user" value="${jdbc.username}"/>
-        <property name="password" value="${password}"/>
-        <!--连接池的私有属性配置=因为要做高并发，所以需要调整其连接池私有属性-->
+        <property name="password" value="${jdbc.password}"/>-->
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <!--反斜杠-->
+        <property name="jdbcUrl" value="jdbc:mysql:\\127.0.0.1:3306\seckill"/>
+        <!--<property name="jdbcUrl" >
+            <value>jdbc:mysql:\\127.0.0.1:3306\seckill</value>
+        </property>-->
+        <property name="user" value="root"/>
+        <property name="password" value="root"/>
+        <!--连接池的私有属性配置=因为要做高并发，所以需要调整其连接池私有属性，这个不能从文件中读取-->
+        <property name="maxPoolSize" value="30"/>
+        <property name="minPoolSize" value="10"/>
+<!--
         <property name="maxPoolSize" value="${maxPoolSize}"/>
         <property name="minPoolSize" value="${minPoolSize}"/>
+-->
         <!--关闭连接后不自动commit:默认为false-->
-        <property name="autoCommitOnClose" value="${autoCommitOnClose}"/>
+        <!--<property name="autoCommitOnClose" value="${autoCommitOnClose}"/>-->
         <!--获取连接超时时间-->
-        <property name="checkoutTimeout" value="${checkoutTimeout}"/>
+        <property name="checkoutTimeout" value="10000"/>
+        <!--<property name="checkoutTimeout" value="${checkoutTimeout}"/>-->
         <!--获取连接失败后的重试次数-->
-        <property name="acquireRetryAttempts" value="${acquireRetryAttempts}"/>
+        <property name="acquireRetryAttempts" value="2"/>
+        <!--<property name="acquireRetryAttempts" value="${acquireRetryAttempts}"/>-->
     </bean>
     <!--配置sqlSessionFactory对象-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
