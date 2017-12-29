@@ -10,14 +10,14 @@ public class SuccessKilledBean {
 
     //变通
     //多对一:一件商品有多个秒杀成功者
-    private SeckillBean seckillBean;
+    private SeckillBean seckill;
 
     public SeckillBean getSeckillBean() {
-        return seckillBean;
+        return seckill;
     }
 
     public void setSeckillBean(SeckillBean seckillBean) {
-        this.seckillBean = seckillBean;
+        this.seckill = seckillBean;
     }
 
     public Byte getState() {
@@ -58,7 +58,7 @@ public class SuccessKilledBean {
                 ", userPhone=" + userPhone +
                 ", state=" + state +
                 ", createTime=" + createTime +
-                ", seckillBean=" + seckillBean +
+                ", seckillBean=" + seckill +
                 '}';
     }
 }

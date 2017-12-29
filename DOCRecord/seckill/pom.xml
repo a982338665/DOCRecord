@@ -36,7 +36,7 @@
 
 
             ==-->
-            <version>4.12</version>
+            <version>4.11</version>
             <scope>test</scope>
         </dependency>
         <!--补全项目依赖================================================================-->
@@ -65,7 +65,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.42</version>
+            <version>5.1.35</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>

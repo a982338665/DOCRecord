@@ -56,9 +56,12 @@
  -------------
  10.mybatis：对象关系映射
     --sql可以写在注解/xml
-    --Mapper自动实现Dao接口/API编程方式实现Dao接口
+    --Mapper自动实现Dao接口/API编程方式实现Dao接口（可以不写ResultMap映射）
     --mybatis+spring=
         --更少编码、只写接口，不写实现
         --更少配置、别名
         --足够灵活、
-
+-------------
+ 11.-单项目多平台使用时，
+    --1.可将具体的连接数据库信息配置在tomcat中：（JndiObjectFactoryBean多数据源配置+tomcat配置连库信息）
+ 12.-一般而言，配置在项目中即可。
