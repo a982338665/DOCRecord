@@ -3,8 +3,8 @@
 <mapper namespace="org.seckill.dao.SuccessKillDao">
     <insert id="insertSuccesskilled">
         /*主键冲突会报错，所以加ingore来忽略错误，返回0*/
-        INSERT IGNORE INTO success_killed (seckill_id, user_phone) VALUES
-            (#{userid}, #{userphone});
+        INSERT IGNORE INTO success_killed (seckill_id, user_phone,state) VALUES
+            (#{userid}, #{userphone},0);
     </insert>
     <select id="queryByIdWhitSeckill" resultType="SuccessKilledBean">
         SELECT

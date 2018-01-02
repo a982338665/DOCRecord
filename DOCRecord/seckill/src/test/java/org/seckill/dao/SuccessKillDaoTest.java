@@ -30,7 +30,7 @@ public class SuccessKillDaoTest {
      */
     @Test
     public void insertSuccesskilled() throws Exception {
-        int i = successKillDao.insertSuccesskilled(1000L, 13884500939L);
+        int i = successKillDao.insertSuccesskilled(1000L, 13884500949L);
         System.out.println(i);
     }
 

@@ -65,3 +65,87 @@
  11.-单项目多平台使用时，
     --1.可将具体的连接数据库信息配置在tomcat中：（JndiObjectFactoryBean多数据源配置+tomcat配置连库信息）
  12.-一般而言，配置在项目中即可。
+ --------------------------------
+13.spring管理service：
+    spring-ioc功能理解：对象工厂+依赖管理==一致性访问接口
+    业务对象依赖图：
+    service--dao--SqlSessionFactory--DataSource
+14.ioc使用原因：---
+-0-------------------------------
+15：声明式事务：
+    --1.ProxyFactoryBean+XML  早期使用方式(2.0)
+    --2.tx:advice+aop         一次配置永久生效
+    --3.注解@Transational     注解控制，建议使用此种方式---
+16.事务方法嵌套：
+    传播行为--默认为propagation_required
+17.Spring只有抛出运行时异常（RuntimeException）时才会回滚
+18.小心不当的try catch，防止不正常时被commit
+--------------------------------
+   /**
+     * 使用注解控制事务方法的有点：
+     * 1.开发团队达成一致约定，明确标注事务方法的编程风格
+     * 2.保证事务方法的执行时间尽可能短，不要穿插其他网络操作（HTTP协议、cache、redis等请求或者剥离到事务之外）
+     * 3.不是所有的方法都需要事务，如只有一条修改操作，只读操作不需要事务控制
+     */
+--------------------------------
+web开始：
+    --1.前端交互设计
+        --前端页面流程：列表--详情--login--展示--写入cookies
+        --详情页流程逻辑：
+            --1.获取标准系统时间（服务器时间）-- 时间判断，开始时间结束时间
+                --结束：秒杀结束
+                --未开始：倒计时---秒杀地址--执行秒杀
+                --已开始：---------秒杀地址--执行秒杀
+    --2.Resultful：一个优雅的url表述方式/资源状态或者资源状态的转移
+        Resultful规范：
+            --get   查询操作，可重复执行
+            --post  添加、修改操作
+            --put   修改操作，一般与post不区分
+            --delete删除操作
+        url设计：
+        /模块/资源/{标示}/集合1(名词)...
+        get /user/{uid}/friends  获取好友列表
+        ---------
+        本项目中的url设计：
+        GET /seckill/list         秒杀列表
+        GET /seckill/{id}/detail  详情页
+        GET /seckill/time/now     系统时间
+        POST/...                  暴露秒杀/执行秒杀等
+    --3.spring-mvc：
+        --1.理论：围绕Handler开发
+            --流程：
+                用户
+                --DispatcherServlet--所有请求都交付于此servlet容器
+                --DefaultAnnotationHandlerMapping-- 注解url映射
+                --DefaultAnnotationHandlerAdapter-- 并进行适配开发的controller
+                --ModelAndView     --将请求结果交付于DispatcherServlet
+                --InternalResourceViewResolver --model/list.jsp
+            --http请求地址映射原理：
+                --http请求--servlet容器（tomcat/jetty）{
+                    1.spring-mvc的注解映射管系
+                    2.handler的处理方法
+                }
+            --注解映射技巧：
+                --spring-mvc支持：
+                    --1.@RequestMapping注解
+                    --2.支持标准的url
+                    --3.Ant风格url(即包含？(匹配一个字符)，*（匹配任意字符），**（匹任意路径），等字符)
+                    --4.带{XXX}占位符的url；
+                    如：
+                        user/*/creation        user/aaa/creation
+                        user/**/creation       user/aaa/bbb/creation
+                        user/{userId}          user/123
+                        user/{userId}/{phone}  user/123/12121212121
+            --请求细节处理：
+                --1.参数绑定
+                --2.请求方式限制
+                --3.请求转发/冲定向
+                --4.数据模型赋值
+                --5.返回json数据
+                --6.cookie访问
+            --1.数据Model
+            --2.页面view
+
+
+
+    --4.bootstrap+jquery
