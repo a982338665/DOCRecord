@@ -98,6 +98,7 @@ Spring boot介绍：
     Alt+Enter   =快速修复(即Eclipse中的Quick Fix功能)---父类方法重写
     psvm+tab    =快速创建mian函数
     ctrl+F9     =重新加载修改过的文件
+    ctrl+T      =跳转至方法实现类
 ---------------------------------
 idea的一些操作：
     --1.修改为utf-8编码：setting--File Encoding--三处+一个对勾
