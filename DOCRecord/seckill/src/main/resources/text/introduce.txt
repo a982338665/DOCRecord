@@ -147,3 +147,69 @@ web开始：
             --2.页面view
     --4.bootstrap+jquery
         --框架地址：www.runoob.com/bootstrap/bootstrap-environment-setup.html
+        --jsp页面静态包含和动态包含的区别主要从以下5方面进行分析：
+          1.语法：
+               静态包含：<%@ include file=""%>
+               动态包含：<jsp: include page=""%>
+          2.静态包含时，包含页面和被包含页面中的html.head,body等标签总共只有出现一次，否则会报错；而动态包含不会。
+          3.静态包含不会检查所包含文件中的变化；但是动态包含，可以检查所含文件中的变化，并且可以带参数
+          4.静态包含是先将文件中内容导入被包含的文件中，再一起编译，最后再展现给用户（先包含再编译）
+          5.动态包含可以自动区分被包含文件是静态的还是动态的，如果是静态，则与静态包含一样处理；若是动态页面，
+               则可以先进行动态的处理，再将结果包含进来。（先编译再包含）
+          ------------------------------------
+          1.动态包含用的元素是page，而且有两种形式。静态包含用的是file,只有一种形式。
+          2.生成的文件不同，静态的包含是将两个jsp文件二合一，生成一个以包含页面命名的servlet和class文件，动态包含的两个jsp文件各自生成自己的servlet和class文件。
+          3. 传参方式一：<jsp:include page=“a.jsp?param=123”/>时被包含的jsp页面是可以访问该参数的。
+          4. 传参方式二：
+                      <jsp:include page=“a.jsp”>
+                               <jsp:param name=“” value=“”>
+                              <jsp:param name=“” value=“”>
+                     </ jsp:include >
+          5.在客户端访问包含页面时地址栏后面直接加上参数后传递，这种形式的传参是客户端送来的，但是这两个页面的request对象不是同一个，因为3中已经说了包含的页面可以向被包含的页面传递参数，所以被包含的request对象含的参数个数应该大于等于包含页面的参数个数的。所以它们各有各的request对象。而且被包含的jsp页面可以访问传到包含页面的参数。
+          6.动态包含只有在执行到它的时候才加载，所以它才叫动态包含。
+------------------------------------------------
+maven项目idea中标签库jstl的引用：
+    --1.引入两个jar包
+    --2.setting--DTD--添加对应的dtd文件
+    --3.重新导入modules： Project Structure ----Modules------删除原来的，新增，添加好xml可加载访问路径，然后web.xml就可以正常使用
+    --4，若还不行重启
+------------------------------------------------
+新建spring-web.xml文件，classpath文件路径无法获取问题：
+项目中新增配置文件时，要记得将配置文件置于Modules中：
+    Project Structure ----Modules------删除原来的，新增，添加好xml可加载访问路径，然后web.xml就可以正常使用
+
+-----------------------------------------------
+整合报错问题：
+javax.servlet.ServletException: Servlet.init() for servlet seckill-dispatcher threw exception
+	org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+	org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:562)
+	org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:394)
+	org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:243)
+	org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:188)
+	org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:166)
+	org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:302)
+	java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	java.lang.Thread.run(Thread.java:744)
+root cause
+java.lang.NoClassDefFoundError: org/springframework/web/cors/CorsProcessor
+-----------------------------------
+问题：jar包版本不一致的问题--如下4.3.7.RELEASE换为4.1.7
+         <dependency>
+             <groupId>org.springframework</groupId>
+             <artifactId>spring-web</artifactId>
+             <version>4.1.7.RELEASE</version>
+         </dependency>
+         <dependency>
+             <groupId>org.springframework</groupId>
+             <artifactId>spring-webmvc</artifactId>
+             <version>4.3.7.RELEASE</version>
+         </dependency>
+         <!--spring-test相关依赖-->
+         <dependency>
+             <groupId>org.springframework</groupId>
+             <artifactId>spring-test</artifactId>
+             <version>4.1.7.RELEASE</version>
+------------------------------------
+使用CDN获取公共js http://www.bootcdn.cn/
+    cdn使用稳定，也是web加速的一个重点

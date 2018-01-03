@@ -10,6 +10,10 @@
       </list>
     </option>
   </component>
+  <component name="ProjectResources">
+    <resource url="http://java.sun.com/jsp/jstl/core" location="G:/repository/javax/servlet/jstl/1.2/META-INF/c.tld" />
+    <resource url="http://java.sun.com/jsp/jstl/fmt" location="G:/repository/javax/servlet/jstl/1.2/META-INF/fmt.tld" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="false" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
