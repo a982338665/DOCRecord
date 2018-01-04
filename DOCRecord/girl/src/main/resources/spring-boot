@@ -99,6 +99,7 @@ Spring boot介绍：
     psvm+tab    =快速创建mian函数
     ctrl+F9     =重新加载修改过的文件
     ctrl+T      =跳转至方法实现类
+    ctrl+H      =全文搜索包含某字段的所有文件
 ---------------------------------
 idea的一些操作：
     --1.修改为utf-8编码：setting--File Encoding--三处+一个对勾

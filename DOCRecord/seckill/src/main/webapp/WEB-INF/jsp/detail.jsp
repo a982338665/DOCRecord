@@ -13,7 +13,7 @@
             <h1>${seckill.name}</h1>
         </div>
     </div>
-    <div class="panel-body">
+    <div class="panel-body text-center">
         <h2 class="text-danger">
             <!--显示Time图标 -->
             <span class="glyphicon glyphicon-time"></span>

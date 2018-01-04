@@ -2,6 +2,7 @@ package org.seckill.service.impl;
 
 import org.seckill.dao.SeckillDao;
 import org.seckill.dao.SuccessKillDao;
+import org.seckill.dao.cache.RedisDao;
 import org.seckill.dto.Exposer;
 import org.seckill.dto.SeckillExecution;
 import org.seckill.entity.SeckillBean;
@@ -34,6 +35,8 @@ public class SeckillServiceImpl implements SeckillService {
     private SeckillDao seckillDao;
     @Autowired
     private SuccessKillDao successKillDao;
+    @Autowired
+    private RedisDao redisDao;
     /**
      * md5盐值字符串，用于混淆md5
      */
@@ -48,12 +51,31 @@ public class SeckillServiceImpl implements SeckillService {
     }
 
     public Exposer exportSeckillUrl(long seckillId) {
-        SeckillBean seckillBean = seckillDao.queryById(seckillId);
-        if (seckillBean == null) {
-            return new Exposer(false, seckillId);
+        //优化点 ：缓存优化|此处优化应写在数据访问层、-访问其他存储所在的包
+        //一致性维护建立在超时的基础上，因为秒杀对象一般是不会改变的，
+        // 在正常产品流程中，秒杀单若建好了，一旦发现有问题，不能更改，可废弃。然后新建一个秒杀单
+        //利用redis来降低数据库访问量（一般缓存服务器为一套集群，一致性维护也并非这么简单，也不会通过超时维护）
+        /*-------------------------------------------------
+         *get from cache
+         * if null get db
+         * else put cache locgoin
+         */
+        SeckillBean seckill =   redisDao.getSeckill(seckillId);
+        if (seckill==null){
+            seckill=seckillDao.queryById(seckillId);
+            if(seckill==null){
+                return new Exposer(false,seckillId);
+            }else{
+                redisDao.putSeckill(seckill);
+            }
         }
-        Date startTime = seckillBean.getStartTime();
-        Date endTime = seckillBean.getEndTime();
+        //--------------------------------------------------
+//        SeckillBean seckillBean = seckillDao.queryById(seckillId);
+//        if (seckillBean == null) {
+//            return new Exposer(false, seckillId);
+//        }
+        Date startTime = seckill.getStartTime();
+        Date endTime = seckill.getEndTime();
         Date now = new Date();
         if (now.getTime() < startTime.getTime() || now.getTime() > endTime.getTime()) {
             return new Exposer(false, seckillId, now.getTime(), startTime.getTime(), endTime.getTime());
