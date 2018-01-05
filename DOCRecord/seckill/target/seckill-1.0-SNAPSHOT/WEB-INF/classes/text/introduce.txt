@@ -315,6 +315,12 @@ javascript模块化--
     1.redis官网：www.redis.io/download
     2.java相关的序列化技术比对（github）：github.com/eishay/jvm-serializers/wiki
 秒杀执行接口优化：
+    --1.简单优化:
+        --1.insert 购买明细（insert ignore：返回0/1,可以根据此来挡住一部分update）
+        --2.update 减库存(行级锁---，降低mysql行级锁持有时间)
+        --3.commit
+    --2.深度优化：
+        --事务sql在mysql端执行（存储过程：网络延迟/gc影响小时，只接受mysql端结果）
 
 
 

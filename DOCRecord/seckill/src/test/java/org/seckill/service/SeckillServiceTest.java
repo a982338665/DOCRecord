@@ -68,6 +68,32 @@ public class SeckillServiceTest {
             logger.warn("exposer={}",exposer);
         }
     }
+    /**
+     * 测试代码完整逻辑
+     * @throws Exception
+     */
+    @Test
+    public void executeSeckilBYProceduce() throws Exception {
+//        exposer=Exposer{exposed=true, md5='8fd24a92caad5d334dbe58601e667496', seckillId=1001, now=0, start=0, end=0}
+//        Exposer exposer = seckillService.exportSeckillUrl(1000);
+        long id =1001;
+        long phone=13355555555L;
+        Exposer exposer = seckillService.exportSeckillUrl(id);
+        String md5=exposer.getMd5();
+        if(exposer.isExposed()){
+            logger.info("exposer={}",exposer);
+            try {
+                SeckillExecution seckillExecution =
+                        seckillService.executeSeckillByProceduce
+                                (id, phone, md5);
+                logger.info("result={}",seckillExecution.getStateInfo());
+            } catch (SeckillException e) {
+                logger.error("exception={}",e.getMessage());
+            }
+        }else{
+            logger.warn("exposer={}",exposer);
+        }
+    }
 
     @Test
     public void executeSeckill() throws Exception {
