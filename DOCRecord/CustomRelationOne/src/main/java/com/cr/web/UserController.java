@@ -1,19 +1,24 @@
 package com.cr.web;
 
+import com.cr.entity.LoginUserBean;
 import com.cr.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Map;
 
 /**
  * create by lishengbo on 2018-01-02 17:42
  */
 @Controller//放入Spring容器
-@RequestMapping("/seckill")
+@RequestMapping("/User")
 public class UserController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -21,13 +26,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(Model model) {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String list(@RequestBody Map<String,String> map, Model model) {
+        LoginUserBean loginUserBean=userService.login(map);
+
+
 //        //列表获取页
 //        //list.jsp +model=ModelAndView
 //        List<SeckillBean> seckillList = seckillService.getSeckillList();
 //        model.addAttribute("list", seckillList);
-        return "list";//web-inf/jsp/list.jsp
+        return "index";//web-inf/jsp/list.jsp
     }
 
 //    @RequestMapping(value = "/{seckillId}/detail", method = RequestMethod.GET)

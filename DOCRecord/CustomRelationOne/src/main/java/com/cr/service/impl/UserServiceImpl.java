@@ -1,11 +1,14 @@
 package com.cr.service.impl;
 
 import com.cr.dao.LoginUserBeanDao;
+import com.cr.entity.LoginUserBean;
 import com.cr.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * create by lishengbo on 2018-01-02 13:19
@@ -21,4 +24,8 @@ public class UserServiceImpl implements UserService {
     private LoginUserBeanDao seckillDao;
 
 
+    public LoginUserBean login(Map<String, String> map) {
+
+        return seckillDao.login(map);
+    }
 }

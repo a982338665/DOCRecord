@@ -19,11 +19,15 @@ CREATE TABLE t_u_user(
   c_createtime TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
   c_desc      VARCHAR(200)   COMMENT '用户描述',
   PRIMARY KEY(sid),
+  UNIQUE KEY `index_login` (`c_loginname`,`c_loginpass`),
   KEY idx_validlogin(c_loginname),
   KEY idx_login(c_loginname,c_loginpass),
   KEY idx_sex(c_sex),
   key idx_create_time(c_createtime)
 )Engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET =utf8 COMMENT ='用户基础信息表';
+-- 添加联合唯一索引
+alter table t_u_user add unique index_login(c_loginname,c_loginpass);
+show create TABLE t_u_user;
 
 -- 初始化数据
 insert into t_u_user(c_loginname, c_loginpass, c_name, c_age, c_creater) VALUES
