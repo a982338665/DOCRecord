@@ -1,12 +1,19 @@
 $(function () {
     //存放主要交互逻辑
     //javascript模块化
-    var url={
+    var httpurl={
         login:'/User/login'
 
 
 
     }
+
+    var jumpurl={
+
+
+    }
+
+
 
 
     $('#userName').attr('value','lishengbo');
@@ -30,6 +37,10 @@ $(function () {
         var loginjson = {};
         loginjson = $("#loginform").searchFormatSeentao();
         console.log($.jsonToString(loginjson));
+
+        window.location.href='../webapp/resources/login.html';
+
+
 
         /*$.ajax({
             type : 'post',
