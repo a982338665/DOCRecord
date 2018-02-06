@@ -886,18 +886,26 @@ def fmm_word_seg(send,max_len,word_dict):
     return words
 
 max_len,word_dict=load('C:\\Users\\cjh\\Desktop\\lexicon.dic')
-send=input('input start:')
-words=fmm_word_seg(send,max_len,word_dict)
-print (words)
+#send=input('input start:')
+#words=fmm_word_seg(send,max_len,word_dict)
+#print (words)
 
 
-
-
-
-
-
-
-
+import requests
+def getHTMLText(url):
+    try:
+        r=requests.get(url,timeout=30)
+        r.raise_for_status()
+        r.encoding=r.apparent_encoding
+        return r.text
+    except:
+        return '产生异常'
+print(getHTMLText('http://www.baidu.com'))
+print('------------------------------------')
+payload={'key1':'va1','key2':'va2'}
+#r=requests.post('http://httpbin.org/post',data=payload)#自动编码为form表单、
+r=requests.post('http://httpbin.org/post',data='abc')#自动编码为form表单、
+print(r.text)
 
 
 
