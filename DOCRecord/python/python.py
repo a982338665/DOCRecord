@@ -702,6 +702,199 @@ lst=[10,5,8,13,14,23,2,8887]
 lst.sort()#修改原列表
 print (lst)
 
+#嵌套列表--等同于java二维数组
+x=[[1,2,3],[2,2,3],[4,3]]
+print (x)
+print (x[1][2])
+print (x[0][2])
+
+#列表生成:表达式 for 变量 in 列表 if 条件
+#生成值为{x^2:x属于{1...9}}
+#列表最快的时间复杂度为O(logn)-----慢
+lst =[]
+for x in range(1,10):
+    lst.append(x**2)
+print (lst)
+
+lst=[x**2 for x in range (1,10)]
+print (lst)
+
+#求年龄平均数
+stu=[['qwe',12],['asd',23],['zxc',34]]
+print (float(sum([x[1] for x in stu]))/len(stu))
+
+#使用列表解析对输入数字x 的因数（能被x整除的所有数，包含自己）求和
+#在1-x范围内，所有数均作判断如果可被x整除则拿出i进行加和
+sum([ i for i in range(1,x+1) if x%i==0])
+
+#元组：不可变的列表：不能使用会修改列表的一些方法，可使用索引切片len()等
+my=1,2,3,4,4
+myy=(1,2,3,4,5)
+
+#元组赋值：
+#交换值
+temp=a
+a=b
+b=temp
+#或者
+a,b=b,a
+#茹切分一个邮件地址________________________________________
+name,domain='982338665@qq.com'.split('@')
+print(name+'|'+domain)
+
+#函数只能有一个返回值：元组/单个值
+def jud(lst):
+    print (lst)
+    max_=min_=lst[0]
+    for i in lst:
+        if i>max_:
+            max_=i
+        if i<min_:
+            min_=i
+    return max_,min_
+judd=[1,3,4,55,65,32,21]
+print(jud(judd))
+
+#元组DSU模式：___________________________________________
+#1,。装饰，排序，反装饰
+words=['qwe','wer','qwerrr','sdfsf','fgh','ghjj']
+
+words.sort(key=lambda x:len(x),reverse=True)
+print (words)
+
+#装饰
+lst=[]
+for word in words:
+    lst.append((len(word),word))
+#排序:默认从小到大排列，
+lst.sort(reverse=True)
+#反装饰
+res=[]
+for length,word in lst:
+    res.append(word)
+print (res)
+
+#字典：一系列键值对——————————————————————————————————————
+#键不可变，值可为任意字符
+#时间复杂度：O(1)--原因是hash数据结构
+my={'zhu':18,'long':25,'海洋':4}
+print (my['zhu'])
+my['zhu']='long'
+print(my)
+#字典运算符
+print(len(my))
+#判断key值是否存在与字典中
+print('zhu' in my)
+#print(my.has_key(key))
+#输出键值：无序的
+for key in my:
+    print (key)
+#全部键值对
+print(my.items())
+#全部键
+print(my.keys())
+#全部值
+print(my.values())
+#清空字典
+print(my.clear())
+print(my)
+#_____________________________________________________
+#字母计数：读取一个字符串，计算每个字符出现的个数：
+strs='qwwwwreererdf'
+lst=[0]*26
+for i in strs:
+    lst[ord(i)-97]+=1
+print(lst)
+
+dic={}
+for i in strs:
+    if i in dic:
+        dic[i]+=1
+    else:
+        dic[i]=1
+print (dic)
+#读取小说txt，打印是个最常见的单词—————————————————————————
+f=open('C:\\Users\\cjh\\Desktop\\小说.txt','r',encoding='utf-8',errors='ignore')
+#此种方式会把回车也打出来
+dic_word={}
+
+for line in f:
+    words=line.strip().split()
+    for word in words:
+        if word in dic_word :
+            dic_word[word]+=1
+        else:
+            dic_word[word]=1
+print (dic_word)
+#元组
+print('++++++++++++++++++++++++++++++++++++++++++++')
+fre_word=[]
+for word,fre in dic_word.items():
+    fre_word.append((fre,word))
+fre_word.sort(reverse=True)
+for fre,word in fre_word[:10]:
+    print (word)
+f.close()
+
+#字典翻转：键值互换：注意键不可重复，故翻转后需要用列表存储
+d1={'zhang':123,'li':123,'wang':456,'zhao':456}
+d2={}
+for name,room in d1.items():
+    if room in d2:
+        d2[room].append(name)
+    else:
+        d2[room]=[name]
+print (d2)
+
+#集合set：无顺序不重复元素———————————————————————————————
+#- 差集
+#& 交集
+#| 并集
+#！= 不等于
+#== 等于
+#in 成员
+#for key in set 枚举
+#添加 x.add('body')
+#删除 x.remove('body')
+#x=set()
+#y={1,2,3,4,6}
+#中文分词______________________________________________
+#算法：正向最大匹配
+#研究生命的起源-->研究生/命/的/起源
+#实际为：研究/生命的/起源  ---解决此问题的衍生学科：自然语言处理
+def load(filename):
+    word_dict=set()
+    max_len=0
+    f=open(filename,'r',encoding='utf-8',errors='ignore')
+    for line in f:
+#        word=unicode(line.strip(),'utf-8')
+        word=line.strip()
+        word_dict.add(word)
+        if len(word)>max_len:
+            max_len=len(word)
+    return max_len,word_dict 
+#print(load('C:\\Users\\cjh\\Desktop\\lexicon.dic'))
+def fmm_word_seg(send,max_len,word_dict):
+    begin=0
+    words=[]
+    while begin <len(send):
+        for end in range(begin+max_len,begin,-1):
+            if send[begin:end] in word_dict:
+                words.append(send[begin:end])
+                break
+        begin=end
+    return words
+
+max_len,word_dict=load('C:\\Users\\cjh\\Desktop\\lexicon.dic')
+send=input('input start:')
+words=fmm_word_seg(send,max_len,word_dict)
+print (words)
+
+
+
+
+
+
 
 
 
