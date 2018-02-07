@@ -37,7 +37,7 @@ Requests库入门：www.python-requests.org
 	>>> r.content		//Http响应内容的二进制形式（例如图片）
 ·具体介绍：
 1.Requests库的get()
-	r=requests.get(url,pararm=NONE,**kwargs)//Response响应、Request请求	
+	r=requests.get(url,pararms=NONE,**kwargs)//Response响应、Request请求	
 2.爬去网页的通用代码框架：
 	1.因为网络原因，所以网络异常处理也很重要
 	2.常用的六种Requests库的异常：
@@ -60,6 +60,18 @@ Requests库入门：www.python-requests.org
     	except:
         	return '产生异常'
 	print(getHTMLText('http://www.baidu.com'))
+	print('------------------------------------')
+	payload={'key1':'va1','key2':'va2'}
+	#r=requests.post('http://httpbin.org/post',data=payload)#自动编码为form表单、
+	r=requests.post('http://httpbin.org/post',data='abc')#自动编码为form表单、
+	print(r.text)
+
+	#requests.request(method,url,**kwargs(其他控制访问参数))
+	#method:请求方式，对应get/put/post/head/patch/delete/options等7种
+	kv={'key1':'va1','key2':'va2'}
+	r=requests.request('GET','http://httpbin.org/post',params=kv)
+	print (r.url)
+	#http://httpbin.org/post?key1=va1&key2=va2
 3.Requests库的七个主要方法：
 	--HTTP协议：超文本传输协议，基于请求与响应模式的无状态的应用层协议
 	1.GET   请求获取URL位置的资源
@@ -69,8 +81,33 @@ Requests库入门：www.python-requests.org
 	5.PATCH 请求局部更新url位置的资源，改变该处资源的部分内容--可以节省网络带宽
 	6.DELETE请求删除url位置存储的资源
 
+-------------------------------------------------
+two part：
+	1.解析html页面信息标记与提取方法：Beautiful Soup
+	2.实战项目：中国大学排名爬虫（实例）
 
-
+Beautiful Soup库：解析，遍历，维护标签树的功能库
+·安装：cmd -- pip install beautifulsoup4
+·测试：
+	演示地址：http://python123.io/ws/demo.html
+	查看页面源代码：-----
+	>>> import requests
+	>>> r=requests.get('http://python123.io/ws/demo.html')
+	>>> r.text
+	>>> demo=r.text
+	>>> from bs4 import BeautifulSoup
+	>>> soup=BeautifulSoup(demo,'html.parser')
+	#soup=BeautifulSoup(open("d://demo.html"),'html.parser')
+	>>> print (soup)
+·引用方式：
+	1.from bs4 import BeautifulSoup
+	2.import bs4
+·基本元素：<p></p>
+·BeautifulSoup库解析器：
+	1.bs4的html解析器---BeautifulSoup(demo,'html.parser')--安装bs4库
+	2.lxml的html解析器--BeautifulSoup(demo,'lxml')---------pip install lxml
+	3.lxml的xml解析器---BeautifulSoup(demo,'xml')----------pip install lxml
+	4.html5lib的解析器--BeautifulSoup(demo,'html5lib')-----pip install html5lib
 
 
 

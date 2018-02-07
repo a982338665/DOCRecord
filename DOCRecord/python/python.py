@@ -417,7 +417,7 @@ print(my.find('m'))
 print(my.split('m'))
 #______________________________________
 #对文件进行的操作--路径需转义
-#读取文件时候的第二个参数mode可为r（读，默写）、w（写）
+#读取文件时候的第二个参数mode可为r（读，默写）、w（写），wb，二进制文件
 #f=open('C:\\Users\\cjh\\Desktop\\name.txt','r')
 #f=open('C:\\Users\\cjh\\Desktop\\name.txt','r',encoding='utf-8')
 f=open('C:\\Users\\cjh\\Desktop\\name.txt','r',encoding='utf-8',errors='ignore')
@@ -906,14 +906,54 @@ payload={'key1':'va1','key2':'va2'}
 #r=requests.post('http://httpbin.org/post',data=payload)#自动编码为form表单、
 r=requests.post('http://httpbin.org/post',data='abc')#自动编码为form表单、
 print(r.text)
-
-
-
-
-
-
-
-
+###############################################################################
+#requests.request(method,url,**kwargs(其他控制访问参数))
+#method:请求方式，对应get/put/post/head/patch/delete/options等7种
+#http://httpbin.org/post?key1=va1&key2=va2
+kv={'key1':'va1','key2':'va2'}
+r=requests.request('GET','http://httpbin.org/post',params=kv)
+print (r.url)
+#自动转换为form表单提交
+r=requests.request('POST','http://httpbin.org/post',data=kv)
+print (r.url)
+print (r.text)
+#自动转换为data字符串提交
+r=requests.request('POST','http://httpbin.org/post',data='121212')
+print (r.url)
+print (r.text)
+#json提交
+r=requests.request('POST','http://httpbin.org/post',json=kv)
+print (r.url)
+print (r.text)
+#http协议头定制--可以模拟任何浏览器访问
+hd={'user-agent':'Chrome/10'}
+r=requests.request('POST','http://httpbin.org/post',headers=hd)
+print (r.url)
+print (r.headers)
+print (r.text)
+#cookies：从http协议解析字典
+#auth ：元组，支持http认证功能
+#files:字典类型，传输文件
+fs={'file':open('C:\\Users\\cjh\\Desktop\\小说.txt','rb')}
+r=requests.request('POST','http://python123.io/ws',files=fs)
+print (r.text)
+#timeout=10 超市时间
+#proxies字典类型，设定访问代理服务器，增加登录认证
+#使用此字段可以有效隐藏爬虫原ip
+pxs={'http':'http://user:pass@10.10.10.1:1234',
+     'https':'https//10.10.10.1:1234'
+     }
+r=requests.request('GET','http://www.baidu.com',proxies=pxs)
+#################################以下字段对应高级功能
+#allow_redirects:True/False 默认为True重定向开关
+#stream：True/False 默认为true，获取内容立即下载开关
+#verify：True、False 默认为true，认证SSL证书开关
+#cert ：保存本地SSL证书路径
+###############################################################################
+#r=requests.get(url,pararms=NONE,**kwargs)//Response响应、Request请求	
+#url：获取页面的url链接
+#pararms：url中的额外参数，字典或字节流格式
+#12个控制访问的参数
 
 
 
