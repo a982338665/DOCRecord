@@ -1,0 +1,142 @@
+﻿----------------------
+后台+前台+前台Jasmine测试框架
+
+1. Jasmine.github.io
+2.点击release：https://github.com/jasmine/jasmine/releases
+3.下载解压导入
+----------------------
+:8081/#:1 Failed to load http://localhost:8080/test/get1: 
+No 'Access-Control-Allow-Origin' header is present on the requested resource.
+Origin 'http://localhost:8081' is therefore not allowed access.
+
+跨域安全问题：
+1.浏览器限制：解除限制，需要在客户端操作，不推荐
+2.发出的请求时XHRHTTPREquest请求：--更改为jsonp（通过一个图片访问json不报错）
+3.跨域：端口不同--jsonp不满足开发要求
+	--1.被调用方修改代码使其支持跨域（返回值中添加某些数据告诉浏览器允许client访问）。
+	    最终目的：在响应头添加字段
+		--1.服务器实现
+		--2.nginx配置
+		--3.apache配置
+	    --浏览器分析：先请求后判断
+	    --filter实现：
+		添加请求头Access-Control-Allow-Origin&Access-Control-Allow-Methods
+
+
+
+	--2.若被调用方非本公司，无法修改，则调用方修改，隐藏跨域：通过代理从浏览器发出的均为a域名的
+		请求，代理里把A域名转换为指定的B域名，使浏览器无法识别
+-----------------------
+1.浏览器限制：
+   1.命令运行：
+	搜索文件chrome.exe--获取应用路径C:\Program Files (x86)\Google\Chrome\Application
+	cmd--切换至以上路径
+C:\Users\cjh>cd ../
+C:\Users>cd ../
+C:\>cd  Program Files (x86)\Google\Chrome\Application
+C:\Program Files (x86)\Google\Chrome\Application>chrome --disable-web-security --user-data-dir=g:\temp3
+C:\Program Files (x86)\Google\Chrome\Application>
+------------------------
+2.jsonp解决：需要改动后台增加切面
+/**
+ * 使用jsonp解决ajax跨域问题：
+ * 1.普通方法中type为xhr
+ * 2.jsonp为script类型，浏览器不做校验，所以可以访问
+ * ------
+ * 1.普通响应类型：application/json;charset=UTF-8
+ * 2.jsonp响应类型：	application/javascript，返回js脚本
+ * ------
+ * jsonp弊端：
+ * 1.服务器需改动
+ * 2.仅支持Get请求（原理动态创建script，使用后销毁），无法满足实际需求
+ * 3.发送的不是XHR请求
+ */
+--------------------------
+3.跨域解决：
+--------------------------
+4.简单请求与非简单请求：
+  --1.工作中常见的简单请求：
+	方法：GET/HEAD/POST
+	请求head里面：
+		无自定义头
+		content-type为以下几种：
+			multipart/form-data
+			application/x-www-form-urlencoded
+			text/plain
+  --2.工作中常见的非简单请求：（先通过预检命令，然后在发送请求（例如postJson此方法）---共两条请求）
+	put/delete的ajax请求
+	发送json格式的ajax请求
+	带自定义头的ajax请求
+	-------
+	预检命令缓存
+--------------------------
+5.带cookie的跨域：（filter实现）
+	--1.带cookie的跨域时，Access-Control-Allow-Origin参数不能为*,需要明确指定请求发出地址
+	--2.res.addHeader("Access-Control-Allow-Credentials","true");
+--------------------------
+6.带自定义头的跨域：（非简单请求可做预检命令缓存）
+	Failed to load http://localhost:8080/test/getHeader: Request header field x-header2 is not allowed by 	Access-Control-Allow-Headers in preflight response.
+	
+	所以在响应头中把两个header加入就ok
+-------------------------
+7.被调用方解决跨域-nginx解决方案：
+
+
+
+
+
+
+-------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
