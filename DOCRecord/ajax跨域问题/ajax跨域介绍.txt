@@ -147,6 +147,22 @@ server {
 			RewriteEngine On
 			RewriteCond %{REQUEST_METHOD} OPTIONS
 			RewriteRule ^(.*)$ "/" [R=204,L]
+
+			
+		</VirtualHost>
+
+		#调用方隐藏跨域----=============================
+		<VirtualHost *:80>
+ 
+    			ServerName a.com
+    			ErrorLog "logs/a.com-error.log"
+    			CustomLog "logs/a.com-access.log" common
+
+			ProxyPass / http://localhost:8081/
+			ProxyPass /ajaxserverapache http://localhost:8080/test 
+				#将该请求路径换为 /ajaxserverapache
+			
+			
 		</VirtualHost>
 
 -------------------------
@@ -162,6 +178,7 @@ server {
 	--反向代理nginx
 
 	-- 。。。
+
 		 
 
 
