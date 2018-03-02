@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/test")
+
+//@CrossOrigin
+//此注解便可解决跨域问题--如果报错：切换为jdk1.8，
 public class TestController {
 
     @GetMapping("/get1")

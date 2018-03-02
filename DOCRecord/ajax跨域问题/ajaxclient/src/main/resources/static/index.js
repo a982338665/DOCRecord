@@ -20,11 +20,24 @@
  * 方法写在$(function(){})中与写在外面的区别：----
  * @type {string}
  */
+//请求发送至被调用方的nginx代理服务器，跨域解决在nginx代理服务器上
+// var get1url="http://b.com:8888/test/get1";
+// var postJson1url="http://b.com:8888/test/postJson";
+// var getCookieUrl="http://b.com:8888/test/getCookie";
+// var getHeaderUrl="http://b.com:8888/test/getHeader";
 
-var get1url="http://localhost:8080/test/get1";
-var postJson1url="http://localhost:8080/test/postJson";
-var getCookieUrl="http://localhost:8080/test/getCookie";
-var getHeaderUrl="http://localhost:8080/test/getHeader";
+
+//请求直接发送至被调用方的应用服务器：------
+var get1url="http://ajaxserver/get1";
+var postJson1url="http://ajaxserver/postJson";
+var getCookieUrl="http://ajaxserver/getCookie";
+var getHeaderUrl="http://ajaxserver/getHeader";
+
+//调用方隐藏跨域：------
+// var get1url="http://localhost:8080/test/get1";
+// var postJson1url="http://localhost:8080/test/postJson";
+// var getCookieUrl="http://localhost:8080/test/getCookie";
+// var getHeaderUrl="http://localhost:8080/test/getHeader";
 
 function get1() {
     $.getJSON(get1url).then(function (result) {
