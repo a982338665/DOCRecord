@@ -29,22 +29,26 @@ public class SupportUserAccessFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest)req;
         HttpServletResponse response = (HttpServletResponse)res;
         HttpSession session = request.getSession();
-
-        if (request.getRequestURI().indexOf("/API/packageQuery.rest")!=-1){
+		//		没有此字符串时返回-1，否则返回第一次出现此字符串的索引
+		/** 需要放行的接口   ***/
+        if (request.getRequestURI().contains("/API/packageQuery.rest")){
         	 chain.doFilter(req, res);
-        }else if(request.getRequestURI().indexOf("/sendTeacherMessage/send.rest")!=-1){
+        }else if(request.getRequestURI().contains("/sendTeacherMessage/send.rest")){
         	 chain.doFilter(req, res);
         }else{
-        	 if(request.getRequestURI().indexOf(".html")!=-1 || request.getRequestURI().indexOf(".rest")!=-1){
+        	 if(request.getRequestURI().contains(".html") || request.getRequestURI().contains(".rest")){
              	//System.out.println(session.getAttribute("userName"));
+				 /**没有存session，并且请求路径不包含index和login的都重定向到登录页*/
              	if(session.getAttribute("userName")== null &&
-                 		request.getRequestURI().indexOf("index.html")==-1 &&
-                 		request.getRequestURI().indexOf("login")==-1
+						!request.getRequestURI().contains("index.html") &&
+                 		!request.getRequestURI().contains("login")
                  		 ){
                      response.sendRedirect(request.getContextPath()+"/webpage/pages/login/login.html");
                      return ;
                  }
              }
+
+             /**其余类型接口均可以正常访问++++++++++++++++++++++++++++++++++++*/
         	 chain.doFilter(req, res);
         }
 
