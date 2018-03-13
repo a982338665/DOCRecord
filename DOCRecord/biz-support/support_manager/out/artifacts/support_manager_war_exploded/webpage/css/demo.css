@@ -1,0 +1,117 @@
+#stats-chart1,#stats-chart2,#stats-chart3,#stats-chart7,#stats-chart8{height:200px}.color-settings .color-title{font-weight:bold;padding-left:10px}.box-nomargin{margin-bottom:20px}@media screen and (min-width:768px){.box-nomargin{margin-bottom:0}}.wysihtml5-sandbox{box-sizing:border-box}
+
+
+.icon-logo{
+	width: 107px;
+	height: 30px;
+	background: url(../images/logo-white.png);
+	display: inline-block !important;
+	vertical-align: middle;
+	margin-top: -5px;
+}
+.user-menu .dropdown-toggle{
+    height: 26px;
+}
+
+
+
+#globallayoutbg {
+    position:absolute;
+    width:100%;
+    z-index:10000;
+    height:100%;
+    background:#333;
+    filter:alpha(opacity=80);
+    opacity:0.8;
+    top:0;
+    color: #000;
+}
+#globallayout {
+    z-index:10001;
+    position:absolute;
+    width:500px;
+    border:1px solid #ccc;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    margin-left:auto;
+    margin-right:auto;
+    background:#fff;
+    overflow:hidden;
+}
+#globallayout .globallayout_title {
+    padding-top:8px;
+    padding-left:15px;
+    font-size:16px;
+    height:32px;
+    font-weight:bold;
+    background:#efefef;
+    border-bottom:1px solid #ccc;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    border-bottom-left-radius:0;
+    border-bottom-right-radius:0;
+    color:#000;
+}
+#globallayout .globallayout_title h1 {
+    font-size:16px;
+    margin: 0;
+    line-height: normal;
+    font-weight: bold;
+}
+#globallayout .globallayout_title span {
+    float:right;
+    cursor:pointer;
+    margin-right:10px;
+}
+#globallayout .globallayout_title span:hover {
+    color:#f00;
+}
+#globallayout .globallayout_content {
+    padding:15px;
+    background:#fff;
+}
+#globallayout .ajax {
+    background:url(../images/loadding.gif) no-repeat 15px center;
+    padding-left:50px;
+}
+#globallayout .ok {
+    background:url(../images/layout_ok.png) no-repeat 15px center;
+    padding-left:50px;
+}
+#globallayout .error {
+    background:url(../images/layout_error.png) no-repeat 15px center;
+    padding-left:50px;
+}
+#globallayout .info {
+    background:url(../images/layout_info.png) no-repeat 15px center;
+    padding-left:50px;
+}
+#globallayout .globallayout_content .skin li {
+    width:125px;
+    float:left;
+    margin-right:15px;
+    position:relative;
+    margin-bottom:10px;
+    cursor:pointer;
+}
+#globallayout .globallayout_content .skin li span.active {
+    background:url(../images/gougou.png) no-repeat left center;
+    background-size:21px 21px;
+    height:21px;
+    width:21px;
+    right:10px;
+    bottom:22px;
+    position:absolute;
+    z-index:2;
+}
+#globallayout .globallayout_footer {
+    clear:both;
+    text-align:right;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+#globallayout .globallayout_footer button {
+    margin-right:10px;
+}

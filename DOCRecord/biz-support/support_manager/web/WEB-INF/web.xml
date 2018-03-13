@@ -1,0 +1,84 @@
+<!--<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >-->
+<!--servlet2.3中jsp的默认el表达式是不工作的,所以需要引入更高版本：
+G:\apache-tomcat-8.0.22\webapps\examples\WEB-INF\web.xml
+复制，修改servlet版本为3.1
+-->
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1"
+         metadata-complete="true">
+    <!--配置servlet控制器======================================================================================-->
+    <servlet>
+        <servlet-name>seckill-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--配置spring-mvc需要加载的配置文件-->
+        <!--spring-dao.xml
+            spring-service.xml
+            spring-web.xml
+            mybatis-spring整合
+        -->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/spring-*.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>seckill-dispatcher</servlet-name>
+        <!--resultful风格接受所有请求-->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <!--配置servlet控制器======================================================================================-->
+
+    <display-name>Archetype Created Web Application</display-name>
+    <!--配置成首页，在过滤器中，将其重定向为登录页面==============================================-->
+    <welcome-file-list>
+        <welcome-file>/webpage/pages/index.html</welcome-file>
+    </welcome-file-list>
+
+    <!--配置登陆过滤器：++=====================================================================-->
+    <filter>
+        <filter-name>UserFilter</filter-name>
+        <filter-class>pers.li.support.filter.SupportUserAccessFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UserFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+
+    <!--配置指定接口过滤器+++++++++++++++++++++++++=============================================-->
+    <filter>
+        <filter-name>LogTimeFilter</filter-name>
+        <filter-class>pers.li.support.filter.LogTimeFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>logFlag</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>timeDebug</param-name>
+            <param-value>1000</param-value>
+        </init-param>
+        <init-param>
+            <param-name>timeInfo</param-name>
+            <param-value>2000</param-value>
+        </init-param>
+        <init-param>
+            <param-name>timeError</param-name>
+            <param-value>8000</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>LogTimeFilter</filter-name>
+        <url-pattern>*.rest</url-pattern>
+    </filter-mapping>
+
+
+
+</web-app>

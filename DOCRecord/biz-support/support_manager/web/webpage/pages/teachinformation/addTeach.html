@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>平台用户管理</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport' />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/bootstrap.css">
+	<link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/jquery.fileupload-ui.css">
+	<link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/light-theme.css" id='color-settings-body-color'>
+	<link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/demo.css">
+    <style type="text/css">
+		.table th, .table td{
+			text-align: center;
+			vertical-align: middle;
+		}
+		.page-header.form-horizontal .control-label{
+			width: auto;
+		}
+		.row-fluid .form-horizontal .control-label{
+			width: auto;
+		}
+		.form .form-horizontal{
+			padding: 10px 0;
+		}
+		.red{
+			color: #f00;
+		}
+    </style>
+</head>
+<body class='contrast-red'>
+<!-- top -->
+<header>
+   
+</header>
+
+<div id='wrapper'>
+	<!-- left -->
+	<div id='main-nav-bg'></div>
+	<nav class='' id='main-nav'>
+		
+	</nav>
+	<!-- right -->
+	<section id='content'>
+		<div class='container-fluid'>
+			<div class='row-fluid' id='content-wrapper'>
+				<div class='span12'>
+					<div class='row-fluid'>
+					    <div class='span12'>
+					        <div class='page-header form-horizontal'>
+				                <label id='teacherName' class="control-label" for="inputText1"></label>
+				                
+				                <a id='addTeach' data-toggle='modal' class='btn btn-info pull-right' href="#modal-example">添加任教信息</a>
+					        </div>
+					    </div>
+					</div>
+					<div class='row-fluid'>
+					    <div class='span12 box bordered-box blue-border' style='margin-bottom:0;'>
+					        <div class='box-content box-no-padding'>
+					            <div class='responsive-table'>
+				                    <table class='table' style='margin-bottom:0;'>
+				                        <thead>
+					                        <tr>
+					                            <!-- <th>教师id</th> -->
+					                            <th>年级</th>
+					                            <th>班级</th>
+					                            <th>科目</th>
+					                            <th>版本</th>
+					                            <th>操作</th>
+					                        </tr>
+				                        </thead>
+				                        <tbody>
+					                        
+				                        </tbody>
+				                    </table>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- 弹窗 -->
+<div class='modal hide fade' id='modal-example' role='dialog' tabindex='-1'>
+    <div class='modal-header'>
+        <button class='close' data-dismiss='modal' type='button'>&times;</button>
+        <h3>添加任教信息</h3>
+    </div>
+    <div class='modal-body'>
+        <form class='form' style='margin-bottom: 0;' >
+        	<div class='form-horizontal'>
+                <label class='control-label'>学段：</label>
+                <select id='xueduan'></select>
+            </div>
+            <div class='form-horizontal'>
+                <label class='control-label'>年级：</label>
+                <select id='glass'>
+                <option value="-0">选择年级</option>
+                </select>
+            </div>
+            <div class='form-horizontal'>
+                <label class='control-label'>班级：</label>
+                <select id='clazz'>
+                <option value="0">选择班级</option>
+                </select>
+            </div>
+            <div class='form-horizontal'>
+                <label class='control-label'>科目：</label>
+                <select id='kemu'></select>
+            </div>
+            <div class='form-horizontal'>
+                <label class='control-label'>版本：</label>
+                <input placeholder="不填为默认为人教新课标版本"  id='lgName' type='text' />
+            </div>
+        </form>
+    </div>
+    <div class='modal-footer'>
+        <button id='quxiao' class='btn' data-dismiss='modal'>取消</button>
+        <button id='tianjia' class='btn btn-primary'>确定</button>
+    </div>
+</div>
+
+
+<!-- / jquery -->
+<script type="text/javascript" src="../../../webpage/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../../../webpage/js/mobile_events/jquery.mobile-events.min.js"></script>
+<script type="text/javascript" src="../../../webpage/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../../../webpage/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../webpage/js/iv2tools.js"></script>
+
+<script type="text/javascript" src="js/addTeach.js"></script>
+</body>
+</html>

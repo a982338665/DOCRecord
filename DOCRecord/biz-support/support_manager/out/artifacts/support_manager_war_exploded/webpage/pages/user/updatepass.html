@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>修改密码</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport' />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/bootstrap.css">
+	<link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/jquery.fileupload-ui.css">
+	<link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/light-theme.css" id='color-settings-body-color'>
+	<link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/demo.css">
+    <style type="text/css">
+		.form-horizontal{
+			margin-bottom: 20px;
+		}
+		.red{
+			color: #f00;
+		}
+    </style>
+</head>
+<body class='contrast-red'>
+<!-- top -->
+<header>
+    
+</header>
+
+<div id='wrapper'>
+	<!-- left -->
+	<div id='main-nav-bg'></div>
+	<nav class='' id='main-nav'>
+		
+	</nav>
+	<!-- right -->
+	<section id='content'>
+		<div class='container-fluid'>
+			<div class='row-fluid' id='content-wrapper'>
+				<div class='span12'>
+					<div class='row-fluid'>
+					    <div class='page-header'>
+					   	</div>
+					</div>
+					<div class='row-fluid'>
+					    <div class='span12 box bordered-box blue-border' style='margin-bottom:0;'>
+					        <div class='form-horizontal'>
+				                <label class="control-label">原密码：</label>
+				                <input id="oldPass" placeholder="" type="password">
+				                <span class="red" id="oldPwdWaring1"></span>
+					        </div>
+					        <div class='form-horizontal'>
+				                <label class="control-label">新密码：</label>
+				                <input id="password" placeholder="" type="password" onblur="pwdcheck();">
+                				<span class="red" id="oldPwdWaring"></span>
+					        </div>
+					        <div class='form-horizontal'>
+				                <label class="control-label">确认密码：</label>
+				                <input id="repassword" placeholder="" type="password" onblur="repwdcheck();">
+                				<span class="red" id="repass"></span>
+					        </div>
+					        <div class='form-horizontal'>
+				                <label class="control-label"></label>
+				                <button id='sub' class="btn btn-primary" type="button">修改</button>
+					        </div>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- / jquery -->
+<script type="text/javascript" src="../../../webpage/js/jquery.min.3.1.1.js"></script>
+<script type="text/javascript" src="../../../webpage/js/mobile_events/jquery.mobile-events.min.js"></script>
+<script type="text/javascript" src="../../../webpage/js/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="../../../webpage/js/iv2tools.js"></script>
+<script type="text/javascript" src="../../../webpage/js/dateRange.js"></script>
+
+<script type="text/javascript" src="js/updatepass.js"></script>
+
+</body>
+</html>
