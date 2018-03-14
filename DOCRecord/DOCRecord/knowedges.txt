@@ -259,7 +259,182 @@ servlet编写：
 
 
 -----------------------------------------------------------------
- 
+-- 15.session和cookie
+·cookie和session用来跟踪用户的整个会话，不会导致信息交错
+·cookie机制采用的是在客户端保持状态的方案
+·session机制采用的是在服务器端保持状态的方案
+========
+·cookie:
+	--1.服务端创建：
+	  //一旦cookie创建好了，就不能在往其中增加别的键值对，但是可以修改其中的内容，
+		//以键值对的方式存放内容
+	 	Cookie cookie = new Cookie(key,value);　　
+		//将key对应的value值修改
+	  	cookie.setValue();　　	
+		//设置cookie被浏览器保存的时间,默认是关闭浏览器，cookie就没用	
+		cookie.setMaxAge(expiry);　　
+			--1.expiry=-1  默认浏览器关闭cookie失效
+			--2.expiry>0   cookie保存在硬盘中，直到过期，被浏览器删除
+			--3.expiry=0   只要设置此为0浏览器删除cookie，
+		//设置cookie的访问路径:cookie默认路径-当前访问的servlet父路径。
+		//例如：http://localhost:8080/test01/a/b/c/SendCookieServlet
+		//默认路径：/test01/a/b/c 
+		//.setPath("/")表示在该服务器下，任何项目，任何位置都能获取到cookie，
+		//通途：保证在tomcat下所有的web项目可以共享相同的cookie 
+		cookie.setPath("/");
+		//在test01项目下任何位置都能获取到cookie。
+		setPath("/test01/");　　
+		//发送回浏览器端HttpServletResponse
+		response.addCookie(cookie);　
+	--2.工作流程：
+	   服务器创建cookie---响应给浏览器保存
+	--3.cookie特点
+      　　　　　1. 每一个cookie文件大小：4kb ， 如果超过4kb浏览器不识别
+      　　　　　2. 一个web站点（web项目）：发送20个
+       　　　　 3. 一个浏览器保存总大小：300个
+       　　　　 4. cookie 不安全，可能泄露用户信息。浏览器支持禁用cookie操作。
+      　　　　　5. 默认情况生命周期：与浏览器会话一样，当浏览器关闭时cookie销毁的。---临时cookie		
+	--4.cookie-api
+		·getName()  获得名称，cookie中的key
+		·getValue() 获得值，  cookie中的value
+		·setValue(java.lang.String newValue)  设置内容，用于修改key对应的value值
+		·setMaxAge(int expiry) 设置有效时间【】
+		·setPath(java.lang.String uri)  设置路径【】　　
+		·setDomain(java.lang.String pattern) 设置域名 , 一般无效，有浏览器自动设置
+		·isHttpOnly() 是否只是http协议使用。只能servlet的通过getCookies()获得，javascript不能获得。
+		·setComment(java.lang.String purpose) (了解)　　//对该cookie进行描述的信息
+		·setSecure(boolean flag) 是否使用安全传输协议
+			true-当是https请求连接时cookie才会发送给服务器端，
+			     而http不会，但服务端还是可以发送给浏览端的。
+		·setVersion(int v)参数0或1
+	--5.cookie发送中文特别处理：
+		DK提供工具，进行编码
+　　　　　　　　　URLEncoder:编码
+　　　　　　　　　URLDecoder:解码
+　　　　　　　　　//发送cookie
+　　　　　　　　　Cookie cookie = new Cookie(URLEncoder.encode("哈哈"),URLEncoder.encode("呵呵"));
+　　　　　　　　　response.addCookie(cookie);
+　　　　　　　  　//获得cookie中文内容
+　　　　　　　　　URLDecoder.decoder(request.getCookie().getName);　　//获取key
+　　　　　　　　　URLDecoder.decoder(request.getCookie().getValue);　　//获取value　　	
+	--6.使用案例：
+		·记住用户名
+		·历史记录(浏览记录)
+---
+·session：服务器用于共享数据技术
+	--1.工作流程：（原理）
+		·服务端生成sessionid-与session对象相关
+		·响应到浏览器保存在cookie中：JSESSESSION =9CC7AF87E4C2BDF67060BD5161F4582F	
+		·访问时按此进行交互/数据共享	
+
+	--2.session操作：
+		·request.getSession(boolean);
+			--true/不填写  	没有将创建
+			--false		没有将返回null
+		·setAttrubute(key,value);存放共享信息
+		·session.invalidate()	将session对象销毁
+		·setMaxInactiveInterval(int interval) 设置有效时间，单位秒
+		·在web.xml中配置session的有效时间
+　　　　　　　　　　　　<session-config>
+　　　　　　　　　　　　　　<session-timeout>30</session-timeout>   单位：分钟
+　　　　　　　　　　　　<session-config>
+
+	--3.session的生命周期：
+		·关闭浏览器session就消失的原因：
+			1.cookie中保存的sessionid，在浏览器关闭之后就丢失了，所以再次打开浏览器也找不回原来的				session
+			2.浏览器关闭时，不会通知服务器，所以服务器上的session还存在
+			3.--所以如果能在关闭浏览器时，记住sessionid，在服务器session还未过期时，就仍可用
+			-------
+		·因为关浏览器操作，不会使服务器session销毁，故可设置服务器session销毁时间
+			--失效时间：
+				·一般是30分钟
+				·当距离客户端上一次使用session的时间超过这个失效时间时
+				·服务器就可以认为客户端已经停止了活动，才会把session删除以节省存储空间
+	--4.session id的URL重写：
+		·每个请求都需要将url重写--可使用过滤器一次性解决
+		·浏览器禁用cookie时，request.getSession()将不会拿到原来的session，每次都会创建
+			所以，只需要将第一次生成的sessionid进行回传就可以解决此问题
+		·response.encodeRedirectURL(java.lang.String url)
+			用于对sendRedirect方法后的url地址进行重写。
+　　		·response.encodeURL(java.lang.String url)	
+			用于对表单action和超链接的url地址进行重写
+		--------------------------- 
+		String url =request.getContextPath()+ "/servlet/BuyServlet?id=" + book.getId();
+             	//response. encodeURL(java.lang.String url)用于对表单action和超链接的url地址进行重写
+             	url = response.encodeURL(url);//将超链接的url地址进行重写
+		---------------------------
+		String url = response.encodeRedirectURL(request.getContextPath()+"/servlet/ListCartServlet");
+         	System.out.println(url);
+         	response.sendRedirect(url);
+		
+	--5.//判断session是不是新创建的
+		if (session.isNew()) {
+   		 	response.getWriter().print("session创建成功，session的id是："+sessionId);
+		}else {
+    			response.getWriter().print("服务器已经存在session，session的id是："+sessionId);
+		}
+
+-----------------------------------------------------------------
+16.验证码实现：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ----------------------------------------------	
 
 
