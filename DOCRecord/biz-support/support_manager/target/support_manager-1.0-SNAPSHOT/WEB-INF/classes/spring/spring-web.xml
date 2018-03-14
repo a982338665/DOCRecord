@@ -14,6 +14,7 @@
         1.自动注册url映射：DefaultAnnotationHandlerMapping，DefaultAnnotationHandlerAdapter
         2.提供一系列数据绑定，数字和日期的format @NumberFormat @DataTimeFormat，xml，json默认读写支持
     -->
+
     <mvc:annotation-driven/>
     <!--2.servlet-mapping 映射路径："/"=============================================================-->
     <!--静态资源默认servlet配置
@@ -29,4 +30,5 @@
     <!--</bean>-->
     <!--4.扫描web相关的bean=========================================================================-->
     <context:component-scan base-package="pers.li.support.web"/>
+    <context:component-scan base-package="pers.li.support.handle"/>
 </beans>

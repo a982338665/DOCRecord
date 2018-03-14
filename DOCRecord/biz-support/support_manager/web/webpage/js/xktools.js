@@ -235,5 +235,11 @@ var ischool = {};
 			var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);    
 			return(localhostPaht+projectName);
 	}
+
+    /**
+     * ajax接收流文件
+     */
+
+
 	
 }(jQuery);

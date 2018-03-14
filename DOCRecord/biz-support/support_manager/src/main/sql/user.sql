@@ -13,4 +13,8 @@ CREATE TABLE `statement_sys_user_t` (
   `updator` varchar(32) DEFAULT NULL COMMENT '修改人',
   `updatet_ime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+
+
+--

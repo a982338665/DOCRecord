@@ -22,12 +22,11 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
 
-    <select id="selectByLoginName" resultMap="BaseResultMap" parameterType="Map">
+    <select id="selectByLoginName" resultMap="BaseResultMap" parameterType="String">
         select
         <include refid="Base_Column_List"/>
         from statement_sys_user_t
         where login_name=#{loginName}
-        and login_pass=#{loginPass}
     </select>
     <select id="selectUsersByLike" resultType="java.util.Map" parameterType="java.lang.String">
         SELECT

@@ -32,7 +32,7 @@ public class LoginController {
     private LoginService loginService;
 
 
-    @RequestMapping(value = "/login",
+    @RequestMapping(value = "/login.rest",
             method = RequestMethod.POST,
             produces = {"application/json;charset=UTF-8"},
             consumes = {"application/json;charset=UTF-8"}
