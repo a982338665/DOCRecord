@@ -1,4 +1,4 @@
-----------------------------------------------	
+﻿----------------------------------------------	
 servlet简介：
 	--1.作用：处理请求和发送响应
 	--2.Servlet是为了解决实现动态页面而衍生的东西（http协议--B/S模式(浏览器/服务器)）
@@ -178,6 +178,77 @@ servlet编写：
 			ServletContext servletContext = webApplicationContext.getServletContext();
 			
 			String path=servletContext.getRealPath("/")+"datamould/" ;
+----------------------------------------------
+springMVC4中获取request和response对象有以下两种简单易用的方法：
+
+1、在control层获取
+
+在control层中获取HttpServletRequest和HttpServletResponse对象有以下两种简单方式：
+
+1）通过方法参数直接在action类中获取
+
+@Controller
+
+class Action{
+
+  @RequestMapping("/path")
+
+   public String getReqAndRes(HttpServletRequest request, HttpServletResponse response){
+
+      /**  相关业务代码   此时可以直接使用request response对象 */
+
+   }
+
+}
+
+ 
+
+2)利用spring web提供的@ModelAttribute注解
+
+@ModelAttribute放在类方法的参数前面表示引用Model中的数据
+
+@ModelAttribute放在类方法上面则表示该Action类中的每个请求调用之前都会执行该方法，因此在此方法里面可以做一些请求预处理，利用此特性就可以抽象出一个基本Action类，然后所有的Action类都继承自这个基本Aciton类，在基本Action类里面获取相应的request、response、session对象：
+
+public class BaseAction{
+
+ 
+
+   protected HttpServletRequest request;
+
+   protected HttpServletResponse response;
+
+   protected HttpSession session;
 
   
 
+   @ModelAttribute
+
+   public void setReqAndRes(HttpServletRequest request, HttpServletResponse response){
+
+       this.request = request;
+
+       this.response = response;
+
+       this.session = request.getSession();
+
+   }
+
+ 
+
+   /** 其他业务代码 */
+
+}
+
+ 
+
+2、通过spring提供的RequestContextHolder在非contrller层获取request和response对象
+
+HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+
+HttpServletResponse response = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getResponse();
+
+HttpServletResponse response = ((ServletWebRequest)RequestContextHolder.getRequestAttributes()).getResponse();
+
+ServletContext context = ContextLoader.getCurrentWebApplicationContext().getServletContext();
+
+ 

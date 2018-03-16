@@ -162,7 +162,7 @@ var ischool = {};
     
     ischool.layout =
     {
-        ccallback: (function () { }),
+        callback: (function () { }),
         init: function (opts)
         {
             if (typeof opts.title == "undefined") opts.title = "消息提示";
@@ -4512,31 +4512,4 @@ function timeCon2(obj){
 		timeHtml+=year+'年'+month+'月'+day+'日'+non+' '+wen;
 		return timeHtml;
 	}
-    /**
-	 * ajax流文件接收处理
-	 *
-     */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-

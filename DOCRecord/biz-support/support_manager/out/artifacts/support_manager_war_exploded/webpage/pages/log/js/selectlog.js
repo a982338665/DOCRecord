@@ -1,24 +1,29 @@
 $(function(){
-	
-	$("#main-nav").load($.getRootPath()+"/webpage/pages/left/left.html",function(){
-		$("header").load($.getRootPath()+"/webpage/pages/top/header.html",function(){
+
+
+	$("#main-nav").load($.DEFINE_URL.HTML_LeftINDEX,function(){
+		$("header").load($.DEFINE_URL.HTML_HeaderINDEX,function(){
 			$("#yhglzk").addClass("in");
 			$("#yhglxt").addClass("active");
 			$("#xtrzcx").addClass("active");
 		});
 
 	});
-	getUserLog("");
-	$("#cx").click(function(){
-		var userName=$("#inputText1").val();
-		
-		if(!userName || ''==userName){
-			ischool.layout.error("用户名不能为空",2000);
-			return;
-		}
-		getUserLog(userName);
-	});
+	// getUserLog("");
+	// $("#cx").click(function(){
+	// 	var userName=$("#inputText1").val();
+	//
+	// 	if(!userName || ''==userName){
+	// 		ischool.layout.error("用户名不能为空",2000);
+	// 		return;
+	// 	}
+	// 	getUserLog(userName);
+	// });
 });
+
+
+
+
 function getUserLog(userName){
 	$.ajaxSeentao($.getRootPath()+"/audit/getUserAudit.rest",userName,function(json){
 		if(json.code===1){

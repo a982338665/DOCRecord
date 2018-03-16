@@ -22,7 +22,7 @@ $(function() {
 		});
 	});
 
-	$.ajaxSeentao($.getRootPath() + "/user/getUserMenu.rest",function(json) {
+	$.ajaxSeentao($.getRootPath() + "/login/getMenu.rest",function(json) {
 						
 						if (json.code == '1') {
 							ischool.layout.hide();
@@ -202,7 +202,7 @@ $(function() {
 						}
 
 					}, {
-						type : "post"
+						type : "get"
 					});
 
 });

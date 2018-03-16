@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pers.li.support.dao.MenuBeanDAO" >
+  <resultMap id="BaseResultMap" type="pers.li.support.entity.MenuBean" >
+    <id column="id" property="id" jdbcType="SMALLINT" />
+    <result column="menu_code" property="menuCode" jdbcType="VARCHAR" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="menu_parent" property="menuParent" jdbcType="VARCHAR" />
+    <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
+    <result column="menu_images" property="menuImages" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, menu_code, menu_name, menu_parent, menu_url, menu_images
+  </sql>
+
+
+
+
+
+  <select id="selectMenuByUserId" resultType="java.util.Map" parameterType="java.lang.String" >
+    select s.user_id,r.id,r.role_name,r.role_type,f.menu_code,menu_name,menu_parent,menu_url,menu_images from
+      statement_sys_user_role_t s ,
+      statement_sys_role_t r ,
+      statement_sys_role_menu_t d,
+      statement_sys_menu_t f
+
+    where r.id=s.role_id and s.role_id=d.role_id and d.menu_id=f.id and  user_id =#{userId}
+  </select>
+
+
+
+
+
+
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select
+    <include refid="Base_Column_List" />
+    from statement_sys_menu_t
+    where id = #{id,jdbcType=SMALLINT}
+  </select>
+  <select id="getAllBean" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from statement_sys_menu_t
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from statement_sys_menu_t
+    where id = #{id,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="pers.li.support.entity.MenuBean" >
+    insert into statement_sys_menu_t (id, menu_code, menu_name, 
+      menu_parent, menu_url, menu_images
+      )
+    values (#{id,jdbcType=SMALLINT}, #{menuCode,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, 
+      #{menuParent,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, #{menuImages,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pers.li.support.entity.MenuBean" >
+    insert into statement_sys_menu_t
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="menuCode != null" >
+        menu_code,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="menuParent != null" >
+        menu_parent,
+      </if>
+      <if test="menuUrl != null" >
+        menu_url,
+      </if>
+      <if test="menuImages != null" >
+        menu_images,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=SMALLINT},
+      </if>
+      <if test="menuCode != null" >
+        #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuParent != null" >
+        #{menuParent,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuImages != null" >
+        #{menuImages,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pers.li.support.entity.MenuBean" >
+    update statement_sys_menu_t
+    <set >
+      <if test="menuCode != null" >
+        menu_code = #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuParent != null" >
+        menu_parent = #{menuParent,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuImages != null" >
+        menu_images = #{menuImages,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pers.li.support.entity.MenuBean" >
+    update statement_sys_menu_t
+    set menu_code = #{menuCode,jdbcType=VARCHAR},
+      menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_parent = #{menuParent,jdbcType=VARCHAR},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      menu_images = #{menuImages,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+</mapper>

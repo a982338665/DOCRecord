@@ -15,6 +15,9 @@ public enum ResultEnum {
     USER_NOTEXIST(100,"用户不存在"),
     USER_PWDERROR(101,"用户密码不正确"),
     USER_PWDNULL(102,"登录密码不能为空"),
+    USER_RESUBMIT(103,"请不要重复提交"),
+    USER_VERCodeERROR(104,"验证码输入错误"),
+    USER_COOKIEERROR(105,"验证cookie无效"),
 
 
     ;

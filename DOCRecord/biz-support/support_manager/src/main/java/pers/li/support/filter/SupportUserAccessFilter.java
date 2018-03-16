@@ -40,14 +40,22 @@ public class SupportUserAccessFilter implements Filter {
 //		response.setCharacterEncoding("UTF-8");
 
 		String path=request.getRequestURI();
-		Integer userName=(Integer)session.getAttribute("userName");
+		Object userName = session.getAttribute("userName");
+		logger.debug("[SESSION:-userName]{}",userName);
 
 		//		没有此字符串时返回-1，否则返回第一次出现此字符串的索引
 //		logger.debug("[请求路径记录]{}",request.getRequestURI());
+		/** 测试菜单获取  ***/
+		if (path.endsWith("/getMenu.rest")){
+			chain.doFilter(req, res);//放行，递交给下一个过滤器
+			return;
+		}
 		/** 需要放行的接口   ***/
-//		if (path.endsWith("VerifyCode")&&!path.contains("support_manager")){
-//
-//		}
+		if (path.endsWith("/SelectCookie.rest")){
+			chain.doFilter(req, res);//放行，递交给下一个过滤器
+			return;
+		}
+
 		if (path.endsWith(".css")||path.endsWith(".js")||
 				path.endsWith(".ttf")||!path.endsWith(".gif")||
 						path.endsWith(".png")){

@@ -236,9 +236,7 @@ var ischool = {};
 			return(localhostPaht+projectName);
 	}
 
-    /**
-     * ajax接收流文件
-     */
+
 
 
 	

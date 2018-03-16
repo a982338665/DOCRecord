@@ -20,10 +20,11 @@ var ischool = {};
         xmlhttp = new XMLHttpRequest();
         xmlhttp.open(method, url, true);
         xmlhttp.responseType = "blob";
-        xmlhttp.onload = function () {
+        //重新加载页面的时候更新一遍
+        xmlhttp.onload = function (e) {
             console.log(this);
             if (this.status == 200) {
-                var blob = this.response;
+                var blob = e.response;
                 var img= $(idname);
                 // var img = document.createElement("img");
                 img.onload = function (e) {
@@ -44,7 +45,7 @@ var ischool = {};
     $.ajaxFileDown=function (url,method,type) {
         // var url = 'download/?filename=aaa.txt';
         var xhr = new XMLHttpRequest();
-        xhr.open(method, url, true);    // 也可以使用POST方式，根据接口
+        xhr.open(method, url, false);    // 也可以使用POST方式，根据接口
         xhr.responseType = "blob";  // 返回类型blob
         // 定义请求完成的处理函数，请求前也可以增加加载框/禁用下载按钮逻辑
         xhr.onload = function () {
@@ -62,6 +63,7 @@ var ischool = {};
                     $("body").append(a);  // 修复firefox中无法触发click
                     a.click();
                     $(a).remove();
+
                 }
             }
         };
@@ -69,6 +71,7 @@ var ischool = {};
         xhr.send()
     }
 
+    /**ajax===https://segmentfault.com/a/1190000004322487**/
 
 
 }(jQuery);

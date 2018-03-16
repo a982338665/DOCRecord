@@ -89,9 +89,10 @@ public class VerifyCodeController {
 
         /**3 获得随机数据，并保存session*/
         String tempStr = builder.toString();
+
         request.getSession().setAttribute("sessionCacheData",tempStr);
 
-
+        logger.debug("[图片验证码]{}",tempStr+"|"+ request.getSession().getAttribute("sessionCacheData"));
         //.. 生成图片发送到浏览器 --相当于下载
         ImageIO.write(image, "jpg", response.getOutputStream());
 
