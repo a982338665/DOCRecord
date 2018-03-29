@@ -153,7 +153,6 @@
       <sourceFolder url="file://$MODULE_DIR$/sqldata" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="org.eclipse.jst.j2ee.internal.module.container" level="application" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="module-library">
       <library name="aopalliance-1.0.jar">
@@ -1353,5 +1352,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0" level="application" />
+    <orderEntry type="library" name="antlr-2.7.2" level="project" />
   </component>
 </module>
