@@ -44,6 +44,8 @@ remote: error: GH001: Large files detected. You may want to try Git Large File S
 	--3.此时文件属于自由状态，备份或删除
 	--4.git commit --amend -CHEAD  （再次提交）
 	--5.git push （重新推送）
+	    把修改强制推到远程服务器
+   		git push -f -u origin master
 --------------------------------------------
 git强制覆盖本地代码：
 在使用Git的过程中，有些时候我们只想要git服务器中的最新版本的项目，对于本地的项目中修改不做任何理会，就需要用到Git pull的强制覆盖，具体代码如下：
