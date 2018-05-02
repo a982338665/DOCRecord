@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <!--0表示没有超时限制，1表示1分钟后销毁（并不准确）-->
+    <session-config>
+        <session-timeout>0</session-timeout>
+    </session-config>
+    <!--放在监听器前面，则在监听器注册时，便可以读到此数据，即tomcat启动是便可以读到-->
+    <context-param>
+        <param-name>initParam</param-name>
+        <param-value>imooc</param-value>
+    </context-param>
+    <!--监听器注册-->
+    <listener>
+        <listener-class>pers.li.listener.DefineServletContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>pers.li.listener.DefineHttpRequestListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>pers.li.listener.DefineSHttpSessionListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>pers.li.onclick.DefineHttpSessionAttributeListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>pers.li.onclick.DefineServletContextAttributeListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>pers.li.onclick.DefineServletRequestAttributeListener</listener-class>
+    </listener>
+
+</web-app>
