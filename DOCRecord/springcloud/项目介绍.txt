@@ -45,7 +45,7 @@ Hystrix Dashboard (断路器：Hystrix 仪表盘)改造：
 ·Feign：
 ___________________________________________________
 第五篇: 路由网关(zuul):【】
-	1.路由转发指定消费者：
+	1.路由转发指定消费者：ribbon 或 Feign
 	2.pom.xml
 	3.在其入口applicaton类加上注解@EnableZuulProxy，开启zuul的功能：
 	4.加上配置文件application.yml加上以下的配置代码：
@@ -55,8 +55,16 @@ ___________________________________________________
 	2.这时访问：http://localhost:8769/api-a/hi?name=forezp ；网页显示：token is empty
 	3.访问 http://localhost:8769/api-a/hi?name=forezp&token=22 ；网页显示 hi forezp,i am from port:8762
 ___________________________________________________
-第六篇: 分布式配置中心(Spring Cloud Config)
-
+第六篇: 分布式配置中心(Spring Cloud Config)高可用
+	1.服务端项目-spring-config-server-01（连接git仓库获取配置文件信息）
+	2.客户端项目-spring-config-client-01
+第七篇: 高可用的分布式配置中心(Spring Cloud Config)
+	0.服务注册中心-spring-config-eureka-01 
+	1.服务端项目-spring-config-server-01（连接git仓库获取配置文件信息） --注册到Eureka服务中心，作为服务提供者
+	2.客户端项目-spring-config-client-01（注册服务中心，消费者调用）    --注册到Eureka服务中心，作为服务消费者
+	3.通过注册中心可达到高可用
+___________________________________________________	
+第八篇: 消息总线(Spring Cloud Bus)
 
 
 
