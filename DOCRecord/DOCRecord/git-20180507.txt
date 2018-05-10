@@ -134,7 +134,7 @@ $ ssh -T git@github.com							--验证ssh是否可用
 	Hi a982338665! You've successfully authenticated, but GitHub does not provide shell access.
 $ git remote -v	
 $ git remote set-url origin git@github.com:someaccount/someproject.git	--使用命令 git remote set-url 来调整你的url。						
-
+--
 
 
 
