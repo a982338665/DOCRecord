@@ -1,7 +1,13 @@
----------------------------------
+﻿---------------------------------
 --1.下载地址：
 	--https://www.jetbrains.com/idea/download/#section=windows
 --2.破解方式：
 	--选择菜单Help->Register->License server
 	--填上http://idea.iteblog.com/key.php
 	--点击Activate
+
+
+1、进入hosts文件中：
+C:\Windows\System32\drivers\etc\hosts
+2、将“0.0.0.0 account.jetbrains.com”添加到hosts文件中 
+3、使用http://idea.lanyus.com/这个网站提供的工具生成注册码
