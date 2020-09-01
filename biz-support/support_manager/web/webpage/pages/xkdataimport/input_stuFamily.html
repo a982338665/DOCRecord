@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport' />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/bootstrap.css">
+	<link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/jquery.fileupload-ui.css">
+	<link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/light-theme.css">
+	<link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/demo.css">
+
+<title>录入学生家长信息</title>
+</head>
+<body>
+<!-- top -->
+<header>
+    
+</header>
+<div id='wrapper'>
+    <!-- left -->
+    <div id='main-nav-bg'></div>
+    <nav class='' id='main-nav'>
+        
+    </nav>
+    <!-- right -->
+	<section id='content'>
+		<div class='container-fluid'>
+			<div class='row-fluid' id='content-wrapper'>
+				<div class='span12'>
+					<div class='row-fluid'>
+					    <div class='page-header'>
+                            <h1 class="pull-left">
+                                <span id='title1'>录入学生家长信息</span>
+                            </h1>
+					   	</div>
+					</div>
+
+                    <div class='box-content'>
+                        <form id='fun' accept-charset="UTF-8" action="#" class="form form-horizontal" method="post" style="margin-bottom: 0;" >
+                            <div class='control-group'>
+                                <label class='control-label' for=''>地市：</label>
+                                <div class='controls'>
+                                   <select id='ds' name='type'>
+                                   
+                                   </select>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label' for=''>区县：</label>
+                                <div class='controls'>
+                                    <select id="qx" name='type'>
+                                   
+                                   </select>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label' for=''>学校：</label>
+                                <div class='controls'>
+                                    <select id="school" name='schoolid'>
+                                   
+                                   </select>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label' for=''>学段：</label>
+                                <div class='controls'>
+                                    <select id="schoolStage" name='type'>
+                                   
+                                   </select>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label' for=''>年级：</label>
+                                <div class='controls'>
+                                    <select id="gradenum" name='gradenum'>
+                                   
+                                   </select>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label' for=''>班级：</label>
+                                <div class='controls'>
+                                    <select id="class" name='classId'>
+                                   
+                                   </select>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label' for=''>学生姓名：</label>
+                                <div class='controls'>
+                                    <input id='studentName' name="studentName" placeholder='必填' type="text" value='' />
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label' for=''>家长姓名：</label>
+                                <div class='controls'>
+                                    <input id='familyName' name="familyName" placeholder='必填' type="text" value='' />
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label' for=''>家长手机号：</label>
+                                <div class='controls'>
+                                    <input id='phone' name="phone" placeholder='必填' type="text" value='' />
+                                </div>
+                            </div>
+
+                            <div class='control-group'>
+                                <label class='control-label'></label>
+                                <div class='controls'>
+                                    <button id='sub'  class='btn btn-primary' type="button">保存</button>
+                                    <button class='btn' type="button">取消</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+<!-- / jquery -->
+<script type="text/javascript" src="../../../webpage/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../../../webpage/js/mobile_events/jquery.mobile-events.min.js"></script>
+<script type="text/javascript" src="../../../webpage/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../../../webpage/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../webpage/js/iv2tools.js"></script>
+<script type="text/javascript" src="js/input_stuFamily.js"></script>
+</body>
+
+</html>

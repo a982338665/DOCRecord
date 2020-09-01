@@ -1,0 +1,101 @@
+﻿ajax是一种技术方案：
+	·依赖的CSS/HTML/Javascript
+	·依赖核心：XMLHttpRequest对象--浏览器提供的
+XMLHttpRequest：
+	·可以使浏览器发送和接受http请求与响应
+-------------------------------------------------
+以上可总结为：
+	使用XMLHttpRequest对象来发送一个Ajax请求。
+—————————————————————————
+·微软浏览器率先提供此接口XMLHttpRequest（后来各大浏览器效仿）
+·w3c对其标准化，分为：
+	·level1：
+		--不能跨域请求(受同源策略的限制)
+		--不能发送二进制文件（图片视频音频）
+		--发送获取数据过程中，无法实时获取进度信息，只能判断是否完成
+	·level2：
+		--服务端允许，则可跨域
+		--支持二进制数据发送接收
+		--新增formData对象，支持发送表单数据
+		--发送获取数据时，可获取进度信息
+		--可设置请求超时时间
+—————————————————————————
+浏览器兼容性：部分支持部分不支持
+
+
+使用：
+————————————
+function sendAjax() {
+  //构造表单数据
+  var formData = new FormData();
+  formData.append('username', 'johndoe');
+  formData.append('id', 123456);
+  //创建xhr对象 
+  var xhr = new XMLHttpRequest();
+  //设置xhr请求的超时时间
+  xhr.timeout = 3000;
+  //设置响应返回的数据格式
+  xhr.responseType = "text";
+  //创建一个 post 请求，采用异步
+  xhr.open('POST', '/server', true);
+  //注册相关事件回调处理函数
+  xhr.onload = function(e) { 
+    if(this.status == 200||this.status == 304){
+        alert(this.responseText);
+    }
+  };
+  xhr.ontimeout = function(e) { ... };
+  xhr.onerror = function(e) { ... };
+  xhr.upload.onprogress = function(e) { ... };
+  
+  //发送数据
+  xhr.send(formData);
+}
+————————————
+
+
+
+
+
+
+————————————
+设置请求头：
+var client = new XMLHttpRequest();
+client.open('GET', 'demo.cgi');
+client.setRequestHeader('X-Test', 'one');
+client.setRequestHeader('X-Test', 'two');
+// 最终request header中"X-Test"为: one, two
+client.send();
+————————————
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+package pers.li.mq.topic;
+
+import org.apache.activemq.ActiveMQConnectionFactory;
+
+import javax.jms.*;
+
+/**
+ * create by lishengbo on 2018-04-25 13:46
+ * 消息提供者:
+ * 主题模式：
+ *   在订阅之后，共享数据接收（订阅之前的数据无法接受）
+ *
+ */
+public class AooProducer {
+
+    private static final String url="tcp://127.0.0.1:61616";
+    private static final String queueName="topic-test";
+
+
+    public static void main(String[] args) throws JMSException {
+
+        //创建连接工厂
+        ConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory(url);
+        //创建连接
+        Connection connection = activeMQConnectionFactory.createConnection();
+        //启动连接
+        connection.start();
+        //创建会话
+        //第一个参数：是否使用事务 第二个：连接的应答模式设置为自动连接
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        //创建一个目标************************************************************
+        Destination queue = session.createTopic(queueName);
+        //创建生产者
+        MessageProducer producer = session.createProducer(queue);
+        //循坏向目标地址发送消息
+        for (int i = 0; i <100 ; i++) {
+            //创建消息
+            TextMessage textMessage = session.createTextMessage("test-->"+i);
+            //发布消息
+            producer.send(textMessage);
+            //打印日志
+            System.out.println("发送消息："+textMessage.getText());
+        }
+        //关闭连接
+        connection.close();
+    }
+}

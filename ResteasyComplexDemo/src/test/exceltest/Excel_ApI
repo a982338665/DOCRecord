@@ -1,0 +1,29 @@
+=====================================================================
+1、Workbook类提供的方法
+	--int getNumberOfSheets() 		                //获取工作表的总个数
+	--Sheet[] getSheets()     		                //获取数组型的工作表
+	--Sheet getSheet(String name);	                //得到此对应名称的工作表
+4.1.2 2、Sheet接口提供的方法                        
+	--String getName() 				                //获取工作表的名称
+	--int getColumns() 				                //获取Sheet表中所包含的总列数
+	--Cell[] getColumn(int column)                  //获取某一列的所有单元格，返回的是单元格对象数组
+	--int getRows() 				                //获取Sheet表中所包含的总行数
+	--Cell[] getRow(int row) 		                //获取某一行的所有单元格，返回的是单元格对象数组
+	--Cell getCell(int column, int row)				//获取指定单元格的对象引用，需要注意的是它的两个参数，第一个是列数，第二个是行数，这与通常的行、列组合有些不同
+	--WritableSheet.setRowView(int i,int height);   //指定第i+1行的高度
+	--WritableSheet.setColumnView(int i,int width); //指定第i+1列的宽度
+=====================================================================
+读数据：poi
+写数据：jxl
+文件删除：
+//增加功能---------
+//文件下载完毕后删除 节约资源
+    File file2 = new File(fillPath);
+    if (file2.isFile() && file2.exists()) {
+        file2.delete();
+    }
+=====================================================================
+poi对公式支持较好，
+jxl不算好 。
+jxl提供对图片的支持（仅仅PNG格式），
+poi支持。（就这一条来看财务软件就该选poi，而媒体类的软件就该选jxl了）

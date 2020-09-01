@@ -1,0 +1,300 @@
+﻿----------------------
+后台+前台+前台Jasmine测试框架
+
+1. Jasmine.github.io
+2.点击release：https://github.com/jasmine/jasmine/releases
+3.下载解压导入
+----------------------
+:8081/#:1 Failed to load http://localhost:8080/test/get1: 
+No 'Access-Control-Allow-Origin' header is present on the requested resource.
+Origin 'http://localhost:8081' is therefore not allowed access.
+
+跨域安全问题：
+1.浏览器限制：解除限制，需要在客户端操作，不推荐
+2.发出的请求时XHRHTTPREquest请求：--更改为jsonp（通过一个图片访问json不报错）
+3.跨域：端口不同--jsonp不满足开发要求
+	--1.被调用方修改代码使其支持跨域（返回值中添加某些数据告诉浏览器允许client访问）。
+	    最终目的：在响应头添加字段
+		--1.服务器实现
+		--2.nginx配置
+		--3.apache配置
+	    --浏览器分析：先请求后判断
+	    --filter实现：
+		添加请求头Access-Control-Allow-Origin&Access-Control-Allow-Methods
+
+
+
+	--2.若被调用方非本公司，无法修改，则调用方修改，隐藏跨域：通过代理从浏览器发出的均为a域名的
+		请求，代理里把A域名转换为指定的B域名，使浏览器无法识别
+-----------------------
+1.浏览器限制：
+   1.命令运行：
+	搜索文件chrome.exe--获取应用路径C:\Program Files (x86)\Google\Chrome\Application
+	cmd--切换至以上路径
+C:\Users\cjh>cd ../
+C:\Users>cd ../
+C:\>cd  Program Files (x86)\Google\Chrome\Application
+C:\Program Files (x86)\Google\Chrome\Application>chrome --disable-web-security --user-data-dir=g:\temp3
+C:\Program Files (x86)\Google\Chrome\Application>
+------------------------
+2.jsonp解决：需要改动后台增加切面
+/**
+ * 使用jsonp解决ajax跨域问题：
+ * 1.普通方法中type为xhr
+ * 2.jsonp为script类型，浏览器不做校验，所以可以访问
+ * ------
+ * 1.普通响应类型：application/json;charset=UTF-8
+ * 2.jsonp响应类型：	application/javascript，返回js脚本
+ * ------
+ * jsonp弊端：
+ * 1.服务器需改动
+ * 2.仅支持Get请求（原理动态创建script，使用后销毁），无法满足实际需求
+ * 3.发送的不是XHR请求
+ */
+--------------------------
+3.跨域解决：
+--------------------------
+4.简单请求与非简单请求：
+  --1.工作中常见的简单请求：
+	方法：GET/HEAD/POST
+	请求head里面：
+		无自定义头
+		content-type为以下几种：
+			multipart/form-data
+			application/x-www-form-urlencoded
+			text/plain
+  --2.工作中常见的非简单请求：（先通过预检命令，然后在发送请求（例如postJson此方法）---共两条请求）
+	put/delete的ajax请求
+	发送json格式的ajax请求
+	带自定义头的ajax请求
+	-------
+	预检命令缓存
+--------------------------
+5.带cookie的跨域：（filter实现）
+	--1.带cookie的跨域时，Access-Control-Allow-Origin参数不能为*,需要明确指定请求发出地址
+	--2.res.addHeader("Access-Control-Allow-Credentials","true");
+--------------------------
+6.带自定义头的跨域：（非简单请求可做预检命令缓存）
+	Failed to load http://localhost:8080/test/getHeader: Request header field x-header2 is not allowed by 	Access-Control-Allow-Headers in preflight response.
+	
+	所以在响应头中把两个header加入就ok
+-------------------------
+7.被调用方解决跨域apache-nginx解决方案：
+nginx配置：详见其他配置
+server {
+    listen       8888;
+    server_name b.com;
+
+    location / {
+        proxy_pass http://localhost:8080/;
+		
+		#以下内容等同于在应用服务器上的filter中所写，用于处理跨域
+		add_header Access-Control-Allow-Methods *;
+		add_header Access-Control-Max-Age 3600;
+		add_header Access-Control-Allow-Credentials true;
+		
+		add_header Access-Control-Allow-Origin $http_origin;
+		add_header Access-Control-Allow-Headers $http_access_control_request_headers;
+		
+		#跳过预检命令(注意：if后面要有空格，防止语法报错)
+		if ($request_method = OPTIONS){
+			return 200;
+		}
+    }
+}
+8.修改访问地址
+	注意：带cookie的那个会失败，是因为没有cookie，在控制台加入重新调用即可以正常使用
+
+
+
+
+-------------------------
+9.apache解决跨域：
+	--1.下载解压：H:\Git\DOCRecord\DOCRecord\DOCRecord\tomacat\apache\Apache24\
+	--2.打开H:\Git\DOCRecord\DOCRecord\DOCRecord\tomacat\apache\Apache24\conf\httpd.conf
+		--0.修改根路径：更改39行：(改为解压路径)
+			# Define SRVROOT "/Apache24"
+			Define SRVROOT "H:/apache/Apache24"
+		--1.搜索vhost 178行：去掉注释
+			#LoadModule vhost_alias_module modules/mod_vhost_alias.so
+		--2.搜索vhost 499行：去掉注释
+			Include conf/extra/httpd-vhosts.conf
+		--3.搜索proxy_module 141行：去掉注释
+			#LoadModule proxy_module modules/mod_proxy.so
+		--4.搜索proxy 149行：去掉注释
+			LoadModule proxy_http_module modules/mod_proxy_http.so
+	--3.打开虚拟主机配置文件：H:\Git\DOCRecord\DOCRecord\DOCRecord\tomacat\apache\Apache24\conf\extra\httpd-			vhosts.conf
+		#每一个节点代表一个虚拟主机
+		<VirtualHost *:80>
+    			####ServerAdmin webmaster@dummy-host2.example.com
+			####DocumentRoot "${SRVROOT}/docs/dummy-host2.example.com"
+		
+    			ServerName b.com
+    			ErrorLog "logs/b.com-error.log"
+    			CustomLog "logs/b.com-access.log" common
+			ProxyPass / http://localhost:8080/
+
+			#把请求头的origin值返回到Access-Control-Allow_Origin字段
+			Header always set Access-Control-Allow-Origin "expr=%{req:origin}"
+	
+			#同上
+			Header always set Access-Control-Allow-Headers "expr=%{req:Access-Control-Request-Headers}"
+			Header always set Access-Control-Allow-Methods "*"
+			Header always set Access-Control-Allow-Credentials "true"
+			Header always set Access-Control-Max-Age "3600"
+	
+			#处理预检命令，返回204
+			RewriteEngine On
+			RewriteCond %{REQUEST_METHOD} OPTIONS
+			RewriteRule ^(.*)$ "/" [R=204,L]
+
+			
+		</VirtualHost>
+
+		#调用方隐藏跨域----=============================
+		<VirtualHost *:80>
+ 
+    			ServerName a.com
+    			ErrorLog "logs/a.com-error.log"
+    			CustomLog "logs/a.com-access.log" common
+
+			ProxyPass / http://localhost:8081/
+			ProxyPass /ajaxserverapache http://localhost:8080/test 
+				#将该请求路径换为 /ajaxserverapache
+			
+			
+		</VirtualHost>
+
+-------------------------
+10.被调用方-spring框架解决方案：controller上加一个注解
+	@RestController
+	@RequestMapping("/test")
+	@CrossOrigin //此注解便可解决跨域问题--如果报错：切换为jdk1.8，
+	public class TestController {
+   		 @GetMapping("/get1")...
+========================================================
+11.调用方解决方案：
+	--隐藏跨域：调用方的nginx发送
+	--反向代理nginx
+
+	-- 。。。
+
+		 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport' />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/bootstrap.css">
+	<link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/jquery.fileupload-ui.css">
+	<link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/light-theme.css">
+	<link rel="stylesheet" media='all' type="text/css" href="../../../webpage/css/demo.css">
+	
+    <style type="text/css">
+        .table td {
+            vertical-align: middle;
+        }
+        .box .box-header{
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-bottom: none;
+        }
+        .box .box-content{
+            height: 220px;
+            overflow: auto;
+        }
+        .PCfunctiontop{
+            line-height: 30px;
+            margin: 0;
+        }
+        .PCfunctiontop a{
+            margin-right: 10px;
+            font-size: 20px;
+            text-decoration: none;
+            float: left;
+        }
+        .PCfunctiontop input{
+            margin: 0 0 0 5px;
+        }
+        .PCfunction .content{
+            overflow: hidden;
+            padding-left: 20px;
+            margin: 0;
+        }
+        .PCfunction .content .radio{
+            display: inline-block;
+            margin: 0;
+        }
+        .red{
+			color: #f00;
+		}
+    </style>
+</head>
+<body class='contrast-red'>
+<!-- top -->
+<header>
+    
+</header>
+
+<div id='wrapper'>
+	<!-- left -->
+	<div id='main-nav-bg'></div>
+	<nav class='' id='main-nav'>
+		
+	</nav>
+	<!-- right -->
+	<section id='content'>
+		<div class='container-fluid'>
+			<div class='row-fluid' id='content-wrapper'>
+				<div class='span12'>
+					<div class='row-fluid'>
+					    <div class='page-header'>
+                            <h1 class="pull-left">
+                                <span>配置功能管理</span>
+                            </h1>
+					   	</div>
+					</div>
+
+                    <div class='box-content'>
+                        <form id="fun" accept-charset="UTF-8" action="#" class="form form-horizontal" method="post" style="margin-bottom: 0;" >
+                            <div class='control-group'>
+                                <label class='control-label' for=''>功能名称：</label>
+                                <div class='controls'>
+                                    <input id='functionName' name="functionName" placeholder='输入功能名称（15字以内）' type='text' />
+                                    <span class="red" id="tcNameT">*必填</span>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label' for=''>功能描述：</label>
+                                <div class='controls'>
+                                    <textarea id="functionDesc" name="functionDesc" class="span6" placeholder="请输入功能描述（30字以内）" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label' for=''>功能详情：</label>
+                                <div class='controls'>
+                                    <textarea id="functionDetail" name="functionDetail" class="span6" placeholder="请输入功能详情（200字以内）" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label'></label>
+                                <div class='controls'>
+                                    <button id="sub" class='btn btn-success' type="button">保存</button>
+                                    <button id="fangqi" class='btn' type="button">放弃</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- / jquery -->
+<script type="text/javascript" src="../../../webpage/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../../../webpage/js/mobile_events/jquery.mobile-events.min.js"></script>
+<script type="text/javascript" src="../../../webpage/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../../../webpage/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../webpage/js/iv2tools.js"></script>
+
+<script type="text/javascript" src="js/functionEidt.js"></script>
+<script type="text/javascript">
+    $(".PCfunctiontop a").click(function () {
+        $(this).hide();
+        $(this).siblings('a').show();
+        $(this).parent().siblings('.content').toggle();
+    });
+    $(".PCfunctiontop input").click(function () {
+        if ($(this).is(":checked")) {
+            $(this).parent().siblings('.content').find('input').removeAttr('disabled');
+        }else{
+            $(this).parent().siblings('.content').find('input').attr('disabled', 'disabled');
+        };
+    });
+</script>
+</body>
+</html>

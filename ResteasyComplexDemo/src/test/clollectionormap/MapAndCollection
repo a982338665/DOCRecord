@@ -1,0 +1,20 @@
+--------------------------------------------------
+Collection:-
+	--List:List里面的元素是有游标的，因此它们是可以通过游标进行get相应的值，同时，由于游标的存在，内部的元素允许重复
+		--Vector:Vector是重量级的，不支持并发操作，数据操作时异步的，因此相对于ArrayList的消耗会更大
+		--ArrayList:ArrayList与之对应，支持并发操作，线性不安全.
+		--LinkList:：LinkedList存储数据的方式是链表方式，而Vector和ArrayList是有顺序的队列形式，因此，
+		   他们主要的特点区别是：LinkedList相对于Vector和ArrayList而言，存储数据的速度更快，但是查找数据的速度较Vector和ArrayList慢。
+	--Set:Set存储时是无顺序的（当然，treeSet会通过一定的顺序储存排列数据），因此内部元素之间不能重复
+		--HashSet:HashSet中元素是无序的，元素不可重复，可以有null值
+		--TreeSet:TeeSet元素以一定的顺序排列，但是不能保证是和元素add进去的顺序一样，同时，TreeSet不可重复，不可有null值。
+--------------------------------------------------
+Map
+	--HashMap
+	--TreeMap
+	--HashTable
+	-------------------
+	HashMap和HashTable以及TreeMap的区别：首先，三者均是实现Map接口的实现类，所以，在存储数据方面均是以一组数据的形式储存，每个数据包含Key和Value值。首先，要明确的是，在Map下面的实现类都是通过key值来映射对应的value值的，所以Key值都是唯一的。三者的主要区别主要表现在能否加null值，是否支持数据同步，值得储存是否有序。
+在HashMap中，key和value都可以是null，value值允许重复，不支持数据同步，即允许多线程操作数据
+在HashTable中，key和value均不能是null值，同时HashTable支持数据同步，线性安全。
+TreeMap插入的元素是有序的，key值不允许为空，value允许为空值

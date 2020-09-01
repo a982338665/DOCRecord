@@ -1,0 +1,4 @@
+-----------------------------------
+1.让eclipse在debug时，不跳转到debug视图下
+	window --> preferences --> Run/Debug --> Perspectives 
+	里的 open the associated perspective when an application suspends 选中  never---在java进行调试

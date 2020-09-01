@@ -1,0 +1,17 @@
+﻿------------------------------------------------
+paython：
+	--1.解释性语言执行效率低，写一句，执行一句
+	--2.命令提示框中(cmd) : 输入path=%path%;C:\Python 添加环境变量
+	--3.dos执行python ：
+		C:\Users\cjh>python
+		Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:04:45) [MSC v.1900 32 bit (Intel)] on win32
+		Type "help", "copyright", "credits" or "license" for more information.
+		>>> print (123)
+-------------------------------------------------
+--python3.6.4(下载并添加环境变量cmd: 输入path=%path%;G:\Python)
+--C:\Users\cjh>python  		  --验证是否安装成功
+--C:\Users\cjh>pip install spyder --安装可视化工具但是没有图标无法
+--C:\Users\cjh>spyder3            --打开gui工具进行编译 
+--可直接在任务栏寻找python命令行
+--执行.py文件命令：python hello.py
+-------------------------------------------------

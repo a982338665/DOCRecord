@@ -1,0 +1,254 @@
+﻿----------------------------------------------	
+servlet简介：
+	--1.作用：处理请求和发送响应
+	--2.Servlet是为了解决实现动态页面而衍生的东西（http协议--B/S模式(浏览器/服务器)）
+tomcat和servlet的关系：
+	--1.Tomcat是Web应用服务器,是一个Servlet/JSP容器. 
+	--2.Tomcat作为Servlet容器,负责处理客户请求,把请求传送给Servlet,并将Servlet的响应传送回给客户.
+	-------------------------
+	--3.从http协议中的请求和响应可以得知：
+		--1.浏览器发出的请求是一个请求文本
+		--2.而浏览器接收到的也应该是一个响应文本
+	-------------------------
+	--4.①Tomcat将http请求文本接收并解析，然后封装成HttpServletRequest类型的request对象
+		所有的HTTP头数据都可以通过request对象调用对应的方法查询到。
+	--5.②Tomcat同时会要响应的信息封装为HttpServletResponse类型的response对象，
+		通过设置response属性就可以控制要输出到浏览器的内容，然后将response交给tomcat，
+		tomcat就会将其变成响应文本的格式发送给浏览器
+servlet编写：
+	--1.servlet创建：创建一个MyServlet继承HttpServlet，重写doGet和doPost方法
+		public class servletTest extends HttpServlet {
+			private static final long serialVersionUID = 1L;	
+			@Override
+			public void doGet(HttpServletRequest request, HttpServletResponse response) 		throws ServletException, IOException {
+			// TODO Auto-generated method stub
+			}
+   			@Override
+			public void doPost(HttpServletRequest request, HttpServletResponse response) 
+		throws ServletException, IOException {
+			// TODO Auto-generated method stub
+			}
+}
+	--2.在web.xml中配置MyServlet，让tomcat将封装好的request找到对应的servlet让其使用:
+		  <servlet>
+			 <!-- 给servlet命名（与以下mapping相同） -->
+   			   <servlet-name>MyServlet</servlet-name>
+			 <!-- servlet全限定类名，即servlet位置  -->
+  			   <servlet-class>test.MyServlet</servlet-class>
+    			 <init-param>
+    			      <param-name>contextConfigLocation</param-name>
+     			      <param-value>/WEB-INF/ApplicationContext.xml</param-value>
+   			   </init-param>
+			 <!-- load-on-startup元素标记容器是否在启动的时候就加载这个servlet -->
+			 <!-- 1--为优先级最高，0为调用该servlet时才实例化（默认为0）-->
+    			   <load-on-startup>1</load-on-startup>
+  		    </servlet>
+  		    <servlet-mapping>
+			 <!-- 同上名称 -->
+   			   <servlet-name>MyServlet</servlet-name>
+			 <!-- 访问servlet的路径 -->
+   			   <url-pattern>/MyServlet</url-pattern>
+  		    </servlet-mapping>
+详解创建servlet的原理:
+	--1.servlet的生命周期：
+		--1.初始化(init(ServletConfig conf))：
+			--load-on-startup配置为1：容器启动时，加载servlet、
+			--load-on-startup配置为0（默认为0）:第一次请求servlet时，加载servlet
+		--2.请求响应(service(ServletRequest req，ServletResponse res)):
+			--判断客户端请求方式（post/get）
+		--3.销毁(destroy())：
+			--服务器关闭时，销毁这个servlet对象
+	---------------------
+	--2.为什么创建的servlet是继承自httpServlet，而不是直接实现Servlet接口？
+	--3.servlet的生命周期中，可以看出，执行的是service方法，为什么我们就只需要写doGet和doPost方法呢？
+		--1.httpServlet继承GenericServlet(通用Servlet)
+		--2.实现Servlet接口的方法，简化编写servlet的步骤
+	---------------------
+	--public class MyServletTest extends HttpServlet
+	--public abstract class HttpServlet extends GenericServlet
+	--public abstract GenericServlet implements Servlet,ServletConfig
+		--GenericServlet除了实现Servlet接口外，还实现了ServletConfig接口，
+		那样，就可以直接获取ServletContext了。
+		--------------
+		--Servlet接口内容：
+			--init(ServletConfig conf)：  void		-----初始化调用
+			--getServletConfig():         ServletConfig	-----来获取ServletConfig对象
+			--service(ServletRequest req，ServletResponse res)---请求响应（是一个抽象方法）
+			--getServletInfo():           String
+			--destroy():		      void		-----销毁
+		--ServletConfig接口内容:
+			--getServletName     -----获取web.xml中的servlet-name的值
+			--getServletContext：
+				--ServletContext对象是servlet上下文对象，功能有很多
+				--获得了ServletContext对象，就能获取大部分我们需要的信息，
+				--比如获取servlet的路径，等方法。
+			--getInitParameter   -----获取在servlet中初始化参数的值。这里注意与全局初始化参数的区分。
+					     -----这个获取的只是在该servlet下的初始化参数
+					     --例如： <init-param>
+    			     				 <param-name>contextConfigLocation</param-name>
+     			    				 <param-value>/WEB-INF/ApplicationContext.xml</param-value>
+   			 			</init-param>
+			--getInitParameterNames：Enume——枚举为其返回值
+				--获取在Servlet中所有初始化参数的名字，也就是key值，可以通过key值，
+					来找到各个初始化参数的value值
+				-- 以下代码均可以省略：this.getServletConfig()
+				--   public void doGet(HttpServletRequest request, HttpServletResponse response)
+					 throws ServletException, IOException {
+						System.out.println(this.getServletConfig().getServletName());
+						System.out.println(this.getServletConfig().getInitParameter("haha"));
+				Enumeration<String> initParameters=this.getServletConfi().getInitParameterNames();
+					//初始化元素遍历
+					while (initParameters.hasMoreElements()) {
+						String string = (String) initParameters.nextElement();
+						System.out.println(string);
+						System.out.println(this.getServletConfig().getInitParameter(string));
+						}
+					}
+		--GenericServlet类的内容详解：
+			--1.以上两个接口方法的所有内容（9个接口）
+			--2.还多出一个无参的init()
+				--原因：
+				--1.init(ServletConfig conf)有个全局变量private transient ServletConfig config,
+					在初始化时该全局变量赋值给局部变量，然后通过getServletConfig()方法就能够
+					获取ServletConfig对象了					
+				--2.无参的init()则是为了避免方法重写造成不必要的麻烦，可以使用此方法进行重写
+				--3.若是重写了父类的init(ServletConfig config)方法，就需要在重写之后继续调用super.init				(ServletConfig config)
+		--HttpServlet：
+			--post,get等常量
+			--处理各种请求的方法
+			--service(ServletRequest req，ServletResponse res)
+				--主要内容：
+				public void service(ServletRequest req，ServletResponse res) throws
+					ServletException,IoException{
+					HttpServletRequest request;
+					HttpServletResponse response;
+				      try{
+					request=(HttpServletRequest)req;
+					response=(HttpServletResponse)res;
+					}catch(ClassCastException e){
+						throw new ServletException("non-HTTP request or  response");
+					}
+					service(request,response);
+					}
+				--可以强制转换的原因：
+					--与此相同:Object obj = new ArrayList();  List list = new ArrayList()
+					--前台请求的req，res的类型输出为:org.apache.catalina.connector.RequestFacade　　	
+						实际为Tomcat中的源码				
+					--RequestFacade 实现 HttpServletRequest接口
+					--HttpServletRequest接口 继承 ServletRequest
+			--service(HttpServletRequest req，HttpServletResponse res)
+					--该方法内会将get，post等其他5种请求方式提取出来，变成单个的方法
+					--然后我们需要编写servlet时，就可以直接重写doGet或者doPost方法就行了，
+					--而不是重写service方法，更加有针对性
+--ServletContext对象：
+	--获取方式： --getServletContext(); 
+		     --getServletConfig().getServletContext();　
+	--功能：--tomcat为每个web项目都创建一个ServletContext实例
+		--每个servlet都可以访问此对象
+	--web项目中共享数据：
+		--1.getAttribute(String name)
+		--2.setAttribute(String name, Object obj)
+		--3.removeAttribute(String name)
+	--获取web项目资源：
+		--1.此路径为部署路径
+		--2.获取web项目下指定资源的路径：getServletContext().getRealPath("/WEB-INF/web.xml")
+	--获取web项目下指定资源的内容返回的是字节输入流：
+		--1.    InputStream  in =InputStream getResourceAsStream("/WEB-INF/web.xml");
+			InputStreamReader isr=new  InputStreamReader(in,"utf-8");
+			BufferedReader  br=new BufferedReader(isr);
+			String s=null;
+			while((s=br.readLine())!=null){
+				syso(s);
+			}
+	--获取指定路径下的所有内容;getResourcePaths(java.lang.String path)
+		Set set=getServletContext().getResourcePaths("/WEB-INF");
+		Iterator st=set.iterator();
+		while(st.hasNext()){
+			syso(st.next());
+		}
+		//输出WEB-inf下的所有文件
+---------------------------------------------- 
+--request对象：
+	--1.请求行：请求方式、资源路径、协议  GET、/demo/1.html、HTTP/1.1
+	--2.请求头:referer用于防盗链（A访问B，B有一个A的标记referer）
+	--3.请求体：请求参数的位置
+--response对象：
+----------------------------------------------	
+	WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+			ServletContext servletContext = webApplicationContext.getServletContext();
+			
+			String path=servletContext.getRealPath("/")+"datamould/" ;
+----------------------------------------------
+springMVC4中获取request和response对象有以下两种简单易用的方法：
+
+1、在control层获取
+
+在control层中获取HttpServletRequest和HttpServletResponse对象有以下两种简单方式：
+
+1）通过方法参数直接在action类中获取
+
+@Controller
+
+class Action{
+
+  @RequestMapping("/path")
+
+   public String getReqAndRes(HttpServletRequest request, HttpServletResponse response){
+
+      /**  相关业务代码   此时可以直接使用request response对象 */
+
+   }
+
+}
+
+ 
+
+2)利用spring web提供的@ModelAttribute注解
+
+@ModelAttribute放在类方法的参数前面表示引用Model中的数据
+
+@ModelAttribute放在类方法上面则表示该Action类中的每个请求调用之前都会执行该方法，因此在此方法里面可以做一些请求预处理，利用此特性就可以抽象出一个基本Action类，然后所有的Action类都继承自这个基本Aciton类，在基本Action类里面获取相应的request、response、session对象：
+
+public class BaseAction{
+
+ 
+
+   protected HttpServletRequest request;
+
+   protected HttpServletResponse response;
+
+   protected HttpSession session;
+
+  
+
+   @ModelAttribute
+
+   public void setReqAndRes(HttpServletRequest request, HttpServletResponse response){
+
+       this.request = request;
+
+       this.response = response;
+
+       this.session = request.getSession();
+
+   }
+
+ 
+
+   /** 其他业务代码 */
+
+}
+
+ 
+
+2、通过spring提供的RequestContextHolder在非contrller层获取request和response对象
+
+HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+
+HttpServletResponse response = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getResponse();
+
+HttpServletResponse response = ((ServletWebRequest)RequestContextHolder.getRequestAttributes()).getResponse();
+
+ServletContext context = ContextLoader.getCurrentWebApplicationContext().getServletContext();
+
+ 
