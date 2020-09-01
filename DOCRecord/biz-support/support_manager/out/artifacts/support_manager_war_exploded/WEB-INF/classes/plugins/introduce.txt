@@ -1,5 +1,0 @@
---------------------------
-浏览器控制台查询cookie的方式：
-    输入：document.cookie
-    添加cookie的方式：
-    document.cookie="cookie1=xiaofengqing"

@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="CustomRelationOne:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="CustomRelationOne.war">
-      <element id="artifact" artifact-name="CustomRelationOne:war exploded" />
-    </root>
-  </artifact>
-</component>
