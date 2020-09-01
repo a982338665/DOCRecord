@@ -1,7 +1,0 @@
-﻿---------------------------------------
---1.设置windows中新建txt文档的默认编码为utf-8
-	1.在桌面新建一个文本文档，不要写入任何内容
-	2.打开文件-->手动另存为-->将此文档编码改为UTF-8，然后将文件名字改为template.txt；
-	3.将template.txt移动到C:\Windows\ShellNew这个文件夹下；
-	4.打开注册表，WIN+R输入regedit,打开HKEY_CLASSES_ROOT\.txt\ShellNew，
-	5.新建字符串值FileName，双击新建文件，在地址栏输入C:\Windows\ShellNew\template.tx:t
